@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>tower of trials</title>
 
   <style>
@@ -58,6 +58,8 @@
     #installBtn{ background:#0a84ff; }
   </style>
 </head>
+<script src="../pwa-mobile.js"></script>
+
 <body>
   <div id="game-container"></div>
 
@@ -66,6 +68,17 @@
     <button id="resetBtn">Reset Game</button>
   </div>
 
+  <script>
+
+    function setViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--app-vh', vh + 'px');
+    }
+    setViewportHeight();
+    window.addEventListener('resize', setViewportHeight, { passive: true });
+    window.addEventListener('orientationchange', setViewportHeight, { passive: true });
+    window.addEventListener('load', () => setTimeout(setViewportHeight, 50), { once: true });
+  </script>
   
   <script src="./phaser.js"></script>
   <script type="module" src="./src/main.js"></script>

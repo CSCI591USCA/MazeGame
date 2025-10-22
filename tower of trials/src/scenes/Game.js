@@ -18,7 +18,61 @@ export class Game extends Phaser.Scene {
         this.initMap();
         this.initPlayer();
         this.initPhysics();
+
+        // full-screen background that follows the viewport
+        this.bg = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'tiles', 1)
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setDepth(-100);
+        
+        // fit the whole map into view on first layout
+        this.updateCameraFit();
+
+        // re-fit on any resize / rotation
+        this.scale.on('resize', (size) => {
+            this.bg.setSize(this.scale.gameSize.width, this.scale.gameSize.height);
+            this.updateCameraFit();
+        });
     }
+
+    updateCameraFit() {
+        const cam = this.cameras.main;
+
+        const layer = (this.levelLayer ?? this.groundLayer);
+        const b = layer.getBounds(); 
+
+        const viewW = this.scale.width;
+        const viewH = this.scale.height;
+        const worldW = b.width;
+        const worldH = b.height;
+
+        const zoom = Math.min(viewW / worldW, viewH / worldH);
+        cam.setZoom(zoom);
+
+        const padX = Math.max(0, (viewW / zoom - worldW) / 2);
+        const padY = Math.max(0, (viewH / zoom - worldH) / 2);
+
+        cam.setBounds(
+            b.x - padX,
+            b.y - padY,
+            worldW + padX * 2,
+            worldH + padY * 2
+        );
+
+        cam.centerOn(b.centerX, b.centerY);
+  
+        if (this.physics && this.physics.world) {
+            this.physics.world.setBounds(
+                b.x - padX,
+                b.y - padY,
+                worldW + padX * 2,
+                worldH + padY * 2
+            );
+        }
+
+        cam.setRoundPixels(true);
+    }
+
 
     update(time, delta) {
         if (!this.gameStarted) return;
@@ -78,17 +132,20 @@ export class Game extends Phaser.Scene {
                 fontFamily: 'Arial Black', fontSize: 42, color: '#ffffff',
                 stroke: '#000000', strokeThickness: 8, align: 'center'
             })
-            .setOrigin(0.5).setDepth(100);
+            .setOrigin(0.5).setDepth(100)
+            .setScrollFactor(0);
 
         this.scoreText = this.add.text(20, 20, 'Score: 0', {
             fontFamily: 'Arial Black', fontSize: 28, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
-        }).setDepth(100);
+        }).setDepth(100)
+          .setScrollFactor(0);
 
         this.gameOverText = this.add.text(this.scale.width * 0.5, this.scale.height * 0.5, 'Game Over', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8, align: 'center'
-        }).setOrigin(0.5).setDepth(100).setVisible(false);
+        }).setOrigin(0.5).setDepth(100).setVisible(false)
+        .setScrollFactor(0);
     }
 
     initAnimations() {
@@ -182,7 +239,6 @@ export class Game extends Phaser.Scene {
                     this.enemyStart.x = x;
                     this.enemyStart.y = y;
                 } else if (tile.index === this.tileIds.key || tile.index === this.tileIds.door) {
-                    
                     tile.index = -1;
                 }
             }
@@ -267,14 +323,12 @@ export class Game extends Phaser.Scene {
         const m = this.getMapOffset();
         const worldX = m.x + (x * m.tileSize);
         const worldY = m.y + (y * m.tileSize);
-
         
         this.door = this.physics.add.staticImage(worldX, worldY, 'doorClosed')
             .setDepth(200)
             .setOrigin(0.5, 0.5);
 
         this.door.setDisplaySize(m.tileSize * 1.0, m.tileSize * 2.0);
-
         this.door.refreshBody();
     }
 
