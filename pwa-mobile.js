@@ -1,22 +1,19 @@
-
 (() => {
-  
   const ensureCanvas = () => {
     const cnv = document.querySelector('canvas');
     if (cnv && !cnv.hasAttribute('tabindex')) cnv.setAttribute('tabindex', '0');
     return cnv;
   };
+
   const focusCanvas = () => {
     const cnv = ensureCanvas();
     try { cnv && cnv.focus({ preventScroll: true }); } catch {}
     try { window.focus(); } catch {}
   };
 
-  
   const makeKeyEvent = (type, { key, code, keyCode }) => {
     let e;
     try {
-      
       e = document.createEvent('KeyboardEvent');
       e.initKeyboardEvent(
         type, true, true, window,
@@ -25,7 +22,7 @@
     } catch {
       e = new KeyboardEvent(type, { key, code, bubbles: true, cancelable: true });
     }
-    
+
     const setRO = (obj, prop, val) => {
       try { Object.defineProperty(obj, prop, { get: () => val }); } catch {}
     };
@@ -38,7 +35,6 @@
 
   const sendKey = (type, info) => {
     const ev = makeKeyEvent(type, info);
-    
     window.dispatchEvent(ev);
     document.dispatchEvent(ev);
     const cnv = document.querySelector('canvas');
@@ -60,6 +56,7 @@
   };
 
   // ---------- D-pad (on-screen buttons) ----------
+  // This will usually do nothing in iframe, but keeping it causes no harm.
   const dpad = document.getElementById('dpad');
   if (dpad) {
     const held = new Set();
@@ -68,14 +65,12 @@
 
     dpad.querySelectorAll('button[data-dir]').forEach(btn => {
       const dir = btn.dataset.dir;
-      // Use pointer events to cover mouse + touch
       btn.addEventListener('pointerdown', e => { e.preventDefault(); focusCanvas(); press(dir); });
       btn.addEventListener('pointerup',   e => { e.preventDefault(); release(dir); });
       btn.addEventListener('pointercancel', () => release(dir));
       btn.addEventListener('pointerleave',  () => release(dir));
     });
 
-    // Safety: release if finger lifts anywhere
     window.addEventListener('pointerup', () => { [...held].forEach(release); });
   }
 
@@ -99,9 +94,16 @@
     const start = () => { overlay.remove(); pressSpaceOnce(); };
     overlay.addEventListener('pointerdown', (e) => { e.preventDefault(); start(); }, { once: true });
 
-    // Also tap on the canvas sends Space any time
     const cnv = ensureCanvas();
     cnv && cnv.addEventListener('pointerdown', () => pressSpaceOnce());
   })();
-})();
 
+  // ---------- NEW: Listen for messages from outer page d-pad ----------
+  window.addEventListener('message', (event) => {
+    const { type, dir } = event.data || {};
+    if (type && dir && CODES[dir]) {
+      focusCanvas();
+      sendKey(type, CODES[dir]);
+    }
+  });
+})();

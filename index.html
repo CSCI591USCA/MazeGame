@@ -2,62 +2,26 @@
 <!--VISIT index.html IN TOWER OF TRIALS-->
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Maze Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#1c8c2c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="./door.png" />
+    <meta name="mobile-web-app-capable" content="yes">
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <title>Maze Game</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="manifest" href="./manifest.json" />
-  <meta name="theme-color" content="#1c8c2c" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link rel="apple-touch-icon" href="./door.png" />
-  <meta name="mobile-web-app-capable" content="yes">
+    <style>
+      html,body{height:100%;margin:0}
+      .frame{width:100%;height:100%;border:0}
+      .fallback{font-family:Arial,Helvetica,sans-serif;color:#222;display:flex;align-items:center;justify-content:center;height:100%}
+    </style>
 
-  <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #000;
-    }
-
-    #game-container {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: calc(var(--app-vh, 1vh) * 100);
-    }
-
-    #game-container canvas{
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .frame {
-      width: 100%;
-      height: 100%;
-      border: 0
-    }
-
-    .fallback {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%
-    }
-  </style>
-
-</head>
-
-<body>
-  <div id="game-container"></div>
-  <!-- Primary: embed the game folder index so Pages shows the game
+  </head>
+  <body>
+    <!-- Primary: embed the game folder index so Pages shows the game
          Use URL-encoded space for the folder name. If you rename the folder,
          update the src below accordingly. -->
   <iframe class="frame" src="./tower%20of%20trials/index.html" title="Maze Game"></iframe>
