@@ -1,187 +1,56 @@
-<!--copilot-->
-<!--VISIT index.html IN TOWER OF TRIALS-->
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <title>Maze Game</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="manifest" href="./manifest.json" />
-  <meta name="theme-color" content="#1c8c2c" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link rel="apple-touch-icon" href="./door.png" />
-  <meta name="mobile-web-app-capable" content="yes">
+  <title>Tower of Trials</title>
+
+  <!-- Critical for iOS full-bleed canvas -->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#0a84ff" />
+  <link rel="manifest" href="manifest.webmanifest" />
 
   <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #000;
+    :root {
+      /* Fallbacks when env() isn't available */
+      --safe-top: 0px;
+      --safe-left: 0px;
+      --safe-right: 0px;
+      --safe-bottom: 0px;
     }
-
-    #game-container {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: calc(var(--app-vh, 1vh) * 100);
-    }
-
-    #game-container canvas{
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .frame {
-      width: 100%;
-      height: 100%;
-      border: 0
-    }
-
-    .fallback {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%
-    }
-  </style>
-
-</head>
-
-<body>
-  <div id="game-container"></div>
-  <!-- Primary: embed the game folder index so Pages shows the game
-         Use URL-encoded space for the folder name. If you rename the folder,
-         update the src below accordingly. -->
-  <iframe class="frame" src="./tower%20of%20trials/index.html" title="Maze Game"></iframe>
-
-  <!-- Fallback for browsers without iframes or if embedding fails -->
-  <div class="fallback" aria-hidden="true" style="display:none">
-    <div>
-      <h1>Maze Game</h1>
-      <p>If the game does not load automatically, <a href="./tower%20of%20trials/index.html">open it here</a>.</p>
-    </div>
-  </div>
-
-  <script>
-    // If iframe fails to load (e.g. blocked), show the fallback message
-    const frame = document.querySelector('.frame');
-    frame.addEventListener('error', () => {
-      document.querySelector('.fallback').style.display = 'flex';
-    });
-  </script>
-
-  <!-- On-screen d-pad (phones) -->
-  <div id="dpad" aria-label="d-pad">
-    <button data-dir="up" aria-label="Up">▲</button>
-    <div class="row">
-      <button data-dir="left" aria-label="Left">◀</button>
-      <button data-dir="right" aria-label="Right">▶</button>
-    </div>
-    <button data-dir="down" aria-label="Down">▼</button>
-    <button data-dir="space" aria-label="Jump / Start">␣</button>
-  </div>
-
-
-
-  <!--EG buttons appear on screen but do not work yet-->
-  <!--EG made changes to see if buttons are responsive. they are still not functioning 10/15 10:16 am-->
-  <style>
-    #dpad button[data-dir="space"] {
-      grid-column: 1 / -1;
-      margin-top: .25rem;
-      background: rgba(255, 255, 255, 0.25);
-      color: #fff;
-      font-weight: bold;
-    }
-
-    #dpad {
-      position: fixed;
-      left: 1rem;
-      bottom: 1rem;
-      z-index: 9999;
-      display: grid;
-      grid-template-rows: auto auto auto;
-      gap: .25rem;
-      user-select: none;
-      touch-action: none;
-      opacity: .9
-    }
-
-    #dpad .row {
-      display: grid;
-      grid-template-columns: auto auto;
-      gap: .25rem
-    }
-
-    #dpad button {
-      width: 60px;
-      height: 60px;
-      font-size: 1.2rem;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, .35);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, .3)
-    }
-
-    @media (min-width:768px) {
-      #dpad {
-        display: none
+    @supports (padding: env(safe-area-inset-top)) {
+      :root {
+        --safe-top: env(safe-area-inset-top);
+        --safe-left: env(safe-area-inset-left);
+        --safe-right: env(safe-area-inset-right);
+        --safe-bottom: env(safe-area-inset-bottom);
       }
     }
-  </style>
-  <script>
-  // Grab iframe reference
-  const gameFrame = document.querySelector('.frame');
-  const dpadEl = document.getElementById('dpad');
 
-  if (dpadEl && gameFrame) {
-    const held = new Set();
-
-    const post = (type, dir) => {
-      gameFrame.contentWindow.postMessage({ type, dir }, '*');
-    };
-
-    dpadEl.querySelectorAll('button[data-dir]').forEach(btn => {
-      const dir = btn.dataset.dir;
-      btn.addEventListener('pointerdown', e => {
-        e.preventDefault();
-        if (!held.has(dir)) {
-          held.add(dir);
-          post('keydown', dir);
-        }
-      });
-      btn.addEventListener('pointerup', e => {
-        e.preventDefault();
-        if (held.delete(dir)) post('keyup', dir);
-      });
-      btn.addEventListener('pointercancel', () => { held.delete(dir); post('keyup', dir); });
-      btn.addEventListener('pointerleave', () => { held.delete(dir); post('keyup', dir); });
-    });
-
-    window.addEventListener('pointerup', () => {
-      [...held].forEach(dir => post('keyup', dir));
-      held.clear();
-    });
-  }
-</script>
-
-
-
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(console.error);
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #040218;
+      touch-action: none;     /* prevent scroll/zoom gestures over canvas */
+      overflow: hidden;
     }
-  </script>
+    /* Fill the visual viewport even when toolbars collapse/expand */
+    #game {
+      width: 100vw;
+      height: 100dvh;         /* key: dynamic viewport height for mobile */
+      padding-top: var(--safe-top);
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+      padding-bottom: var(--safe-bottom);
+      box-sizing: border-box;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="game"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.min.js"></script>
+  <script type="module" src="src/main.js"></script>
 </body>
-
 </html>

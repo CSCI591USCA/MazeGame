@@ -1,1 +1,2 @@
-# MazeGame
+# mazegametest
+testing for maze game
