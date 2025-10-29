@@ -1,2 +1,2 @@
-# mazegametest
-testing for maze game
+# mazegame
+Tower of Trials maze game
