@@ -14,6 +14,24 @@ const MAX_SPAWN_ATTEMPTS = 40;           // safety loop cap
 export default class GameScene extends Phaser.Scene {
   constructor() { super('Game'); }
 
+  preload() {
+    // ==== PLAYER SPRITE SHEETS (each 80x80 arranged 2x2 → frame 40x40) ====
+    this.load.spritesheet('idle_n', 'assets/idle_north_grid.png', { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('idle_s', 'assets/idle_south_grid.png', { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('idle_e', 'assets/idle_east_grid.png',  { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('idle_w', 'assets/idle_west_grid.png',  { frameWidth: 40, frameHeight: 40 });
+
+    this.load.spritesheet('walk_n', 'assets/walk_north_grid.png', { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('walk_s', 'assets/walk_south_grid.png', { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('walk_e', 'assets/walk_east_grid.png',  { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('walk_w', 'assets/walk_west_grid.png',  { frameWidth: 40, frameHeight: 40 });
+
+    // You probably load wall/bullet/enemy art elsewhere (BootScene). If not, add:
+    // this.load.image('wallTile', 'assets/wallTile.png');
+    // this.load.image('enemyBox', 'assets/enemyBox.png');
+    // this.load.image('bullet',   'assets/bullet.png');
+  }
+
   init(data) {
     // Auto-detect touch if not explicitly passed
     const touchCapable = this.sys.game.device?.input?.touch;
@@ -30,6 +48,9 @@ export default class GameScene extends Phaser.Scene {
     this.physics.world.timeScale = 1;
     this.time.timeScale = 1;
 
+    // Create animations once
+    this._createPlayerAnims();
+
     this.buildLevel(this.level);
 
     // HUD (slightly lower on mobile to avoid status bar)
@@ -43,7 +64,7 @@ export default class GameScene extends Phaser.Scene {
     // Inputs (mobile: joystick; desktop: keys + mouse)
     this.inputMgr = new InputManager(this, {
       isTouchDevice: this.isTouch,
-      onDirection: (dir) => { this.player.requestDirection?.(dir, (cx, cy) => this.isOpen(cx, cy)); },
+      onDirection: (dir) => { this.player.setDirection?.(dir); },
       onShoot: () => this.shoot()
     });
 
@@ -216,14 +237,22 @@ export default class GameScene extends Phaser.Scene {
       const vx = dir === 'left' ? -S : dir === 'right' ? S : 0;
       const vy = dir === 'up' ? -S : dir === 'down' ? S : 0;
       this.player.sprite.setVelocity(vx, vy);
+      this.player.setDirection?.(dir || this.player.currentDirection);
     } else {
       // Mobile: joystick vector
       const v = this.inputMgr.getJoystickVector();
       const S = PLAYER_SPEED;
       this.player.sprite.setVelocity(v.x * S, v.y * S);
 
-      
+      // update a rough facing from joystick for shooting/idle
+      if (Math.abs(v.x) > 0.1 || Math.abs(v.y) > 0.1) {
+        if (Math.abs(v.x) >= Math.abs(v.y)) this.player.setDirection?.(v.x > 0 ? 'right' : 'left');
+        else this.player.setDirection?.(v.y > 0 ? 'down' : 'up');
+      }
     }
+
+    // Animate based on current velocity (works for both keyboard & joystick)
+    this.player.tickAnimFromVelocity();
 
     // Enemies
     for (let i = 0; i < this.enemies.length; i++) {
@@ -239,9 +268,7 @@ export default class GameScene extends Phaser.Scene {
 
   /* ===== Helpers ===== */
   shoot() {
-    const dir = !this.isTouch
-      ? (this.inputMgr.getKeyDirection?.() || this.player.currentDirection || 'right')
-      : (this.player.currentDirection || this.player.queuedDirection || 'right');
+    const dir = this.player.currentDirection || 'right';
     const { x, y } = this.player.sprite;
     this.bullets.fire(x, y, dir);
   }
@@ -291,6 +318,30 @@ export default class GameScene extends Phaser.Scene {
       if (d >= minDist && d > bestScore) { bestScore = d; best = c; }
     }
     return best || open[(Math.random()*open.length)|0];
+  }
+
+  _createPlayerAnims() {
+    const make = (key, sheet, rate=8) => {
+      if (this.anims.exists(key)) return;
+      this.anims.create({
+        key,
+        frames: this.anims.generateFrameNumbers(sheet, { start: 0, end: 3 }),
+        frameRate: rate,
+        repeat: -1
+      });
+    };
+
+    // Idle (slow loop; set rate=0 with repeat:-1 if you want single-frame idle)
+    make('idle-n', 'idle_n', 4);
+    make('idle-s', 'idle_s', 4);
+    make('idle-e', 'idle_e', 4);
+    make('idle-w', 'idle_w', 4);
+
+    // Walk
+    make('walk-n', 'walk_n', 10);
+    make('walk-s', 'walk_s', 10);
+    make('walk-e', 'walk_e', 10);
+    make('walk-w', 'walk_w', 10);
   }
 }
 
