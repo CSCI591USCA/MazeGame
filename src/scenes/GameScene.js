@@ -16,15 +16,15 @@ export default class GameScene extends Phaser.Scene {
 
   preload() {
     // ==== PLAYER SPRITE SHEETS (each 80x80 arranged 2x2 → frame 40x40) ====
-    this.load.spritesheet('idle_n', 'assets/idle_north_grid.png', { frameWidth: 40, frameHeight: 40 });
-    this.load.spritesheet('idle_s', 'assets/idle_south_grid.png', { frameWidth: 40, frameHeight: 40 });
-    this.load.spritesheet('idle_e', 'assets/idle_east_grid.png',  { frameWidth: 40, frameHeight: 40 });
-    this.load.spritesheet('idle_w', 'assets/idle_west_grid.png',  { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('idle_n', 'assets/idle_north_grid_2.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('idle_s', 'assets/idle_south_grid_2.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('idle_e', 'assets/idle_east_grid_2.png',  { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('idle_w', 'assets/idle_west_grid_2.png',  { frameWidth: 48, frameHeight: 48 });
 
-    this.load.spritesheet('walk_n', 'assets/walk_north_grid.png', { frameWidth: 40, frameHeight: 40 });
-    this.load.spritesheet('walk_s', 'assets/walk_south_grid.png', { frameWidth: 40, frameHeight: 40 });
-    this.load.spritesheet('walk_e', 'assets/walk_east_grid.png',  { frameWidth: 40, frameHeight: 40 });
-    this.load.spritesheet('walk_w', 'assets/walk_west_grid.png',  { frameWidth: 40, frameHeight: 40 });
+    this.load.spritesheet('walk_n', 'assets/walk_north_grid_2.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('walk_s', 'assets/walk_south_grid_2.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('walk_e', 'assets/walk_east_grid_2.png',  { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('walk_w', 'assets/walk_west_grid_2.png',  { frameWidth: 48, frameHeight: 48 });
 
     // You probably load wall/bullet/enemy art elsewhere (BootScene). If not, add:
     // this.load.image('wallTile', 'assets/wallTile.png');
