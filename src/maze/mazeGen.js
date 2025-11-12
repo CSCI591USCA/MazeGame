@@ -2,7 +2,6 @@ export function generateMaze(level = 1, opts = {}) {
   const cols = makeOdd(Math.max(7, opts.colsOverride ?? 31));
   const rows = makeOdd(Math.max(7, opts.rowsOverride ?? 23));
 
-  // ---- 1) perfect maze (cells at odd coords) ----
   const grid = filled(rows, cols, 0);
   for (let y = 1; y < rows; y += 2)
     for (let x = 1; x < cols; x += 2) grid[y][x] = 1;
@@ -27,8 +26,6 @@ export function generateMaze(level = 1, opts = {}) {
   // Exit near bottom-right
   const exitCell = nearestOpenToBR(grid);
 
-  // ---- 2) BRAIDING: remove many dead-ends -> multiple routes ----
-  // Level 1 ~50%, Level 2 ~60%, Level 3+ ~70% of dead-ends opened.
   const braidFactor = clamp(0.5 + 0.1 * (level - 1), 0.5, 0.7);
   braidMaze(grid, braidFactor);
 
