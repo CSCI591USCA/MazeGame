@@ -26,10 +26,6 @@ export default class GameScene extends Phaser.Scene {
     this.load.spritesheet('walk_e', 'assets/walk_east_grid_2.png',  { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('walk_w', 'assets/walk_west_grid_2.png',  { frameWidth: 48, frameHeight: 48 });
 
-    // You probably load wall/bullet/enemy art elsewhere (BootScene). If not, add:
-    // this.load.image('wallTile', 'assets/wallTile.png');
-    // this.load.image('enemyBox', 'assets/enemyBox.png');
-    // this.load.image('bullet',   'assets/bullet.png');
   }
 
   init(data) {
@@ -99,10 +95,19 @@ export default class GameScene extends Phaser.Scene {
 
     // Walls
     this.wallBodies = this.physics.add.staticGroup();
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-      if (grid[y][x] === 0) {
-        const wx = x * CELL_SIZE, wy = y * CELL_SIZE;
-        this.wallBodies.create(wx + CELL_SIZE/2, wy + CELL_SIZE/2, 'wallTile').refreshBody();
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        if (grid[y][x] === 0) {
+          const wx = x * CELL_SIZE, wy = y * CELL_SIZE;
+          const tile = this.wallBodies.create(wx + CELL_SIZE / 2, wy + CELL_SIZE / 2, 'wallTile');
+
+          //make the display size exactly one cell
+          tile.setOrigin(0.5);
+          tile.setDisplaySize(CELL_SIZE, CELL_SIZE);
+
+          //refresh static body so the collider matches the display size
+          tile.refreshBody();
+        }
       }
     }
 

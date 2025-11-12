@@ -3,7 +3,9 @@ import { CELL_SIZE, PLAYER_MARGIN } from '../config.js';
 export default class BootScene extends Phaser.Scene {
   constructor() { super('Boot'); }
 
-  preload() {}
+  preload() {
+    this.load.image('wallTile', 'assets/tile_0000.png');
+  }
 
   create() {
     const g = this.add.graphics();
@@ -12,10 +14,6 @@ export default class BootScene extends Phaser.Scene {
     const PLAYER_SIZE = Math.max(8, CELL_SIZE - PLAYER_MARGIN);
     g.clear().fillStyle(0xffffff, 1).fillRect(0, 0, PLAYER_SIZE, PLAYER_SIZE);
     g.generateTexture('playerBox', PLAYER_SIZE, PLAYER_SIZE);
-
-    // Wall tile
-    g.clear().fillStyle(0x1b1f3b, 1).fillRect(0, 0, CELL_SIZE, CELL_SIZE);
-    g.generateTexture('wallTile', CELL_SIZE, CELL_SIZE);
 
     // Enemy box
     const ENEMY_SIZE = CELL_SIZE - 2;
