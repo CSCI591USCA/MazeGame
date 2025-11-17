@@ -1,21 +1,42 @@
-import BootScene from './scenes/BootScene.js';
-import MenuScene from './scenes/MenuScene.js';
-import GameScene from './scenes/GameScene.js';
+import Level from "./scenes/Level.js";
+import Preload from "./scenes/Preload.js";
 
-const config = {
-  type: Phaser.AUTO,
-  parent: 'game',
-  backgroundColor: '#040218',
-  scale: {
-    mode: Phaser.Scale.RESIZE,      // ⬅ fill the window exactly
-    autoCenter: Phaser.Scale.NO_CENTER
-    
-  },
-  physics: {
-    default: 'arcade',
-    arcade: { gravity: { y: 0 }, debug: false }
-  },
-  scene: [BootScene, MenuScene, GameScene]
-};
+window.addEventListener('load', function () {
 
-new Phaser.Game(config);
+	var game = new Phaser.Game({
+		width: 1280,
+		height: 720,
+		type: Phaser.AUTO,
+        backgroundColor: "#242424",
+		scale: {
+			mode: Phaser.Scale.FIT,
+			autoCenter: Phaser.Scale.CENTER_BOTH
+		},
+		physics: {
+			default: 'arcade',
+			arcade: {
+				debug: true,
+				gravity: {
+					x: 0, y: 0
+				}
+			}
+		}
+	});
+
+	game.scene.add("Preload", Preload);
+	game.scene.add("Level", Level);
+	game.scene.add("Boot", Boot, true);
+});
+
+class Boot extends Phaser.Scene {
+
+	preload() {
+		
+		this.load.pack("pack", "assets/preload-asset-pack.json");
+	}
+
+	create() {
+
+		this.scene.start("Preload");
+	}
+}

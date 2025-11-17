@@ -1,93 +1,31 @@
-<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <title>Tower of Trials</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<title>My Game</title>
 
-  <!-- Critical for iOS full-bleed canvas -->
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-  <meta name="theme-color" content="#0a84ff" />
-  <link rel="manifest" href="manifest.webmanifest" />
+    <script src="https://cdn.jsdelivr.net/npm/phaser@v3.88.2/dist/phaser.min.js"></script>
+	<script src="src/main.js" type="module"></script> 
 
-  <style>
-    :root {
-      /* Fallbacks when env() isn't available */
-      --safe-top: 0px;
-      --safe-left: 0px;
-      --safe-right: 0px;
-      --safe-bottom: 0px;
-    }
-    @supports (padding: env(safe-area-inset-top)) {
-      :root {
-        --safe-top: env(safe-area-inset-top);
-        --safe-left: env(safe-area-inset-left);
-        --safe-right: env(safe-area-inset-right);
-        --safe-bottom: env(safe-area-inset-bottom);
-      }
-    }
+	<style>
+		body {
+			background: #2f2f2f;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #040218;
-      touch-action: none;     /* prevent scroll/zoom gestures over canvas */
-      overflow: hidden;
-    }
-    /* Fill the visual viewport even when toolbars collapse/expand */
-    #game {
-      width: 100vw;
-      height: 100dvh;         /* key: dynamic viewport height for mobile */
-      padding-top: var(--safe-top);
-      padding-left: var(--safe-left);
-      padding-right: var(--safe-right);
-      padding-bottom: var(--safe-bottom);
-      box-sizing: border-box;
-      display: block;
-    }
-  </style>
 </head>
-<body>
-  <div id="game"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.min.js"></script>
-  <script type="module" src="src/main.js"></script>
+<body>
+
 </body>
+
 </html>
 
 
-<!-- 11/3 capstone meeting notes
-start thinking about mobile
-make the char slightly larger
-on comp its easy to see but not mobile
-change the maze up a little    right now its only 1 way to get to end chnage it back to old one with multiple
-
-want to bge able to turn around 
-
-once we get first one done it will come easy
 
 
-right now main job is changing maze? you cant turn around really right now
-
-change timer to FIXED position
-
-be able to customize scene 
-try to make maze less complex
-
-make our own maze??
-the generated one is too complex and compact
-maybe make it a little more open space?    not all straight lines make you able to turn around
-make it like pacman if needed (remove certain parts for turns)
-start with more customization 
-character.    maze.   (do we want to keep random)
-
-
-mauybe self design maze so its not common (can be very simple for kids)
-make levels very easy then get harder
-
-kick time????? so quick i think (like a mom in car line waiting on kid from school)
-mazegen.js needs to be modified. or atleast understand it better 
-look into the file^^ see if you can use some of the already existing code
-
-we need to be able to change it. Might need to use phasers drag option to do it
--->

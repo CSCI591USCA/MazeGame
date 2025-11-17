@@ -1,0 +1,876 @@
+{
+    "id": "01aefa93-6044-4159-8358-7e91310aa05f",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Level",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "31cd9231-e038-4f1d-b680-ab709de35e32",
+            "label": "background1",
+            "texture": {
+                "key": "castlebg1"
+            },
+            "x": -2,
+            "scaleX": 2.2254355424635595,
+            "scaleY": 2.2359550008840916,
+            "originX": 0,
+            "originY": 0
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "dd5b3f34-4777-4220-b820-1d437658b1f5",
+            "unlock": [
+                "x",
+                "y",
+                "allowGravity"
+            ],
+            "label": "prefabwall",
+            "x": 28,
+            "y": 690,
+            "allowGravity": false
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "b0104e2c-9cad-4952-a085-6a9936a8f2b6",
+            "unlock": [
+                "x",
+                "y",
+                "allowGravity"
+            ],
+            "label": "prefabwall_1",
+            "x": 80,
+            "y": 690,
+            "allowGravity": false
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "3f20899c-c591-4511-8de4-5171583ed12a",
+            "unlock": [
+                "x",
+                "y",
+                "allowGravity"
+            ],
+            "label": "prefabwall_2",
+            "x": 132,
+            "y": 690,
+            "allowGravity": false
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "724ccbad-56d6-4c2d-9e09-0687df1a02e3",
+            "unlock": [
+                "x",
+                "y",
+                "allowGravity"
+            ],
+            "label": "prefabwall_3",
+            "x": 186,
+            "y": 690,
+            "allowGravity": false
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "f725e353-2804-4435-9269-c622bf7cebe4",
+            "unlock": [
+                "x",
+                "y",
+                "allowGravity"
+            ],
+            "label": "prefabwall_4",
+            "x": 236,
+            "y": 690,
+            "allowGravity": false
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "277b85c1-c177-4340-9e32-6a6553bbb560",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_5",
+            "x": 289,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "5ea4f17b-db7d-4ea5-917c-0e7ec9e9c905",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_6",
+            "x": 341,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "d9e7e7c2-fba0-4c0d-a6cf-93946c618136",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_7",
+            "x": 394,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "718f3a04-b860-44d4-a122-ffc859d84269",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_8",
+            "x": 445,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "bc4d5927-cba5-4d31-898f-cf9751b21d9b",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_9",
+            "x": 500,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "226cf6ab-0dc4-49be-84a7-91e370e69aff",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_10",
+            "x": 553,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "52d40ee6-b35f-45cd-8fd1-76cfdd3718d3",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_11",
+            "x": 606,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "57db6111-3fb6-4191-8569-52be8a7677f6",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_12",
+            "x": 658,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "2a305a4e-8e70-4804-b67d-6babb62b6912",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_13",
+            "x": 710,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "04ad5ad8-0dfa-419b-b443-23e0c6950213",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_14",
+            "x": 759,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "88b66c27-8e66-46de-9f59-4bb452f5b63c",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_15",
+            "x": 813,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "a893afbc-8b0a-4a8c-a09d-ddca5cba7000",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_16",
+            "x": 866,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "b7ab1881-9700-43e4-abfb-4da76791ba2d",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_17",
+            "x": 914,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "61f8baf4-643d-4e21-bc33-5003db2369f0",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_18",
+            "x": 962,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "d607c02f-f78f-4e64-9ba5-0d999de403f4",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_19",
+            "x": 1014,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "18651030-799d-4337-a9eb-f8e188489922",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_20",
+            "x": 1066,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "b22903e2-3f5d-47c0-b7ed-ee163ffb5c7c",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_21",
+            "x": 1118,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "360685c4-99f9-407f-b5dd-a587e91f5d92",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_22",
+            "x": 1170,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "7d13862f-4dea-4e3d-ac94-ff6d88c6e606",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_23",
+            "x": 1221,
+            "y": 690
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "69a4f616-dca5-44f2-860b-51d297045a3e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_24",
+            "x": 1271,
+            "y": 690
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "4646a3f7-ab45-418e-b407-fb84b02e7000",
+            "label": "player",
+            "scope": "CLASS",
+            "hitArea.shape": "RECTANGLE",
+            "hitArea.width": 48,
+            "hitArea.height": 48,
+            "texture": {
+                "key": "idlefront1"
+            },
+            "x": 40,
+            "y": 661,
+            "scaleX": 1.5,
+            "scaleY": 1.5,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "5cb7cfcc-c2f5-48a6-ba84-05b264987fc2",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_25",
+            "x": 370,
+            "y": 559
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "424dc62a-3f1a-4ded-a48c-67b8d31a3300",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_26",
+            "x": 419,
+            "y": 559
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "7b071801-ec9b-4dd8-bb42-62ecd1b1afd4",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_27",
+            "x": 467,
+            "y": 559
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "ce211ace-5a7e-4bdc-9cc7-4e8f6afc3898",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_28",
+            "x": 704,
+            "y": 450
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "1398962f-dd23-4818-a60a-d04704e54b72",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_29",
+            "x": 756,
+            "y": 450
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "314b097d-c547-49e0-8ee6-339246ee3ca8",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_30",
+            "x": 806,
+            "y": 450
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "ba7d88cf-bca9-44f6-9535-bd83199a7061",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_31",
+            "x": 854,
+            "y": 450
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "738430bd-443c-4aa6-8145-328144831b6a",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_32",
+            "x": 1151,
+            "y": 335
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "df71c18d-cd68-4dcd-96e9-da1f2b240570",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_33",
+            "x": 1196,
+            "y": 335
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "4a2569b1-6685-4506-9265-fa2242159e83",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_34",
+            "x": 1247,
+            "y": 335
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "e53942be-aa6d-42f7-8daf-60b7dc89783e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_35",
+            "x": 1100,
+            "y": 335
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "fc5d32f7-f2c8-48b5-8ac3-d5109bb0e874",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_36",
+            "x": 1052,
+            "y": 335
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "7c003069-4905-4954-8a5e-da7bd8019cda",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_37",
+            "x": 857,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "5ed52144-2780-443e-83c6-8b7803e7c475",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_38",
+            "x": 755,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "6b3fb6e2-9bd1-4928-a31c-eb8fdfdd1f22",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_39",
+            "x": 806,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "b7288f8d-bc76-4e0b-a14f-ee709c110deb",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_40",
+            "x": 707,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "9a192bcf-9f72-4880-bf4d-dc21cd6487e6",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_41",
+            "x": 656,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "79538318-a843-4d3f-a46d-2c46a3403621",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_42",
+            "x": 605,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "63e9d6b7-5bc4-4dfa-b01b-f89ee54072bc",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_43",
+            "x": 554,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "4e632cfb-0623-42f6-b4ad-ae11144331dc",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_44",
+            "x": 505,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "014a4b87-fd0c-412d-87d7-dc729567c18d",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_45",
+            "x": 460,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "2b310e24-3e1d-4ceb-b560-6727beb3925a",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_46",
+            "x": 412,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "77ecc93c-2f16-4c95-b644-6f39bce6204e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_47",
+            "x": 364,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "ae0d6874-6f48-4ea8-bc94-c5b353c1d4e8",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_48",
+            "x": 315,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "0416d0f9-0263-434a-a2e3-eb6846e0a5b7",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_49",
+            "x": 265,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "d7e80065-79b5-4f00-a8ff-8042eb6456ab",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_50",
+            "x": 217,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "335dad8f-0248-4fa3-8fc7-7a83ff6099fd",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_51",
+            "x": 169,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "4b05cf6f-42f4-45c9-a6b1-7b5c08104a7c",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_52",
+            "x": 118,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "69c23dca-bf44-4305-a4bc-82bb271289f9",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_53",
+            "x": 70,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "8f52c21d-3465-4384-a08a-8cce6d0adf49",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_54",
+            "x": 22,
+            "y": 205
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "255e2b9b-4738-4479-ac9e-e7065341ce71",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_55",
+            "x": 1199,
+            "y": 135
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "afc68d08-7552-4ec0-bc46-ef48f8659a19",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_56",
+            "x": 1250,
+            "y": 135
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "04d15d50-f0a2-49de-85c2-51f0c2615b52",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_57",
+            "x": 1146,
+            "y": 135
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "6320d9df-55d0-457d-b147-b0279d40936e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_58",
+            "x": 1092,
+            "y": 135
+        },
+        {
+            "type": "Ellipse",
+            "id": "9dd8a14f-1b7f-475b-8080-76ac18e69855",
+            "label": "enemy1",
+            "scope": "CLASS",
+            "x": 786,
+            "y": 391,
+            "scaleX": 0.3,
+            "scaleY": 0.3,
+            "isFilled": true,
+            "fillColor": "#b80000",
+            "width": 128,
+            "height": 128
+        },
+        {
+            "type": "Ellipse",
+            "id": "ee3970b1-0869-4824-94cd-236ed0aa342a",
+            "label": "enemy2",
+            "scope": "CLASS",
+            "x": 1160,
+            "y": 288,
+            "scaleX": 0.3,
+            "scaleY": 0.3,
+            "isFilled": true,
+            "fillColor": "#b80000",
+            "width": 128,
+            "height": 128
+        },
+        {
+            "type": "Ellipse",
+            "id": "3ec6b186-6d47-4d6f-b16f-2d62eb586c44",
+            "label": "enemy3",
+            "scope": "CLASS",
+            "x": 466,
+            "y": 158,
+            "scaleX": 0.3,
+            "scaleY": 0.3,
+            "isFilled": true,
+            "fillColor": "#b80000",
+            "width": 128,
+            "height": 128
+        },
+        {
+            "type": "Rectangle",
+            "id": "39ac0e1f-bde0-4bd3-9975-990f1b53b997",
+            "label": "door",
+            "scope": "CLASS",
+            "x": 1249,
+            "y": 55,
+            "scaleX": 0.4,
+            "scaleY": 0.8,
+            "isFilled": true,
+            "fillColor": "#642a00",
+            "width": 128,
+            "height": 128
+        },
+        {
+            "type": "Polygon",
+            "id": "9cf002a3-72f1-492a-adbe-d30254cfbe7a",
+            "label": "key",
+            "scope": "CLASS",
+            "x": 35,
+            "y": 158,
+            "scaleX": 0.4,
+            "scaleY": 0.4,
+            "isFilled": true,
+            "fillColor": "#dbbd00"
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "f444ee68-7b98-47c8-862d-7a751919bdb5",
+            "type": "Collider",
+            "label": "collider",
+            "scope": "LOCAL",
+            "object1": "player",
+            "object2": "ground"
+        },
+        {
+            "id": "3f0fcc7a-c444-4bb3-ba89-12a36bc60ed4",
+            "type": "Collider",
+            "label": "collider_1",
+            "scope": "LOCAL",
+            "object1": "enemies",
+            "object2": "ground"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "lists": [
+        {
+            "id": "a6f69849-a808-4b5c-8192-9bdf35b8da76",
+            "label": "ground",
+            "objectIds": [
+                "b0104e2c-9cad-4952-a085-6a9936a8f2b6",
+                "3f20899c-c591-4511-8de4-5171583ed12a",
+                "724ccbad-56d6-4c2d-9e09-0687df1a02e3",
+                "f725e353-2804-4435-9269-c622bf7cebe4",
+                "277b85c1-c177-4340-9e32-6a6553bbb560",
+                "5ea4f17b-db7d-4ea5-917c-0e7ec9e9c905",
+                "d9e7e7c2-fba0-4c0d-a6cf-93946c618136",
+                "718f3a04-b860-44d4-a122-ffc859d84269",
+                "bc4d5927-cba5-4d31-898f-cf9751b21d9b",
+                "226cf6ab-0dc4-49be-84a7-91e370e69aff",
+                "52d40ee6-b35f-45cd-8fd1-76cfdd3718d3",
+                "57db6111-3fb6-4191-8569-52be8a7677f6",
+                "2a305a4e-8e70-4804-b67d-6babb62b6912",
+                "04ad5ad8-0dfa-419b-b443-23e0c6950213",
+                "88b66c27-8e66-46de-9f59-4bb452f5b63c",
+                "a893afbc-8b0a-4a8c-a09d-ddca5cba7000",
+                "b7ab1881-9700-43e4-abfb-4da76791ba2d",
+                "61f8baf4-643d-4e21-bc33-5003db2369f0",
+                "d607c02f-f78f-4e64-9ba5-0d999de403f4",
+                "18651030-799d-4337-a9eb-f8e188489922",
+                "b22903e2-3f5d-47c0-b7ed-ee163ffb5c7c",
+                "360685c4-99f9-407f-b5dd-a587e91f5d92",
+                "7d13862f-4dea-4e3d-ac94-ff6d88c6e606",
+                "69a4f616-dca5-44f2-860b-51d297045a3e",
+                "5cb7cfcc-c2f5-48a6-ba84-05b264987fc2",
+                "424dc62a-3f1a-4ded-a48c-67b8d31a3300",
+                "7b071801-ec9b-4dd8-bb42-62ecd1b1afd4",
+                "ce211ace-5a7e-4bdc-9cc7-4e8f6afc3898",
+                "1398962f-dd23-4818-a60a-d04704e54b72",
+                "314b097d-c547-49e0-8ee6-339246ee3ca8",
+                "ba7d88cf-bca9-44f6-9535-bd83199a7061",
+                "738430bd-443c-4aa6-8145-328144831b6a",
+                "df71c18d-cd68-4dcd-96e9-da1f2b240570",
+                "4a2569b1-6685-4506-9265-fa2242159e83",
+                "e53942be-aa6d-42f7-8daf-60b7dc89783e",
+                "fc5d32f7-f2c8-48b5-8ac3-d5109bb0e874",
+                "7c003069-4905-4954-8a5e-da7bd8019cda",
+                "5ed52144-2780-443e-83c6-8b7803e7c475",
+                "6b3fb6e2-9bd1-4928-a31c-eb8fdfdd1f22",
+                "b7288f8d-bc76-4e0b-a14f-ee709c110deb",
+                "9a192bcf-9f72-4880-bf4d-dc21cd6487e6",
+                "79538318-a843-4d3f-a46d-2c46a3403621",
+                "63e9d6b7-5bc4-4dfa-b01b-f89ee54072bc",
+                "4e632cfb-0623-42f6-b4ad-ae11144331dc",
+                "014a4b87-fd0c-412d-87d7-dc729567c18d",
+                "2b310e24-3e1d-4ceb-b560-6727beb3925a",
+                "77ecc93c-2f16-4c95-b644-6f39bce6204e",
+                "ae0d6874-6f48-4ea8-bc94-c5b353c1d4e8",
+                "0416d0f9-0263-434a-a2e3-eb6846e0a5b7",
+                "d7e80065-79b5-4f00-a8ff-8042eb6456ab",
+                "335dad8f-0248-4fa3-8fc7-7a83ff6099fd",
+                "4b05cf6f-42f4-45c9-a6b1-7b5c08104a7c",
+                "69c23dca-bf44-4305-a4bc-82bb271289f9",
+                "8f52c21d-3465-4384-a08a-8cce6d0adf49",
+                "255e2b9b-4738-4479-ac9e-e7065341ce71",
+                "afc68d08-7552-4ec0-bc46-ef48f8659a19",
+                "04d15d50-f0a2-49de-85c2-51f0c2615b52",
+                "6320d9df-55d0-457d-b147-b0279d40936e",
+                "dd5b3f34-4777-4220-b820-1d437658b1f5"
+            ]
+        },
+        {
+            "id": "2897fcd5-bc2e-4049-b54a-7d8ac6f6ab4b",
+            "label": "enemies",
+            "objectIds": [
+                "9dd8a14f-1b7f-475b-8080-76ac18e69855",
+                "ee3970b1-0869-4824-94cd-236ed0aa342a",
+                "3ec6b186-6d47-4d6f-b16f-2d62eb586c44"
+            ]
+        }
+    ]
+}

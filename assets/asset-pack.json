@@ -1,0 +1,69 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/castlebg1.png",
+                "type": "image",
+                "key": "castlebg1"
+            },
+            {
+                "url": "assets/dino.png",
+                "key": "dino",
+                "type": "image"
+            },
+            {
+                "url": "assets/idlefront1.png",
+                "type": "image",
+                "key": "idlefront1"
+            },
+            {
+                "url": "assets/idlefront2.png",
+                "type": "image",
+                "key": "idlefront2"
+            },
+            {
+                "url": "assets/idlefront3.png",
+                "type": "image",
+                "key": "idlefront3"
+            },
+            {
+                "url": "assets/idlefront4.png",
+                "type": "image",
+                "key": "idlefront4"
+            },
+            {
+                "url": "assets/tile_0000.png",
+                "type": "image",
+                "key": "tile_0000"
+            },
+            {
+                "url": "assets/walkingright1.png",
+                "type": "image",
+                "key": "walkingright1"
+            },
+            {
+                "url": "assets/walkingright2.png",
+                "type": "image",
+                "key": "walkingright2"
+            },
+            {
+                "url": "assets/walkingright3.png",
+                "type": "image",
+                "key": "walkingright3"
+            },
+            {
+                "url": "assets/walkingright4.png",
+                "type": "image",
+                "key": "walkingright4"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false,
+        "visible": true
+    }
+}
