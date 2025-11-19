@@ -328,7 +328,8 @@
             "originY": 1,
             "collideWorldBounds": true,
             "body.width": 48,
-            "body.height": 48
+            "body.height": 48,
+            "body.offset.y": -10
         },
         {
             "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
@@ -705,48 +706,6 @@
             "y": 135
         },
         {
-            "type": "Ellipse",
-            "id": "9dd8a14f-1b7f-475b-8080-76ac18e69855",
-            "label": "enemy1",
-            "scope": "CLASS",
-            "x": 786,
-            "y": 391,
-            "scaleX": 0.3,
-            "scaleY": 0.3,
-            "isFilled": true,
-            "fillColor": "#b80000",
-            "width": 128,
-            "height": 128
-        },
-        {
-            "type": "Ellipse",
-            "id": "ee3970b1-0869-4824-94cd-236ed0aa342a",
-            "label": "enemy2",
-            "scope": "CLASS",
-            "x": 1160,
-            "y": 288,
-            "scaleX": 0.3,
-            "scaleY": 0.3,
-            "isFilled": true,
-            "fillColor": "#b80000",
-            "width": 128,
-            "height": 128
-        },
-        {
-            "type": "Ellipse",
-            "id": "3ec6b186-6d47-4d6f-b16f-2d62eb586c44",
-            "label": "enemy3",
-            "scope": "CLASS",
-            "x": 466,
-            "y": 158,
-            "scaleX": 0.3,
-            "scaleY": 0.3,
-            "isFilled": true,
-            "fillColor": "#b80000",
-            "width": 128,
-            "height": 128
-        },
-        {
             "type": "Rectangle",
             "id": "39ac0e1f-bde0-4bd3-9975-990f1b53b997",
             "label": "door",
@@ -771,6 +730,60 @@
             "scaleY": 0.4,
             "isFilled": true,
             "fillColor": "#dbbd00"
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "3b73d60f-e374-45df-bd7a-82f73bf8b0aa",
+            "label": "enemy1",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 773,
+            "y": 407,
+            "scaleX": 1.7,
+            "scaleY": 1.7,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 48,
+            "body.height": 48,
+            "body.offset.y": -15
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "caaf3c37-d4bc-47de-b4ff-454e99d34129",
+            "label": "enemy2",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 1120,
+            "y": 301,
+            "scaleX": 1.7,
+            "scaleY": 1.7,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 48,
+            "body.height": 48,
+            "body.offset.y": -15
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "0effe365-8724-498d-8356-9f9b70e0abda",
+            "label": "enemy3",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 462,
+            "y": 165,
+            "scaleX": 1.7,
+            "scaleY": 1.7,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 48,
+            "body.height": 48,
+            "body.offset.y": -15
         }
     ],
     "plainObjects": [
@@ -788,7 +801,8 @@
             "label": "collider_1",
             "scope": "LOCAL",
             "object1": "enemies",
-            "object2": "ground"
+            "object2": "ground",
+            "callbackContext": "this"
         }
     ],
     "meta": {
@@ -867,9 +881,9 @@
             "id": "2897fcd5-bc2e-4049-b54a-7d8ac6f6ab4b",
             "label": "enemies",
             "objectIds": [
-                "9dd8a14f-1b7f-475b-8080-76ac18e69855",
-                "ee3970b1-0869-4824-94cd-236ed0aa342a",
-                "3ec6b186-6d47-4d6f-b16f-2d62eb586c44"
+                "3b73d60f-e374-45df-bd7a-82f73bf8b0aa",
+                "caaf3c37-d4bc-47de-b4ff-454e99d34129",
+                "0effe365-8724-498d-8356-9f9b70e0abda"
             ]
         }
     ]

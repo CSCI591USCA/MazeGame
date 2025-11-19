@@ -12,6 +12,26 @@
                 "type": "image"
             },
             {
+                "url": "src/scenes/enemywalkingright1.png",
+                "type": "image",
+                "key": "enemywalkingright1"
+            },
+            {
+                "url": "src/scenes/enemywalkingright2.png",
+                "type": "image",
+                "key": "enemywalkingright2"
+            },
+            {
+                "url": "src/scenes/enemywalkingright3.png",
+                "type": "image",
+                "key": "enemywalkingright3"
+            },
+            {
+                "url": "src/scenes/enemywalkingright4.png",
+                "type": "image",
+                "key": "enemywalkingright4"
+            },
+            {
                 "url": "assets/idlefront1.png",
                 "type": "image",
                 "key": "idlefront1"

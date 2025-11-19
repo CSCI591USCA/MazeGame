@@ -1,47 +1,42 @@
 {
     "id": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+    "sceneType": "PREFAB",
     "settings": {
-        "createMethodName": "",
-        "preloadMethodName": "",
-        "compilerOutputLanguage": "JAVA_SCRIPT",
         "exportClass": true,
         "autoImport": true,
         "importFileExtension": true,
-        "generateAwakeHandler": false,
-        "compilerInsertSpaces": false,
-        "compilerTabSize": 4,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
         "borderWidth": 1280,
-        "borderHeight": 720,
-        "borderX": 0,
-        "borderY": 0
+        "borderHeight": 720
     },
-    "sceneType": "PREFAB",
     "displayList": [
         {
-            "unlock": [
-                "x",
-                "y"
-            ],
             "type": "ArcadeImage",
             "id": "fd590a8f-5079-4584-8a6a-e7775c19064f",
             "label": "tile_0000",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 0,
-            "y": 0,
+            "x": 1,
             "scaleX": 3,
             "scaleY": 3,
+            "physicsType": 1,
+            "moves": false,
+            "allowGravity": false,
             "collideWorldBounds": true,
             "pushable": false,
             "immovable": true,
-            "body.width": 18,
-            "body.height": 18
+            "body.width": 48,
+            "body.height": 48
         }
     ],
+    "plainObjects": [],
     "meta": {
-        "app": "Phaser Editor 2D - Scene Editor",
-        "url": "https://phasereditor2d.com",
-        "contentType": "phasereditor2d.core.scene.SceneContentType"
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
     }
 }
