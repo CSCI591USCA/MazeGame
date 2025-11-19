@@ -1,4 +1,3 @@
-
 // You can write more code here
 
 /* START OF COMPILED CODE */
@@ -423,6 +422,9 @@ export default class Level extends Phaser.Scene {
 	/** @type {boolean} */
 	isMobile = false;
 
+	/** @type {Phaser.Sound.BaseSound} */
+	bgMusic;
+
 	/* START-USER-CODE */
 
 	// Write more your code here
@@ -432,6 +434,13 @@ export default class Level extends Phaser.Scene {
 		this.editorCreate();
 
 		const player = this.player;
+
+		// ✅ --- Background Music ---
+		this.bgMusic = this.sound.add("bgMusic", {
+			loop: true,
+			volume: 0.5
+		});
+		this.bgMusic.play();
 
 		//--- game state ---
 		this.gameOver = false;
@@ -681,6 +690,11 @@ export default class Level extends Phaser.Scene {
 		//marks game as over
 		this.gameOver = true;
 
+		// ✅ Stop background music
+		if (this.bgMusic && this.bgMusic.isPlaying) {
+			this.bgMusic.stop();
+		}
+
 		//Stops all physics so everyone freezes
 		this.physics.pause();
 
@@ -798,6 +812,11 @@ export default class Level extends Phaser.Scene {
 		}
 
 		this.levelComplete = true;
+
+		// ✅ Stop background music
+		if (this.bgMusic && this.bgMusic.isPlaying) {
+			this.bgMusic.stop();
+		}
 
 		this.physics.pause();
 
