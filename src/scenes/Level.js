@@ -404,6 +404,25 @@ export default class Level extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Ellipse[]} */
 	enemies;
 
+	/** @type {Phaser.GameObjects.Circle}  */
+	joystickBase;
+	/** @type {Phaser.GameObjects.Circle}  */
+	joystickThumb;
+	/** @type {Phaser.GameObjects.GameObject} */
+	shootButton;
+
+	/** @type {number|null} */
+	joystickPointerId;
+	/** @type {boolean} */
+	joystickLeft = false;
+	/** @type {boolean} */
+	joystickRight = false;
+	/** @type {boolean} */
+	joystickUp = false;
+
+	/** @type {boolean} */
+	isMobile = false;
+
 	/* START-USER-CODE */
 
 	// Write more your code here
@@ -486,7 +505,7 @@ export default class Level extends Phaser.Scene {
 		// --- Bullet Group ---
 		this.bullets = this.physics.add.group({
 			defaultKey: "bulletTex",	//use texture we created
-			maxSize: 50,				//max bullets at once
+			maxSize: 100,				//max bullets at once
 			allowGravity: false
 		});
 
@@ -551,10 +570,17 @@ export default class Level extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 
-		//Spacebar for shooting
+		//--- Spacebar for shooting ---
 		this.shootKey = this.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.SPACE
 		);
+
+		//--- Mobile Detection & Controls ---
+		this.isMobile = !this.sys.game.device.os.desktop;
+
+		if (this.isMobile) {
+			this.createMobileControls();
+		}
 
 		//--- Animations ---
 		this.anims.create({
@@ -594,10 +620,21 @@ export default class Level extends Phaser.Scene {
 		const speed = 200;
 		const jumpSpeed = -450;
 
-		//--- Combine Arrows + WASD ---
-		const leftPressed = this.cursor.left.isDown || this.wasd.left.isDown;
-		const rightPressed = this.cursor.right.isDown || this.wasd.right.isDown;
-		const upPressed = this.cursor.up.isDown || this.wasd.up.isDown;
+		//--- Combine Arrows + WASD + Joystick ---
+		const leftPressed =
+			this.cursor.left.isDown ||
+			this.wasd.left.isDown ||
+			!!this.joystickLeft;
+		
+		const rightPressed =
+			this.cursor.right.isDown ||
+			this.wasd.right.isDown ||
+			!!this.joystickRight;
+
+		const upPressed =
+			this.cursor.up.isDown ||
+			this.wasd.up.isDown ||
+			!!this.joystickUp;
 
 		//--- Shoot Bullets ----
 		if (Phaser.Input.Keyboard.JustDown(this.shootKey)) {
@@ -773,6 +810,117 @@ export default class Level extends Phaser.Scene {
 			fontSize: "48px",
 			color: "#00ff00"
 		}).setOrigin(0.5);
+	}
+
+	//--- Mobile Controls: Joystick + Shoot Button ---
+	createMobileControls() {
+		const width = this.scale.width;
+		const height = this.scale.height;
+
+		//--- Joystick ---
+		const baseX = 80;
+		const baseY = height - 80;
+		const baseRadius = 70;
+
+		//--- Joystick Base ---
+		const base = this.add.circle(baseX, baseY, baseRadius, 0x000000, 0.3);
+		base.setScrollFactor(0);
+		base.setDepth(1000);
+		base.setInteractive();
+
+		//--- Joystick Thumb ---
+		const thumb = this.add.circle(baseX, baseY, baseRadius * 0.5, 0xffffff, 0.6);
+		thumb.setScrollFactor(0);
+		thumb.setDepth(1001);
+
+		this.joystickBase = base;
+		this.joystickThumb = thumb;
+		this.joystickPointerId = null;
+		this.joystickLeft = false;
+		this.joystickRight = false;
+		this.joystickUp = false;
+
+		//--- Pointer Events on Joystick ---
+		this.input.on("pointerdown", (pointer) => {
+			if (this.joystickPointerId !== null) {
+				return;
+			}
+
+			if (pointer.x > width / 2) {
+				return
+			}
+
+			this.joystickPointerId = pointer.id;
+			this.updateJoystick(pointer);
+		});
+
+		this.input.on("pointermove", (pointer) => {
+			if (pointer.id === this.joystickPointerId) {
+				this.updateJoystick(pointer);
+			}
+		});
+
+		this.input.on("pointerup", (pointer) => {
+			if (pointer.id === this.joystickPointerId) {
+				this.resetJoystick();
+			}
+		});
+
+		//--- Mobile Shoot Button ---
+		const shootRadius = 30;
+		const shoot = this.add.circle(width - 80, height - 80, shootRadius, 0xff4444, 0.7);
+		shoot.setScrollFactor(0);
+		shoot.setDepth(1000);
+		shoot.setInteractive();
+
+		shoot.on("pointerdown", () => {
+			if (!this.gameOver && !this.levelComplete) {
+				this.shootBullet();
+			}
+		});
+
+		this.shootButton = shoot;
+	}
+
+	//--- Update Joystick State ---
+	updateJoystick(pointer) {
+		if (!this.joystickBase || !this.joystickThumb) return;
+
+		const baseX = this.joystickBase.x;
+		const baseY = this.joystickBase.y;
+		const maxDist = 40;
+
+		const dx = pointer.x - baseX;
+		const dy = pointer.y - baseY;
+
+		let dist = Math.sqrt(dx * dx + dy * dy);
+		let clampedDx = dx;
+		let clampedDy = dy;
+
+		if (dist > maxDist) {
+			const ratio = maxDist / dist;
+			clampedDx *= ratio;
+			clampedDy *= ratio;
+		}
+
+		this.joystickThumb.setPosition(baseX + clampedDx, baseY + clampedDy);
+
+		//--- Determine Direction ---
+		this.joystickLeft = clampedDx < -10;
+		this.joystickRight = clampedDx > 10;
+		this.joystickUp = clampedDy < -15;
+	}
+
+	//--- Reset Joystick ---
+	resetJoystick() {
+		if (!this.joystickBase || !this.joystickThumb) return;
+
+		this.joystickPointerId = null;
+		this.joystickThumb.setPosition(this.joystickBase.x, this.joystickBase.y);
+
+		this.joystickLeft = false;
+		this.joystickRight = false;
+		this.joystickUp = false;
 	}
 
 	/* END-USER-CODE */
