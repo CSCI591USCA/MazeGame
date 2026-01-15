@@ -1,5 +1,6 @@
-import Level from "./scenes/Level.js";
 import Preload from "./scenes/Preload.js";
+import LevelOne from "./scenes/LevelOne.js";
+import Level from "./scenes/Level.js";
 
 window.addEventListener('load', function () {
 
@@ -18,7 +19,7 @@ window.addEventListener('load', function () {
 		physics: {
 			default: 'arcade',
 			arcade: {
-				debug: true,
+				debug: false,
 				gravity: {
 					x: 0, y: 0
 				}
@@ -30,6 +31,7 @@ window.addEventListener('load', function () {
 	 * Adds game scenes to the Phaser game instance.
 	 */
 	game.scene.add("Preload", Preload);
+	game.scene.add("LevelOne", LevelOne);
 	game.scene.add("Level", Level);
 	game.scene.add("Boot", Boot, true);
 });

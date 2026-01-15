@@ -132,14 +132,13 @@ export default class Level extends Phaser.Scene {
 		this.add.existing(prefabwall_24);
 
 		// player
-		const player = this.physics.add.sprite(40, 661, "idlefront1");
-		player.setInteractive(new Phaser.Geom.Rectangle(0, 0, 48, 48), Phaser.Geom.Rectangle.Contains);
+		const player = this.physics.add.sprite(38, 661, "idlefront1");
 		player.scaleX = 1.5;
 		player.scaleY = 1.5;
 		player.setOrigin(0.5, 1);
 		player.body.collideWorldBounds = true;
-		player.body.setOffset(0, -10);
-		player.body.setSize(48, 48, false);
+		player.body.setOffset(10, 0);
+		player.body.setSize(28, 40, false);
 
 		// prefabwall_25
 		const prefabwall_25 = new Prefabwall(this, 370, 559);
@@ -297,8 +296,8 @@ export default class Level extends Phaser.Scene {
 		enemy1.scaleY = 1.7;
 		enemy1.setOrigin(0.5, 1);
 		enemy1.body.collideWorldBounds = true;
-		enemy1.body.setOffset(0, -15);
-		enemy1.body.setSize(48, 48, false);
+		enemy1.body.setOffset(6, -8);
+		enemy1.body.setSize(28, 40, false);
 
 		// enemy2
 		const enemy2 = this.physics.add.sprite(1120, 301, "enemywalkingright1");
@@ -306,8 +305,8 @@ export default class Level extends Phaser.Scene {
 		enemy2.scaleY = 1.7;
 		enemy2.setOrigin(0.5, 1);
 		enemy2.body.collideWorldBounds = true;
-		enemy2.body.setOffset(0, -15);
-		enemy2.body.setSize(48, 48, false);
+		enemy2.body.setOffset(6, -8);
+		enemy2.body.setSize(28, 40, false);
 
 		// enemy3
 		const enemy3 = this.physics.add.sprite(462, 165, "enemywalkingright1");
@@ -315,11 +314,15 @@ export default class Level extends Phaser.Scene {
 		enemy3.scaleY = 1.7;
 		enemy3.setOrigin(0.5, 1);
 		enemy3.body.collideWorldBounds = true;
-		enemy3.body.setOffset(0, -15);
-		enemy3.body.setSize(48, 48, false);
+		enemy3.body.setOffset(6, -8);
+		enemy3.body.setSize(28, 40, false);
+
+		// prefabwall_59
+		const prefabwall_59 = new Prefabwall(this, 1038, 135);
+		this.add.existing(prefabwall_59);
 
 		// lists
-		const ground = [prefabwall_1, prefabwall_2, prefabwall_3, prefabwall_4, prefabwall_5, prefabwall_6, prefabwall_7, prefabwall_8, prefabwall_9, prefabwall_10, prefabwall_11, prefabwall_12, prefabwall_13, prefabwall_14, prefabwall_15, prefabwall_16, prefabwall_17, prefabwall_18, prefabwall_19, prefabwall_20, prefabwall_21, prefabwall_22, prefabwall_23, prefabwall_24, prefabwall_25, prefabwall_26, prefabwall_27, prefabwall_28, prefabwall_29, prefabwall_30, prefabwall_31, prefabwall_32, prefabwall_33, prefabwall_34, prefabwall_35, prefabwall_36, prefabwall_37, prefabwall_38, prefabwall_39, prefabwall_40, prefabwall_41, prefabwall_42, prefabwall_43, prefabwall_44, prefabwall_45, prefabwall_46, prefabwall_47, prefabwall_48, prefabwall_49, prefabwall_50, prefabwall_51, prefabwall_52, prefabwall_53, prefabwall_54, prefabwall_55, prefabwall_56, prefabwall_57, prefabwall_58, prefabwall];
+		const ground = [prefabwall_1, prefabwall_2, prefabwall_3, prefabwall_4, prefabwall_5, prefabwall_6, prefabwall_7, prefabwall_8, prefabwall_9, prefabwall_10, prefabwall_11, prefabwall_12, prefabwall_13, prefabwall_14, prefabwall_15, prefabwall_16, prefabwall_17, prefabwall_18, prefabwall_19, prefabwall_20, prefabwall_21, prefabwall_22, prefabwall_23, prefabwall_24, prefabwall_25, prefabwall_26, prefabwall_27, prefabwall_28, prefabwall_29, prefabwall_30, prefabwall_31, prefabwall_32, prefabwall_33, prefabwall_34, prefabwall_35, prefabwall_36, prefabwall_37, prefabwall_38, prefabwall_39, prefabwall_40, prefabwall_41, prefabwall_42, prefabwall_43, prefabwall_44, prefabwall_45, prefabwall_46, prefabwall_47, prefabwall_48, prefabwall_49, prefabwall_50, prefabwall_51, prefabwall_52, prefabwall_53, prefabwall_54, prefabwall_55, prefabwall_56, prefabwall_57, prefabwall_58, prefabwall, prefabwall_59];
 		const enemies = [enemy1, enemy2, enemy3];
 
 		// collider
@@ -429,7 +432,7 @@ export default class Level extends Phaser.Scene {
 			this.physics.add.existing(door, true);
 		}
 
-		//--- Score Text Setup ---
+		//--- Score setup ---
 		this.score = 0;
 
 		this.scoreText = this.add.text(16, 16, "Score: 0", {
@@ -492,7 +495,7 @@ export default class Level extends Phaser.Scene {
 		 */
 		this.bullets = this.physics.add.group({
 			defaultKey: "bulletTex",	//use texture we created
-			maxSize: 100,				//max bullets at once
+			maxSize: 50,				//max bullets at once
 			allowGravity: false
 		});
 
@@ -560,7 +563,7 @@ export default class Level extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 
-		//--- Spacebar for shooting ---
+		//Spacebar for shooting
 		this.shootKey = this.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.SPACE
 		);

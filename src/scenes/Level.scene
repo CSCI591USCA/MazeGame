@@ -315,21 +315,18 @@
             "id": "4646a3f7-ab45-418e-b407-fb84b02e7000",
             "label": "player",
             "scope": "CLASS",
-            "hitArea.shape": "RECTANGLE",
-            "hitArea.width": 48,
-            "hitArea.height": 48,
             "texture": {
                 "key": "idlefront1"
             },
-            "x": 40,
+            "x": 38,
             "y": 661,
             "scaleX": 1.5,
             "scaleY": 1.5,
             "originY": 1,
             "collideWorldBounds": true,
-            "body.width": 48,
-            "body.height": 48,
-            "body.offset.y": -10
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 10
         },
         {
             "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
@@ -745,9 +742,10 @@
             "scaleY": 1.7,
             "originY": 1,
             "collideWorldBounds": true,
-            "body.width": 48,
-            "body.height": 48,
-            "body.offset.y": -15
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
         },
         {
             "type": "ArcadeSprite",
@@ -763,9 +761,10 @@
             "scaleY": 1.7,
             "originY": 1,
             "collideWorldBounds": true,
-            "body.width": 48,
-            "body.height": 48,
-            "body.offset.y": -15
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
         },
         {
             "type": "ArcadeSprite",
@@ -781,9 +780,21 @@
             "scaleY": 1.7,
             "originY": 1,
             "collideWorldBounds": true,
-            "body.width": 48,
-            "body.height": 48,
-            "body.offset.y": -15
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
+        },
+        {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "673491b0-04f2-4f53-8105-dc411ddb85b0",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_59",
+            "x": 1038,
+            "y": 135
         }
     ],
     "plainObjects": [
@@ -874,7 +885,8 @@
                 "afc68d08-7552-4ec0-bc46-ef48f8659a19",
                 "04d15d50-f0a2-49de-85c2-51f0c2615b52",
                 "6320d9df-55d0-457d-b147-b0279d40936e",
-                "dd5b3f34-4777-4220-b820-1d437658b1f5"
+                "dd5b3f34-4777-4220-b820-1d437658b1f5",
+                "673491b0-04f2-4f53-8105-dc411ddb85b0"
             ]
         },
         {

@@ -7,6 +7,21 @@
                 "key": "castlebg1"
             },
             {
+                "url": "assets/castlebg2.png",
+                "type": "image",
+                "key": "castlebg2"
+            },
+            {
+                "url": "assets/castlebg3.png",
+                "type": "image",
+                "key": "castlebg3"
+            },
+            {
+                "url": "assets/castlebg4.png",
+                "type": "image",
+                "key": "castlebg4"
+            },
+            {
                 "url": "assets/dino.png",
                 "key": "dino",
                 "type": "image"
@@ -50,6 +65,11 @@
                 "url": "assets/idlefront4.png",
                 "type": "image",
                 "key": "idlefront4"
+            },
+            {
+                "url": "assets/orig.png",
+                "type": "image",
+                "key": "orig"
             },
             {
                 "url": "assets/tile_0000.png",

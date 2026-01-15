@@ -66,8 +66,8 @@ export default class Preload extends Phaser.Scene {
 		this.editorPreload();
 
 		// ADD MUSIC
-        this.load.audio("bgMusic", "assets/sexyback.mp3");
-
+		this.load.audio("bgMusic", "assets/sexyback.mp3");
+		
 
 		const width =  this.progressBar.width;
 
@@ -79,7 +79,7 @@ export default class Preload extends Phaser.Scene {
 
 	create() {
 
-		this.scene.start("Level");
+		this.scene.start("LevelOne");
 	}
 
 	/* END-USER-CODE */

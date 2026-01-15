@@ -1,0 +1,575 @@
+{
+    "id": "c5b76fc0-905b-4a91-bc6f-0c0db5261f1d",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "LevelOne",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "4dbed03d-fc6f-4804-85b8-36e02a98b4e5",
+            "label": "background1",
+            "texture": {
+                "key": "castlebg2"
+            },
+            "scaleX": 2.22,
+            "scaleY": 2.24,
+            "originX": 0,
+            "originY": 0
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "90ccae1e-6987-4a5d-aad9-75d66f3addb1",
+            "label": "tile_9",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 31,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "67b2896f-b06a-479d-806c-141ccccc8b90",
+            "label": "tile_10",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 84,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "efc0740e-8844-4258-a147-71436e5a2828",
+            "label": "tile_11",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 137,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "d36126d0-f0ee-44b1-bf4e-60672f7c0d6a",
+            "label": "tile_12",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 190,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "fea99066-f688-4871-a279-296358265ed0",
+            "label": "tile_13",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 243,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "6c793278-03dd-4269-b51e-7b40499582bd",
+            "label": "tile_14",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 296,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "934ad614-f7eb-4b0f-ba0d-fbff6c113d67",
+            "label": "tile_15",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 349,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "cb88fdc6-ef67-42de-b7c7-cc1b86ae1af1",
+            "label": "tile_16",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 402,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "363241cc-1d24-4f7f-8f42-d367127c2ed4",
+            "label": "tile_17",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 455,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "eb30ebaa-c9a0-4f2e-98c5-ed8179c3476c",
+            "label": "tile_18",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 508,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "6353a926-f744-48b1-adc2-3c65faf51e42",
+            "label": "tile_19",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 561,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "777b91b3-7671-46e4-8fd9-4b497fc32dd3",
+            "label": "tile_20",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 614,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "669793f7-35ee-4d83-b162-c5a5a41de662",
+            "label": "tile_21",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 667,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "3f03abe9-f7fd-4dac-8eb5-28ec7f492986",
+            "label": "tile_22",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 720,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "eb517e92-f324-4762-aa72-f3b7037bcb73",
+            "label": "tile_23",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 773,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "d12b0e82-e2b2-4f7d-9768-5e1f17aab6f9",
+            "label": "tile_24",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 826,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "777c9d3a-d510-4a9e-898d-75120c1bf294",
+            "label": "tile_25",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 879,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "5ce1b0e3-62ff-4b5e-8ac0-a41dc1daf8fb",
+            "label": "tile_26",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 932,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "b979a637-fe6a-41ec-bb6b-69c998a44834",
+            "label": "tile_27",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 985,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "e43b49c3-5c2b-4b30-b24a-5675f37c98c4",
+            "label": "tile_28",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1038,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "b5a71815-62c5-4b1e-90d7-7b068dfabbad",
+            "label": "tile_29",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1091,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "05b89b82-09b6-4620-8e69-3fa3aaf8176e",
+            "label": "tile_30",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1144,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "079ec4cc-901b-4451-b7ce-ed164be7199d",
+            "label": "tile_31",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1197,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "c8a4f77d-7764-4cc5-bdb3-a38bd28a1284",
+            "label": "tile_32",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1250,
+            "y": 695,
+            "scaleX": 3,
+            "scaleY": 3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 48,
+            "body.height": 48
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "a9bb5907-87d1-40e1-a4f9-2a233d16e252",
+            "label": "player",
+            "scope": "CLASS",
+            "texture": {
+                "key": "idlefront1"
+            },
+            "x": 582,
+            "y": 672,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 10
+        },
+        {
+            "type": "Polygon",
+            "id": "aaf44982-8f28-469b-945f-1b43acdcc28a",
+            "label": "key",
+            "scope": "CLASS",
+            "x": 73,
+            "y": 647,
+            "scaleX": 0.4,
+            "scaleY": 0.4,
+            "isFilled": true,
+            "fillColor": "#dbbd00"
+        },
+        {
+            "type": "Rectangle",
+            "id": "0079e464-13d5-4469-844c-cbcd9416867d",
+            "label": "door",
+            "scope": "CLASS",
+            "x": 1206,
+            "y": 599,
+            "scaleX": 0.5,
+            "isFilled": true,
+            "fillColor": "#642a00",
+            "width": 128,
+            "height": 128
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "4044f68a-34fa-4787-88d3-fb70c2a6a2d4",
+            "type": "Collider",
+            "label": "collider",
+            "scope": "LOCAL",
+            "object1": "player",
+            "object2": "ground"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "lists": [
+        {
+            "id": "bafaf676-9613-40f9-97fd-66afe5880f80",
+            "label": "ground",
+            "objectIds": [
+                "c8a4f77d-7764-4cc5-bdb3-a38bd28a1284",
+                "079ec4cc-901b-4451-b7ce-ed164be7199d",
+                "05b89b82-09b6-4620-8e69-3fa3aaf8176e",
+                "b5a71815-62c5-4b1e-90d7-7b068dfabbad",
+                "e43b49c3-5c2b-4b30-b24a-5675f37c98c4",
+                "b979a637-fe6a-41ec-bb6b-69c998a44834",
+                "5ce1b0e3-62ff-4b5e-8ac0-a41dc1daf8fb",
+                "777c9d3a-d510-4a9e-898d-75120c1bf294",
+                "d12b0e82-e2b2-4f7d-9768-5e1f17aab6f9",
+                "eb517e92-f324-4762-aa72-f3b7037bcb73",
+                "3f03abe9-f7fd-4dac-8eb5-28ec7f492986",
+                "669793f7-35ee-4d83-b162-c5a5a41de662",
+                "777b91b3-7671-46e4-8fd9-4b497fc32dd3",
+                "6353a926-f744-48b1-adc2-3c65faf51e42",
+                "eb30ebaa-c9a0-4f2e-98c5-ed8179c3476c",
+                "363241cc-1d24-4f7f-8f42-d367127c2ed4",
+                "cb88fdc6-ef67-42de-b7c7-cc1b86ae1af1",
+                "934ad614-f7eb-4b0f-ba0d-fbff6c113d67",
+                "6c793278-03dd-4269-b51e-7b40499582bd",
+                "fea99066-f688-4871-a279-296358265ed0",
+                "d36126d0-f0ee-44b1-bf4e-60672f7c0d6a",
+                "efc0740e-8844-4258-a147-71436e5a2828",
+                "67b2896f-b06a-479d-806c-141ccccc8b90",
+                "90ccae1e-6987-4a5d-aad9-75d66f3addb1"
+            ]
+        }
+    ]
+}
