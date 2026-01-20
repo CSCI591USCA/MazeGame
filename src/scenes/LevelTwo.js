@@ -6,10 +6,10 @@
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class LevelOne extends Phaser.Scene {
+export default class LevelTwo extends Phaser.Scene {
 
 	constructor() {
-		super("LevelOne");
+		super("LevelTwo");
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -20,133 +20,231 @@ export default class LevelOne extends Phaser.Scene {
 	editorCreate() {
 
 		// background1
-		const background1 = this.add.image(0, 0, "castlebg2");
+		const background1 = this.add.image(0, 0, "castlebg4");
 		background1.scaleX = 2.22;
 		background1.scaleY = 2.24;
 		background1.setOrigin(0, 0);
 
+		// tile_0000
+		const tile_0000 = this.add.image(28, 696, "tile_0000");
+		tile_0000.scaleX = 3;
+		tile_0000.scaleY = 3;
+
+		// tile
+		const tile = this.add.image(80, 696, "tile_0000");
+		tile.scaleX = 3;
+		tile.scaleY = 3;
+
+		// tile_1
+		const tile_1 = this.add.image(132, 696, "tile_0000");
+		tile_1.scaleX = 3;
+		tile_1.scaleY = 3;
+
+		// tile_2
+		const tile_2 = this.add.image(184, 696, "tile_0000");
+		tile_2.scaleX = 3;
+		tile_2.scaleY = 3;
+
+		// tile_3
+		const tile_3 = this.add.image(236, 696, "tile_0000");
+		tile_3.scaleX = 3;
+		tile_3.scaleY = 3;
+
+		// tile_4
+		const tile_4 = this.add.image(288, 696, "tile_0000");
+		tile_4.scaleX = 3;
+		tile_4.scaleY = 3;
+
+		// tile_5
+		const tile_5 = this.add.image(340, 696, "tile_0000");
+		tile_5.scaleX = 3;
+		tile_5.scaleY = 3;
+
+		// tile_6
+		const tile_6 = this.add.image(392, 696, "tile_0000");
+		tile_6.scaleX = 3;
+		tile_6.scaleY = 3;
+
+		// tile_7
+		const tile_7 = this.add.image(444, 696, "tile_0000");
+		tile_7.scaleX = 3;
+		tile_7.scaleY = 3;
+
+		// tile_8
+		const tile_8 = this.add.image(496, 696, "tile_0000");
+		tile_8.scaleX = 3;
+		tile_8.scaleY = 3;
+
 		// tile_9
-		const tile_9 = this.add.image(31, 695, "tile_0000");
+		const tile_9 = this.add.image(548, 696, "tile_0000");
 		tile_9.scaleX = 3;
 		tile_9.scaleY = 3;
 
 		// tile_10
-		const tile_10 = this.add.image(84, 695, "tile_0000");
+		const tile_10 = this.add.image(600, 696, "tile_0000");
 		tile_10.scaleX = 3;
 		tile_10.scaleY = 3;
 
 		// tile_11
-		const tile_11 = this.add.image(137, 695, "tile_0000");
+		const tile_11 = this.add.image(652, 696, "tile_0000");
 		tile_11.scaleX = 3;
 		tile_11.scaleY = 3;
 
 		// tile_12
-		const tile_12 = this.add.image(190, 695, "tile_0000");
+		const tile_12 = this.add.image(704, 696, "tile_0000");
 		tile_12.scaleX = 3;
 		tile_12.scaleY = 3;
 
 		// tile_13
-		const tile_13 = this.add.image(243, 695, "tile_0000");
+		const tile_13 = this.add.image(756, 696, "tile_0000");
 		tile_13.scaleX = 3;
 		tile_13.scaleY = 3;
 
 		// tile_14
-		const tile_14 = this.add.image(296, 695, "tile_0000");
+		const tile_14 = this.add.image(808, 696, "tile_0000");
 		tile_14.scaleX = 3;
 		tile_14.scaleY = 3;
 
 		// tile_15
-		const tile_15 = this.add.image(349, 695, "tile_0000");
+		const tile_15 = this.add.image(860, 696, "tile_0000");
 		tile_15.scaleX = 3;
 		tile_15.scaleY = 3;
 
 		// tile_16
-		const tile_16 = this.add.image(402, 695, "tile_0000");
+		const tile_16 = this.add.image(912, 696, "tile_0000");
 		tile_16.scaleX = 3;
 		tile_16.scaleY = 3;
 
 		// tile_17
-		const tile_17 = this.add.image(455, 695, "tile_0000");
+		const tile_17 = this.add.image(964, 696, "tile_0000");
 		tile_17.scaleX = 3;
 		tile_17.scaleY = 3;
 
 		// tile_18
-		const tile_18 = this.add.image(508, 695, "tile_0000");
+		const tile_18 = this.add.image(1016, 696, "tile_0000");
 		tile_18.scaleX = 3;
 		tile_18.scaleY = 3;
 
 		// tile_19
-		const tile_19 = this.add.image(561, 695, "tile_0000");
+		const tile_19 = this.add.image(1068, 696, "tile_0000");
 		tile_19.scaleX = 3;
 		tile_19.scaleY = 3;
 
 		// tile_20
-		const tile_20 = this.add.image(614, 695, "tile_0000");
+		const tile_20 = this.add.image(1120, 696, "tile_0000");
 		tile_20.scaleX = 3;
 		tile_20.scaleY = 3;
 
 		// tile_21
-		const tile_21 = this.add.image(667, 695, "tile_0000");
+		const tile_21 = this.add.image(1172, 696, "tile_0000");
 		tile_21.scaleX = 3;
 		tile_21.scaleY = 3;
 
 		// tile_22
-		const tile_22 = this.add.image(720, 695, "tile_0000");
+		const tile_22 = this.add.image(1224, 696, "tile_0000");
 		tile_22.scaleX = 3;
 		tile_22.scaleY = 3;
 
 		// tile_23
-		const tile_23 = this.add.image(773, 695, "tile_0000");
-		tile_23.scaleX = 3;
+		const tile_23 = this.add.image(1265, 696, "tile_0000");
+		tile_23.scaleX = 1.7;
 		tile_23.scaleY = 3;
 
 		// tile_24
-		const tile_24 = this.add.image(826, 695, "tile_0000");
+		const tile_24 = this.add.image(500, 550, "tile_0000");
 		tile_24.scaleX = 3;
 		tile_24.scaleY = 3;
 
 		// tile_25
-		const tile_25 = this.add.image(879, 695, "tile_0000");
+		const tile_25 = this.add.image(552, 550, "tile_0000");
 		tile_25.scaleX = 3;
 		tile_25.scaleY = 3;
 
 		// tile_26
-		const tile_26 = this.add.image(932, 695, "tile_0000");
+		const tile_26 = this.add.image(604, 550, "tile_0000");
 		tile_26.scaleX = 3;
 		tile_26.scaleY = 3;
 
 		// tile_27
-		const tile_27 = this.add.image(985, 695, "tile_0000");
+		const tile_27 = this.add.image(656, 550, "tile_0000");
 		tile_27.scaleX = 3;
 		tile_27.scaleY = 3;
 
 		// tile_28
-		const tile_28 = this.add.image(1038, 695, "tile_0000");
+		const tile_28 = this.add.image(708, 550, "tile_0000");
 		tile_28.scaleX = 3;
 		tile_28.scaleY = 3;
 
 		// tile_29
-		const tile_29 = this.add.image(1091, 695, "tile_0000");
+		const tile_29 = this.add.image(760, 550, "tile_0000");
 		tile_29.scaleX = 3;
 		tile_29.scaleY = 3;
 
 		// tile_30
-		const tile_30 = this.add.image(1144, 695, "tile_0000");
+		const tile_30 = this.add.image(812, 550, "tile_0000");
 		tile_30.scaleX = 3;
 		tile_30.scaleY = 3;
 
 		// tile_31
-		const tile_31 = this.add.image(1197, 695, "tile_0000");
+		const tile_31 = this.add.image(864, 550, "tile_0000");
 		tile_31.scaleX = 3;
 		tile_31.scaleY = 3;
 
 		// tile_32
-		const tile_32 = this.add.image(1250, 695, "tile_0000");
+		const tile_32 = this.add.image(916, 550, "tile_0000");
 		tile_32.scaleX = 3;
 		tile_32.scaleY = 3;
 
+		// tile_33
+		const tile_33 = this.add.image(968, 550, "tile_0000");
+		tile_33.scaleX = 3;
+		tile_33.scaleY = 3;
+
+		// tile_34
+		const tile_34 = this.add.image(1020, 550, "tile_0000");
+		tile_34.scaleX = 3;
+		tile_34.scaleY = 3;
+
+		// tile_35
+		const tile_35 = this.add.image(1072, 550, "tile_0000");
+		tile_35.scaleX = 3;
+		tile_35.scaleY = 3;
+
+		// tile_36
+		const tile_36 = this.add.image(1124, 550, "tile_0000");
+		tile_36.scaleX = 3;
+		tile_36.scaleY = 3;
+
+		// tile_37
+		const tile_37 = this.add.image(1176, 550, "tile_0000");
+		tile_37.scaleX = 3;
+		tile_37.scaleY = 3;
+
+		// tile_38
+		const tile_38 = this.add.image(1228, 550, "tile_0000");
+		tile_38.scaleX = 3;
+		tile_38.scaleY = 3;
+
+		// tile_39
+		const tile_39 = this.add.image(1270, 550, "tile_0000");
+		tile_39.scaleX = 1.7;
+		tile_39.scaleY = 3;
+
+		// key
+		const key = this.add.polygon(1213, 650, "35 100 0 50 70 0 140 50 105 100");
+		key.scaleX = 0.4;
+		key.scaleY = 0.4;
+		key.isFilled = true;
+		key.fillColor = 14400768;
+
+		// door
+		const door = this.add.rectangle(1245, 459, 128, 128);
+		door.scaleX = 0.5;
+		door.isFilled = true;
+		door.fillColor = 6564352;
+
 		// player
-		const player = this.physics.add.sprite(582, 672, "idlefront1");
+		const player = this.physics.add.sprite(107, 670, "idlefront1");
 		player.scaleX = 1.7;
 		player.scaleY = 1.7;
 		player.setOrigin(0.5, 1);
@@ -154,41 +252,47 @@ export default class LevelOne extends Phaser.Scene {
 		player.body.setOffset(10, 0);
 		player.body.setSize(28, 40, false);
 
-		// key
-		const key = this.add.polygon(73, 647, "35 100 0 50 70 0 140 50 105 100");
-		key.scaleX = 0.4;
-		key.scaleY = 0.4;
-		key.isFilled = true;
-		key.fillColor = 14400768;
-
-		// door
-		const door = this.add.rectangle(1206, 599, 128, 128);
-		door.scaleX = 0.5;
-		door.isFilled = true;
-		door.fillColor = 6564352;
+		// enemy1
+		const enemy1 = this.physics.add.sprite(782, 523, "enemywalkingright1");
+		enemy1.scaleX = 2;
+		enemy1.scaleY = 2;
+		enemy1.setOrigin(0.5, 1);
+		enemy1.body.collideWorldBounds = true;
+		enemy1.body.setOffset(6, -8);
+		enemy1.body.setSize(28, 40, false);
 
 		// lists
-		const ground = [tile_32, tile_31, tile_30, tile_29, tile_28, tile_27, tile_26, tile_25, tile_24, tile_23, tile_22, tile_21, tile_20, tile_19, tile_18, tile_17, tile_16, tile_15, tile_14, tile_13, tile_12, tile_11, tile_10, tile_9];
+		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39];
+		const enemies = [enemy1];
 
 		// collider
 		this.physics.add.collider(player, ground);
 
-		this.player = player;
+		// collider_1
+		this.physics.add.collider(enemies, ground, undefined, undefined, this);
+
 		this.key = key;
 		this.door = door;
+		this.player = player;
+		this.enemy1 = enemy1;
 		this.ground = ground;
+		this.enemies = enemies;
 
 		this.events.emit("scene-awake");
 	}
 
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	player;
 	/** @type {Phaser.GameObjects.Polygon} */
 	key;
 	/** @type {Phaser.GameObjects.Rectangle} */
 	door;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	player;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	enemy1;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
+	/** @type {Phaser.Physics.Arcade.Sprite[]} */
+	enemies;
 
 	/* START-USER-CODE */
 
@@ -197,6 +301,16 @@ export default class LevelOne extends Phaser.Scene {
 	create() {
 
 		this.editorCreate();
+
+		//--- Forces all ground tiles to be solid ---
+		this.platforms = this.physics.add.staticGroup();
+
+		if (this.ground && Array.isArray(this.ground)) {
+			this.ground.forEach(tile => {
+				if (!tile) return;
+				this.platforms.add(tile);
+			});
+		}
 
 		const player = this.player;
 
@@ -207,20 +321,10 @@ export default class LevelOne extends Phaser.Scene {
 		});
 		this.bgMusic.play();
 
-		//-- Game State --
+		//--- game state ---
 		this.gameOver = false;
-		this.levelComplete = false;
-		this.hasKey = false;
-
-		//-- Makes all ground tiles static platforms
-		this.platforms = this.physics.add.staticGroup();
-
-		if (this.ground && Array.isArray(this.ground)) {
-			this.ground.forEach(tile => {
-				if (!tile) return;
-				this.platforms.add(tile);
-			});
-		}
+		this.levelComplete = false;		//level finished
+		this.hasKey = false;			//player has picked up key or not
 
 		//--- key and door setup ---
 		/**
@@ -241,8 +345,9 @@ export default class LevelOne extends Phaser.Scene {
 			this.physics.add.existing(door, true);
 		}
 
-		//--- Score HUD ---
+		//--- Score setup ---
 		this.score = 0;
+
 		this.scoreText = this.add.text(16, 16, "Score: 0", {
 			fontSize: "24px",
 			color: "#ffffff"
@@ -252,32 +357,76 @@ export default class LevelOne extends Phaser.Scene {
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
 			const g = this.add.graphics();
-			g.fillStyle(0xffff00, 1); //Yellow bullets
-			g.fillRect(0, 0, 10, 4);
+			g.fillStyle(0xffff00, 1); 	//yellow
+			g.fillRect(0, 0, 10, 4);	//10x4 bullet
 			g.generateTexture("bulletTex", 10, 4);
 			g.destroy();
 		}
 
-		//--- Bullet Group ---
+		//--- Physics setup ---
+		this.physics.world.gravity.y = 600;			//gravity so jumps fall back down
+		player.body.setCollideWorldBounds(true);	//keep player inside the screen
+		player.body.setBounce(0.1, 0.1);
+
+		//--- Enemy Group + Patrol ---
+		/**
+		 * Creates a group of enemies and sets their patrol behavior.
+		 * Each enemy patrols between a defined range and moves at a specified speed.
+		 * Enemies are added to the physics world and configured to collide with the ground.
+		 * The patrol direction and speed are initialized for each enemy.
+		 */
+		this.enemies = this.physics.add.group();
+		if (this.enemy1) this.enemies.add(this.enemy1);
+
+		const PATROL_SPEED = 70; //enemy speed
+		const PATROL_RANGE = 96; //enemy patrol range
+
+		this.enemies.children.iterate(enemy => {
+			if (!enemy || !enemy.body) return;
+
+			enemy.body.setCollideWorldBounds(true);
+			enemy.body.setBounce(0, 0);
+
+			//starting point where enemies will patrol
+			enemy.startX = enemy.x;
+			enemy.minX = enemy.startX - PATROL_RANGE;
+			enemy.maxX = enemy.startX + PATROL_RANGE;
+
+			enemy.patrolDir = 1;
+			enemy.patrolSpeed = PATROL_SPEED;
+
+			//start moving to the right
+			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+		})
+
+		// --- Bullet Group ---
 		/**
 		 * Creates a group for bullets with a maximum size and no gravity.
 		 * Bullets are used for shooting mechanics in the game.
 		 */
 		this.bullets = this.physics.add.group({
-			defaultKey: "bulletTex",
-			maxSize: 50,
+			defaultKey: "bulletTex",	//use texture we created
+			maxSize: 50,				//max bullets at once
 			allowGravity: false
 		});
 
-		//--- World and Player Physics ---
-		this.physics.world.gravity.y = 600;
-		player.body.setCollideWorldBounds(true);
-		player.body.setBounce(0.1, 0.1);
-
-		//--- Player vs Ground Collider ---
+		//--- Colliders ---
+		//player vs ground
 		this.physics.add.collider(this.player, this.platforms);
 
-		//--- Bullet vs ground ---
+		//enemies vs ground
+		this.physics.add.collider(this.enemies, this.platforms);
+
+		//Enemy hits player -> game over
+		this.physics.add.collider(
+			this.enemies,
+			this.player,
+			this.onPlayerHitEnemy,
+			null,
+			this
+		);
+
+		//Bullet vs ground -> destroys only bullet
 		this.physics.add.collider(
 			this.platforms,
 			this.bullets,
@@ -286,7 +435,16 @@ export default class LevelOne extends Phaser.Scene {
 			this
 		);
 
-		//--- Player picks up key ---
+		//Bullet vs enemies -> destroys both
+		this.physics.add.overlap(
+			this.bullets,
+			this.enemies,
+			this.onBulletHitEnemy,
+			null,
+			this
+		);
+
+		//Player picking up key
 		this.physics.add.overlap(
 			this.player,
 			this.key,
@@ -295,7 +453,7 @@ export default class LevelOne extends Phaser.Scene {
 			this
 		);
 
-		//--- Player reaches door ----
+		//Player reaching door
 		this.physics.add.overlap(
 			this.player,
 			this.door,
@@ -304,7 +462,7 @@ export default class LevelOne extends Phaser.Scene {
 			this
 		);
 
-		//--- Input for player movement ---
+		//--- Input ---
 		/**
 		 * Creates keyboard input for player movement and shooting.
 		 */
@@ -316,7 +474,7 @@ export default class LevelOne extends Phaser.Scene {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 
-		//--- Spacebar for shooting ---
+		//Spacebar for shooting
 		this.shootKey = this.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.SPACE
 		);
@@ -331,7 +489,10 @@ export default class LevelOne extends Phaser.Scene {
 			this.createMobileControls();
 		}
 
-		//--- Player Animations ---
+		//--- Animations ---
+		/**
+		 * Creates animations for the player and enemies.
+		 */
 		this.anims.create({
 			key: "player_idle_front",
 			frames: [
@@ -357,17 +518,33 @@ export default class LevelOne extends Phaser.Scene {
 		});
 
 		player.play("player_idle_front");
+
+		//--- Enemy Walk Animation ---
+		/**
+		 * Creates an animation for enemy walking.
+		 */
+		this.anims.create({
+			key: "enemy_walk",
+			frames: [
+				{ key: "enemywalkingright1" },
+				{ key: "enemywalkingright2" },
+				{ key: "enemywalkingright3" },
+				{ key: "enemywalkingright4" }
+			],
+			frameRate: 8,
+			repeat: -1
+		});
 	}
 
-	update() {
-		// if player is dead or level is completed stop.
+	update(){
+		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
 			return;
 		}
 
 		const player = this.player;
 		const speed = 200;
-		const jumpSpeed = -450
+		const jumpSpeed = -450;
 
 		//--- Combine Arrows + WASD + Joystick ---
 		/**
@@ -388,7 +565,7 @@ export default class LevelOne extends Phaser.Scene {
 			this.wasd.up.isDown ||
 			!!this.joystickUp;
 
-		//--- Shoot ---
+		//--- Shoot Bullets ----
 		/**
 		 * Checks if the shoot key is pressed and calls the shootBullet method.
 		 */
@@ -396,7 +573,7 @@ export default class LevelOne extends Phaser.Scene {
 			this.shootBullet();
 		}
 
-		//--- Animation + Horizontal movement ---
+		// --- Movement and Animation ---
 		/**
 		 * Handles player movement and animation based on input.
 		 */
@@ -420,6 +597,61 @@ export default class LevelOne extends Phaser.Scene {
 		if (upPressed && player.body.blocked.down) {
 			player.body.setVelocityY(jumpSpeed);
 		}
+
+		//--- Enemy patrol between minX and maxX ---
+		/**
+		 * Updates enemy patrol behavior, making them move between defined limits.
+		 */
+		if (this.enemies) {
+			this.enemies.children.iterate(enemy => {
+				if (!enemy || !enemy.body) return;
+
+				enemy.play("enemy_walk", true);
+
+
+				//enemy reaches left limit and goes right
+				if (enemy.x <= enemy.minX) {
+					enemy.patrolDir = 1;
+					if (enemy.setFlipX) enemy.setFlipX(false);	//enemy faces right
+				}
+				//reach right limit and go left
+				else if (enemy.x >= enemy.maxX) {
+					enemy.patrolDir = -1;
+					if (enemy.setFlipX) enemy.setFlipX(true); //face left
+				}
+
+				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+			});
+		}
+	}
+
+	//--- Enemy hits player Game Over ---
+	onPlayerHitEnemy(player, enemy) {
+		//marks game as over
+		this.gameOver = true;
+
+		// Stop background music
+		if (this.bgMusic && this.bgMusic.isPlaying) {
+			this.bgMusic.stop();
+		}
+
+		//Stops all physics so everyone freezes
+		this.physics.pause();
+
+		//shows the player was hit
+		if (player.setTint) {
+			player.setTint(0xff0000);
+		}
+		if (player.anims) {
+			player.anims.stop();
+		}
+
+		//shows game over text
+		const { width, height } = this.scale;
+		this.add.text(width / 2, height / 2, "GAME OVER", {
+			fontSize: "48px",
+			color: "#b80000"
+		}).setOrigin(0.5);
 	}
 
 	//--- Shooting Logic ---
@@ -441,6 +673,7 @@ export default class LevelOne extends Phaser.Scene {
 
 		//Get a bullet from the physics group
 		const bullet = this.bullets.get(player.x + offsetX, bulletY);
+
 		if (!bullet) return;
 
 		//activate and show it
@@ -455,7 +688,7 @@ export default class LevelOne extends Phaser.Scene {
 		bullet.body.setVelocityX(BULLET_SPEED * dir);
 	}
 
-	//--- Bullets hit ground logic ----
+	//--- Bullet hits platform ---
 	onBulletHitPlatform(platform, bullet) {
 		//destroys bullet when it hits platform, platform stays
 		if (bullet && bullet.destroy) {
@@ -463,7 +696,30 @@ export default class LevelOne extends Phaser.Scene {
 		}
 	}
 
-	//--- Player Picks Up Key Logic ----
+	//--- Bullet hits enemy ---
+	/**
+	 * Handles the event when a bullet hits an enemy.
+	 * If the bullet and enemy exist, it destroys both,
+	 * adds points to the score, and updates the score text.
+	 */
+	onBulletHitEnemy(bullet, enemy) {
+		if (bullet && bullet.destroy) {
+			bullet.destroy() ;
+		}
+		if (enemy && enemy.destroy) {
+			enemy.destroy();
+
+			//add 10 points to score for killing enemy
+			this.score += 10;
+
+			//updates score text
+			if (this.scoreText && this.scoreText.setText) {
+				this.scoreText.setText("Score: " + this.score);
+			}
+		}
+	}
+
+	//--- Player picks up key ---
 	/**
 	 * Handles the event when the player picks up a key.
 	 * If the player does not already have the key, it marks the key as collected,
@@ -503,7 +759,7 @@ export default class LevelOne extends Phaser.Scene {
 		});
 	}
 
-	//--- Player reaches door logic ---
+	//--- Player reaches door ---
 	/**
 	 * Handles the event when the player reaches the door.
 	 * If the player has the key, it marks the level as complete,
@@ -530,14 +786,14 @@ export default class LevelOne extends Phaser.Scene {
 
 		//shows Level Complete text
 		const { width, height } = this.scale;
-		this.add.text(width / 2, height / 2, "LEVEL 1 COMPLETE", {
+		this.add.text(width / 2, height / 2, "LEVEL 2 COMPLETE", {
 			fontSize: "48px",
 			color: "#00ff00"
 		}).setOrigin(0.5);
 
 		//after a short delay this starts the second level 
 		this.time.delayedCall(1500, () => {
-			this.scene.start("LevelTwo");
+			this.scene.start("Level");
 		});
 	}
 

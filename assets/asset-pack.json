@@ -72,6 +72,13 @@
                 "key": "orig"
             },
             {
+                "url": [
+                    "assets/sexyback.mp3"
+                ],
+                "type": "audio",
+                "key": "sexyback"
+            },
+            {
                 "url": "assets/tile_0000.png",
                 "type": "image",
                 "key": "tile_0000"

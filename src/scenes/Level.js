@@ -29,7 +29,6 @@ export default class Level extends Phaser.Scene {
 		// prefabwall
 		const prefabwall = new Prefabwall(this, 28, 690);
 		this.add.existing(prefabwall);
-		prefabwall.body.allowGravity = false;
 
 		// prefabwall_1
 		const prefabwall_1 = new Prefabwall(this, 80, 690);
@@ -133,8 +132,8 @@ export default class Level extends Phaser.Scene {
 
 		// player
 		const player = this.physics.add.sprite(38, 661, "idlefront1");
-		player.scaleX = 1.5;
-		player.scaleY = 1.5;
+		player.scaleX = 1.7;
+		player.scaleY = 1.7;
 		player.setOrigin(0.5, 1);
 		player.body.collideWorldBounds = true;
 		player.body.setOffset(10, 0);
@@ -292,8 +291,8 @@ export default class Level extends Phaser.Scene {
 
 		// enemy1
 		const enemy1 = this.physics.add.sprite(773, 407, "enemywalkingright1");
-		enemy1.scaleX = 1.7;
-		enemy1.scaleY = 1.7;
+		enemy1.scaleX = 2;
+		enemy1.scaleY = 2;
 		enemy1.setOrigin(0.5, 1);
 		enemy1.body.collideWorldBounds = true;
 		enemy1.body.setOffset(6, -8);
@@ -301,8 +300,8 @@ export default class Level extends Phaser.Scene {
 
 		// enemy2
 		const enemy2 = this.physics.add.sprite(1120, 301, "enemywalkingright1");
-		enemy2.scaleX = 1.7;
-		enemy2.scaleY = 1.7;
+		enemy2.scaleX = 2;
+		enemy2.scaleY = 2;
 		enemy2.setOrigin(0.5, 1);
 		enemy2.body.collideWorldBounds = true;
 		enemy2.body.setOffset(6, -8);
@@ -310,8 +309,8 @@ export default class Level extends Phaser.Scene {
 
 		// enemy3
 		const enemy3 = this.physics.add.sprite(462, 165, "enemywalkingright1");
-		enemy3.scaleX = 1.7;
-		enemy3.scaleY = 1.7;
+		enemy3.scaleX = 2;
+		enemy3.scaleY = 2;
 		enemy3.setOrigin(0.5, 1);
 		enemy3.body.collideWorldBounds = true;
 		enemy3.body.setOffset(6, -8);
@@ -359,27 +358,6 @@ export default class Level extends Phaser.Scene {
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
 	enemies;
-	/** @type {Phaser.GameObjects.Circle}  */
-	joystickBase;
-	/** @type {Phaser.GameObjects.Circle}  */
-	joystickThumb;
-	/** @type {Phaser.GameObjects.GameObject} */
-	shootButton;
-
-	/** @type {number|null} */
-	joystickPointerId;
-	/** @type {boolean} */
-	joystickLeft = false;
-	/** @type {boolean} */
-	joystickRight = false;
-	/** @type {boolean} */
-	joystickUp = false;
-
-	/** @type {boolean} */
-	isMobile = false;
-
-	//** @type {Phaser.Sound.BaseSound} */
-	bgMusic;
 
 	/* START-USER-CODE */
 
@@ -643,7 +621,7 @@ export default class Level extends Phaser.Scene {
 			this.cursor.left.isDown ||
 			this.wasd.left.isDown ||
 			!!this.joystickLeft;
-		
+
 		const rightPressed =
 			this.cursor.right.isDown ||
 			this.wasd.right.isDown ||
@@ -874,7 +852,7 @@ export default class Level extends Phaser.Scene {
 		}
 
 		const { width, height } = this.scale;
-		this.add.text(width / 2, height / 2, "LEVEL COMPLETE", {
+		this.add.text(width / 2, height / 2, "LEVEL 3 COMPLETE", {
 			fontSize: "48px",
 			color: "#00ff00"
 		}).setOrigin(0.5);
@@ -913,7 +891,7 @@ export default class Level extends Phaser.Scene {
 		this.joystickUp = false;
 
 		//--- Pointer Events on Joystick ---
-		
+
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */

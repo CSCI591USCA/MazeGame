@@ -65,9 +65,8 @@ export default class Preload extends Phaser.Scene {
 
 		this.editorPreload();
 
-		// ADD MUSIC
+		//ADD MUSIC
 		this.load.audio("bgMusic", "assets/sexyback.mp3");
-		
 
 		const width =  this.progressBar.width;
 
