@@ -331,29 +331,45 @@
             "body.offset.x": 10
         },
         {
-            "type": "Polygon",
-            "id": "aaf44982-8f28-469b-945f-1b43acdcc28a",
-            "label": "key",
-            "scope": "CLASS",
-            "x": 73,
-            "y": 647,
-            "scaleX": 0.4,
-            "scaleY": 0.4,
-            "isFilled": true,
-            "fillColor": "#dbbd00"
-        },
-        {
-            "type": "Rectangle",
-            "id": "0079e464-13d5-4469-844c-cbcd9416867d",
+            "type": "ArcadeSprite",
+            "id": "b19d77c2-0380-4fd4-bde1-044dcb48228c",
             "label": "door",
             "scope": "CLASS",
-            "x": 1206,
-            "y": 599,
-            "scaleX": 0.5,
-            "isFilled": true,
-            "fillColor": "#642a00",
-            "width": 128,
-            "height": 128
+            "texture": {
+                "key": "Door",
+                "frame": 0
+            },
+            "x": 1209,
+            "y": 639,
+            "scaleX": 0.4,
+            "scaleY": 0.4,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 512,
+            "body.height": 512
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "8d948ea6-5bcb-456e-aada-eadc20e8fc92",
+            "label": "key",
+            "scope": "CLASS",
+            "texture": {
+                "key": "New Piskel"
+            },
+            "x": 97,
+            "y": 627,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 480,
+            "body.height": 480
         }
     ],
     "plainObjects": [

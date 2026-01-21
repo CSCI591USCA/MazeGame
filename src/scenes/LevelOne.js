@@ -154,18 +154,27 @@ export default class LevelOne extends Phaser.Scene {
 		player.body.setOffset(10, 0);
 		player.body.setSize(28, 40, false);
 
-		// key
-		const key = this.add.polygon(73, 647, "35 100 0 50 70 0 140 50 105 100");
-		key.scaleX = 0.4;
-		key.scaleY = 0.4;
-		key.isFilled = true;
-		key.fillColor = 14400768;
-
 		// door
-		const door = this.add.rectangle(1206, 599, 128, 128);
-		door.scaleX = 0.5;
-		door.isFilled = true;
-		door.fillColor = 6564352;
+		const door = this.physics.add.sprite(1209, 639, "Door", 0);
+		door.scaleX = 0.4;
+		door.scaleY = 0.4;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(512, 512, false);
+
+		// key
+		const key = this.physics.add.image(97, 627, "New Piskel");
+		key.scaleX = 0.2;
+		key.scaleY = 0.2;
+		key.body.moves = false;
+		key.body.allowGravity = false;
+		key.body.collideWorldBounds = true;
+		key.body.pushable = false;
+		key.body.immovable = true;
+		key.body.setSize(480, 480, false);
 
 		// lists
 		const ground = [tile_32, tile_31, tile_30, tile_29, tile_28, tile_27, tile_26, tile_25, tile_24, tile_23, tile_22, tile_21, tile_20, tile_19, tile_18, tile_17, tile_16, tile_15, tile_14, tile_13, tile_12, tile_11, tile_10, tile_9];
@@ -174,8 +183,8 @@ export default class LevelOne extends Phaser.Scene {
 		this.physics.add.collider(player, ground);
 
 		this.player = player;
-		this.key = key;
 		this.door = door;
+		this.key = key;
 		this.ground = ground;
 
 		this.events.emit("scene-awake");
@@ -183,10 +192,10 @@ export default class LevelOne extends Phaser.Scene {
 
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
-	/** @type {Phaser.GameObjects.Polygon} */
-	key;
-	/** @type {Phaser.GameObjects.Rectangle} */
+	/** @type {Phaser.Physics.Arcade.Sprite} */
 	door;
+	/** @type {Phaser.Physics.Arcade.Image} */
+	key;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 
@@ -301,6 +310,21 @@ export default class LevelOne extends Phaser.Scene {
 				}
 			}
 		});
+
+		//--- Door Animation ---
+		if (!this.anims.exists("door_open")) {
+			this.anims.create({
+				key: "door_open",
+				frames: this.anims.generateFrameNumbers("Door", { start: 0, end: 4 }),
+				frameRate: 8,	//speed of animation
+				repeat: 0
+			});
+		}
+
+		//makes sure door starts on frame 0 when door is closed
+		if (this.door && this.door.setFrame) {
+			this.door.setFrame(0);
+		}
 
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
@@ -571,6 +595,11 @@ export default class LevelOne extends Phaser.Scene {
 
 		this.levelComplete = true;
 
+		//play door opening animation
+		if (this.door && this.door.anims) {
+			this.door.play("door_open");
+		}
+
 		// Stop background music
 		if (this.bgMusic && this.bgMusic.isPlaying) {
 			this.bgMusic.stop();
@@ -584,7 +613,7 @@ export default class LevelOne extends Phaser.Scene {
 
 		//shows Level Complete text
 		const { width, height } = this.scale;
-		
+
 		//creates text object for level complete
 		const levelCompleteText = this.add.text(
 			width / 2,

@@ -230,19 +230,6 @@ export default class LevelTwo extends Phaser.Scene {
 		tile_39.scaleX = 1.7;
 		tile_39.scaleY = 3;
 
-		// key
-		const key = this.add.polygon(1213, 650, "35 100 0 50 70 0 140 50 105 100");
-		key.scaleX = 0.4;
-		key.scaleY = 0.4;
-		key.isFilled = true;
-		key.fillColor = 14400768;
-
-		// door
-		const door = this.add.rectangle(1245, 459, 128, 128);
-		door.scaleX = 0.5;
-		door.isFilled = true;
-		door.fillColor = 6564352;
-
 		// player
 		const player = this.physics.add.sprite(107, 670, "idlefront1");
 		player.scaleX = 1.7;
@@ -261,6 +248,28 @@ export default class LevelTwo extends Phaser.Scene {
 		enemy1.body.setOffset(6, -8);
 		enemy1.body.setSize(28, 40, false);
 
+		// door
+		const door = this.physics.add.sprite(1179, 485, "Door", 0);
+		door.scaleX = 0.4;
+		door.scaleY = 0.4;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(512, 512, false);
+
+		// key
+		const key = this.physics.add.image(979, 618, "New Piskel");
+		key.scaleX = 0.2;
+		key.scaleY = 0.2;
+		key.body.moves = false;
+		key.body.allowGravity = false;
+		key.body.collideWorldBounds = true;
+		key.body.pushable = false;
+		key.body.immovable = true;
+		key.body.setSize(480, 480, false);
+
 		// lists
 		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39];
 		const enemies = [enemy1];
@@ -271,24 +280,24 @@ export default class LevelTwo extends Phaser.Scene {
 		// collider_1
 		this.physics.add.collider(enemies, ground, undefined, undefined, this);
 
-		this.key = key;
-		this.door = door;
 		this.player = player;
 		this.enemy1 = enemy1;
+		this.door = door;
+		this.key = key;
 		this.ground = ground;
 		this.enemies = enemies;
 
 		this.events.emit("scene-awake");
 	}
 
-	/** @type {Phaser.GameObjects.Polygon} */
-	key;
-	/** @type {Phaser.GameObjects.Rectangle} */
-	door;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy1;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	door;
+	/** @type {Phaser.Physics.Arcade.Image} */
+	key;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -393,6 +402,21 @@ export default class LevelTwo extends Phaser.Scene {
 				}
 			}
 		});
+
+		//--- Door Animation ---
+		if (!this.anims.exists("door_open")) {
+			this.anims.create({
+				key: "door_open",
+				frames: this.anims.generateFrameNumbers("Door", { start: 0, end: 4 }),
+				frameRate: 8,	//speed of animation
+				repeat: 0
+			});
+		}
+
+		//makes sure door starts on frame 0 when door is closed
+		if (this.door && this.door.setFrame) {
+			this.door.setFrame(0);
+		}
 
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
@@ -669,7 +693,7 @@ export default class LevelTwo extends Phaser.Scene {
 	onPlayerHitEnemy(player, enemy) {
 		//prevents double-triggering
 		if (this.gameOver) return;
-		
+
 		//marks game as over
 		this.gameOver = true;
 
@@ -696,7 +720,7 @@ export default class LevelTwo extends Phaser.Scene {
 
 		//shows game over text
 		const { width, height } = this.scale;
-		
+
 		//creates the text object
 		const gameOverText = this.add.text(
 			width / 2,
@@ -729,7 +753,7 @@ export default class LevelTwo extends Phaser.Scene {
 			.setScrollFactor(0)
 			.setDepth(1000)
 			.setInteractive({ useHandCursor: true });
-		
+
 		//--- Button Label ---
 		const restartLabel = this.add.text(
 			restartButton.x,
@@ -891,6 +915,11 @@ export default class LevelTwo extends Phaser.Scene {
 
 		this.levelComplete = true;
 
+		//play door opening animation
+		if (this.door && this.door.anims) {
+			this.door.play("door_open");
+		}
+
 		// Stop background music
 		if (this.bgMusic && this.bgMusic.isPlaying) {
 			this.bgMusic.stop();
@@ -904,7 +933,7 @@ export default class LevelTwo extends Phaser.Scene {
 
 		//shows Level Complete text
 		const { width, height } = this.scale;
-		
+
 		//creates text object for level complete
 		const levelCompleteText = this.add.text(
 			width / 2,

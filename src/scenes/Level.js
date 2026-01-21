@@ -275,20 +275,6 @@ export default class Level extends Phaser.Scene {
 		const prefabwall_58 = new Prefabwall(this, 1092, 135);
 		this.add.existing(prefabwall_58);
 
-		// door
-		const door = this.add.rectangle(1249, 55, 128, 128);
-		door.scaleX = 0.4;
-		door.scaleY = 0.8;
-		door.isFilled = true;
-		door.fillColor = 6564352;
-
-		// key
-		const key = this.add.polygon(35, 158, "35 100 0 50 70 0 140 50 105 100");
-		key.scaleX = 0.4;
-		key.scaleY = 0.4;
-		key.isFilled = true;
-		key.fillColor = 14400768;
-
 		// enemy1
 		const enemy1 = this.physics.add.sprite(773, 407, "enemywalkingright1");
 		enemy1.scaleX = 2;
@@ -320,6 +306,28 @@ export default class Level extends Phaser.Scene {
 		const prefabwall_59 = new Prefabwall(this, 1038, 135);
 		this.add.existing(prefabwall_59);
 
+		// door
+		const door = this.physics.add.sprite(1209, 87, "Door", 0);
+		door.scaleX = 0.3;
+		door.scaleY = 0.3;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(512, 512, false);
+
+		// key
+		const key = this.physics.add.image(72, 127, "New Piskel");
+		key.scaleX = 0.2;
+		key.scaleY = 0.2;
+		key.body.moves = false;
+		key.body.allowGravity = false;
+		key.body.collideWorldBounds = true;
+		key.body.pushable = false;
+		key.body.immovable = true;
+		key.body.setSize(480, 480, false);
+
 		// lists
 		const ground = [prefabwall_1, prefabwall_2, prefabwall_3, prefabwall_4, prefabwall_5, prefabwall_6, prefabwall_7, prefabwall_8, prefabwall_9, prefabwall_10, prefabwall_11, prefabwall_12, prefabwall_13, prefabwall_14, prefabwall_15, prefabwall_16, prefabwall_17, prefabwall_18, prefabwall_19, prefabwall_20, prefabwall_21, prefabwall_22, prefabwall_23, prefabwall_24, prefabwall_25, prefabwall_26, prefabwall_27, prefabwall_28, prefabwall_29, prefabwall_30, prefabwall_31, prefabwall_32, prefabwall_33, prefabwall_34, prefabwall_35, prefabwall_36, prefabwall_37, prefabwall_38, prefabwall_39, prefabwall_40, prefabwall_41, prefabwall_42, prefabwall_43, prefabwall_44, prefabwall_45, prefabwall_46, prefabwall_47, prefabwall_48, prefabwall_49, prefabwall_50, prefabwall_51, prefabwall_52, prefabwall_53, prefabwall_54, prefabwall_55, prefabwall_56, prefabwall_57, prefabwall_58, prefabwall, prefabwall_59];
 		const enemies = [enemy1, enemy2, enemy3];
@@ -331,11 +339,11 @@ export default class Level extends Phaser.Scene {
 		this.physics.add.collider(enemies, ground, undefined, undefined, this);
 
 		this.player = player;
-		this.door = door;
-		this.key = key;
 		this.enemy1 = enemy1;
 		this.enemy2 = enemy2;
 		this.enemy3 = enemy3;
+		this.door = door;
+		this.key = key;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -344,16 +352,16 @@ export default class Level extends Phaser.Scene {
 
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
-	/** @type {Phaser.GameObjects.Rectangle} */
-	door;
-	/** @type {Phaser.GameObjects.Polygon} */
-	key;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy1;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy2;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy3;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	door;
+	/** @type {Phaser.Physics.Arcade.Image} */
+	key;
 	/** @type {Prefabwall[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -458,6 +466,21 @@ export default class Level extends Phaser.Scene {
 				}
 			}
 		});
+
+		//--- Door Animation ---
+		if (!this.anims.exists("door_open")) {
+			this.anims.create({
+				key: "door_open",
+				frames: this.anims.generateFrameNumbers("Door", { start: 0, end: 4 }),
+				frameRate: 8,	//speed of animation
+				repeat: 0
+			});
+		}
+
+		//makes sure door starts on frame 0 when door is closed
+		if (this.door && this.door.setFrame) {
+			this.door.setFrame(0);
+		}
 
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
@@ -764,7 +787,7 @@ export default class Level extends Phaser.Scene {
 
 		//shows game over text
 		const { width, height } = this.scale;
-		
+
 		//creates the text object
 		const gameOverText = this.add.text(
 			width / 2,
@@ -797,7 +820,7 @@ export default class Level extends Phaser.Scene {
 			.setScrollFactor(0)
 			.setDepth(1000)
 			.setInteractive({ useHandCursor: true });
-		
+
 		//--- Button Label ---
 		const restartLabel = this.add.text(
 			restartButton.x,
@@ -959,6 +982,11 @@ export default class Level extends Phaser.Scene {
 
 		this.levelComplete = true;
 
+		//play door opening animation
+		if (this.door && this.door.anims) {
+			this.door.play("door_open");
+		}
+
 		// Stop background music
 		if (this.bgMusic && this.bgMusic.isPlaying) {
 			this.bgMusic.stop();
@@ -971,7 +999,7 @@ export default class Level extends Phaser.Scene {
 		}
 
 		const { width, height } = this.scale;
-		
+
 		//creates text object for level complete
 		const levelCompleteText = this.add.text(
 			width / 2,

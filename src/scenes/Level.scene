@@ -701,32 +701,6 @@
             "y": 135
         },
         {
-            "type": "Rectangle",
-            "id": "39ac0e1f-bde0-4bd3-9975-990f1b53b997",
-            "label": "door",
-            "scope": "CLASS",
-            "x": 1249,
-            "y": 55,
-            "scaleX": 0.4,
-            "scaleY": 0.8,
-            "isFilled": true,
-            "fillColor": "#642a00",
-            "width": 128,
-            "height": 128
-        },
-        {
-            "type": "Polygon",
-            "id": "9cf002a3-72f1-492a-adbe-d30254cfbe7a",
-            "label": "key",
-            "scope": "CLASS",
-            "x": 35,
-            "y": 158,
-            "scaleX": 0.4,
-            "scaleY": 0.4,
-            "isFilled": true,
-            "fillColor": "#dbbd00"
-        },
-        {
             "type": "ArcadeSprite",
             "id": "3b73d60f-e374-45df-bd7a-82f73bf8b0aa",
             "label": "enemy1",
@@ -793,6 +767,47 @@
             "label": "prefabwall_59",
             "x": 1038,
             "y": 135
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "383d89f1-1451-42fa-ad1f-a2461bde4df3",
+            "label": "door",
+            "scope": "CLASS",
+            "texture": {
+                "key": "Door",
+                "frame": 0
+            },
+            "x": 1209,
+            "y": 87,
+            "scaleX": 0.3,
+            "scaleY": 0.3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 512,
+            "body.height": 512
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "6032a53d-8ea7-41bd-8765-cac6bd0a0a87",
+            "label": "key",
+            "scope": "CLASS",
+            "texture": {
+                "key": "New Piskel"
+            },
+            "x": 72,
+            "y": 127,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 480,
+            "body.height": 480
         }
     ],
     "plainObjects": [
