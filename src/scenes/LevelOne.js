@@ -242,12 +242,65 @@ export default class LevelOne extends Phaser.Scene {
 		}
 
 		//--- Score HUD ---
-		this.score = 0;
-		this.scoreText = this.add.text(16, 16, "Score: 0", {
-			fontSize: "24px",
-			color: "#ffffff"
+
+		//--- Initializes global score only once ---
+		if (this.registry.get("score") === undefined) {
+			this.registry.set("score", 0);
+		}
+
+		// read the saved score from the registry
+		this.score = this.registry.get("score") || 0;
+
+		this.scoreText = this.add.text(16, 16, "Score: " + this.score, {
+			fontSize: "28px",
+			color: "#d4b100",
+			fontStyle: "bold"
 		});
 		this.scoreText.setScrollFactor(0);
+		this.scoreText.setStroke("#000000", 2);
+
+		//--- Timer HUD ---
+
+		//initializes global timer only once
+		if (this.registry.get("elapsedTime") === undefined) {
+			this.registry.set("elapsedTime", 0);
+		}
+
+		//reads current elapsed time in seconds from registry
+		this.elapsedTime = this.registry.get("elapsedTime") || 0;
+
+		//timer text in top right corner
+		const { width } = this.scale;
+		this.timerText = this.add.text(
+			width - 16,
+			16,
+			this.formatTime(this.elapsedTime),
+			{
+				fontSize: "28px",
+				color: "#d4b100",
+				fontStyle: "bold"
+			}
+		)
+			.setOrigin(1, 0); //anchor top right
+		this.timerText.setScrollFactor(0);
+		this.timerText.setStroke("#000000", 2);
+
+		//every 1000 ms increase timer by 1 second
+		this.timerEvent = this.time.addEvent({
+			delay: 1000,
+			loop: true,
+			callback: () => {
+				this.elapsedTime++;
+
+				//saves globally so it continues onto the next level
+				this.registry.set("elapsedTime", this.elapsedTime);
+
+				//updates text
+				if (this.timerText && this.timerText.setText) {
+					this.timerText.setText(this.formatTime(this.elapsedTime));
+				}
+			}
+		});
 
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
@@ -489,7 +542,8 @@ export default class LevelOne extends Phaser.Scene {
 			"Key + 1",
 			{
 				fontSize: "28px",
-				color: "#ffff00"
+				color: "#ffff00",
+				fontStyle: "bold"
 			}
 		)
 		.setOrigin(0.5)
@@ -530,10 +584,21 @@ export default class LevelOne extends Phaser.Scene {
 
 		//shows Level Complete text
 		const { width, height } = this.scale;
-		this.add.text(width / 2, height / 2, "LEVEL 1 COMPLETE", {
-			fontSize: "48px",
-			color: "#00ff00"
-		}).setOrigin(0.5);
+		
+		//creates text object for level complete
+		const levelCompleteText = this.add.text(
+			width / 2,
+			height / 2,
+			"LEVEL 1 COMPLETE",
+			{
+				fontSize: "64px",
+				color: "0f7a2b",
+				fontStyle: "bold"
+			}
+		).setOrigin(0.5);
+
+		//outline to make it look bigger
+		levelCompleteText.setStroke("#0f7a2b", 6);
 
 		//after a short delay this starts the second level 
 		this.time.delayedCall(1500, () => {
@@ -703,6 +768,17 @@ export default class LevelOne extends Phaser.Scene {
 		this.joystickLeft = false;
 		this.joystickRight = false;
 		this.joystickUp = false;
+	}
+
+	//--- Timer Logic ---
+	formatTime(totalSeconds) {
+		const minutes = Math.floor(totalSeconds / 60);
+		const seconds = totalSeconds % 60;
+
+		const mStr = minutes.toString();
+		const sStr = seconds.toString().padStart(2, "0");
+
+		return mStr + ":" + sStr;
 	}
 
 	/* END-USER-CODE */

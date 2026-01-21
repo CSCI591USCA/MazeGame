@@ -346,13 +346,53 @@ export default class LevelTwo extends Phaser.Scene {
 		}
 
 		//--- Score setup ---
-		this.score = 0;
+		this.score = this.registry.get("score") || 0;
 
-		this.scoreText = this.add.text(16, 16, "Score: 0", {
-			fontSize: "24px",
-			color: "#ffffff"
+		this.scoreText = this.add.text(16, 16, "Score: " + this.score, {
+			fontSize: "28px",
+			color: "#d4b100",
+			fontStyle: "bold"
 		});
 		this.scoreText.setScrollFactor(0);
+		this.scoreText.setStroke("#000000", 2);
+
+		//--- Timer HUD ---
+
+		//reads current elapsed time in seconds from registry
+		this.elapsedTime = this.registry.get("elapsedTime") || 0;
+
+		//timer text in top right corner
+		const { width } = this.scale;
+		this.timerText = this.add.text(
+			width - 16,
+			16,
+			this.formatTime(this.elapsedTime),
+			{
+				fontSize: "28px",
+				color: "#d4b100",
+				fontStyle: "bold"
+			}
+		)
+			.setOrigin(1, 0); //anchor top right
+		this.timerText.setScrollFactor(0);
+		this.timerText.setStroke("#000000", 2);
+
+		//every 1000 ms increase timer by 1 second
+		this.timerEvent = this.time.addEvent({
+			delay: 1000,
+			loop: true,
+			callback: () => {
+				this.elapsedTime++;
+
+				//saves globally so it continues onto the next level
+				this.registry.set("elapsedTime", this.elapsedTime);
+
+				//updates text
+				if (this.timerText && this.timerText.setText) {
+					this.timerText.setText(this.formatTime(this.elapsedTime));
+				}
+			}
+		});
 
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
@@ -627,8 +667,16 @@ export default class LevelTwo extends Phaser.Scene {
 
 	//--- Enemy hits player Game Over ---
 	onPlayerHitEnemy(player, enemy) {
+		//prevents double-triggering
+		if (this.gameOver) return;
+		
 		//marks game as over
 		this.gameOver = true;
+
+		// pauses timer so it stops counting on game over
+		if (this.timerEvent) {
+			this.timerEvent.paused = true;
+		}
 
 		// Stop background music
 		if (this.bgMusic && this.bgMusic.isPlaying) {
@@ -648,10 +696,76 @@ export default class LevelTwo extends Phaser.Scene {
 
 		//shows game over text
 		const { width, height } = this.scale;
-		this.add.text(width / 2, height / 2, "GAME OVER", {
-			fontSize: "48px",
-			color: "#b80000"
-		}).setOrigin(0.5);
+		
+		//creates the text object
+		const gameOverText = this.add.text(
+			width / 2,
+			height / 2 - 100,
+			"GAME OVER",
+			{
+				fontSize: "64px",
+				color: "#b80000",
+				fontStyle: "bold"
+			}
+		).setOrigin(0.5);
+
+		//adds black outline to make it look bigger
+		gameOverText.setStroke("#000000", 6);
+
+		//--- Restart button visuals ---
+		const buttonWidth = 180;
+		const buttonHeight = 50;
+
+		//--- button background ---
+		const restartButton = this.add.rectangle(
+			width / 2,
+			height / 2 + 10, //below GAME OVER text
+			buttonWidth,
+			buttonHeight,
+			0x000000
+		)
+			.setStrokeStyle(3, 0xffffff)
+			.setOrigin(0.5)
+			.setScrollFactor(0)
+			.setDepth(1000)
+			.setInteractive({ useHandCursor: true });
+		
+		//--- Button Label ---
+		const restartLabel = this.add.text(
+			restartButton.x,
+			restartButton.y,
+			"RESTART",
+			{
+				fontSize: "24px",
+				color: "#ffffff"
+			}
+		)
+			.setOrigin(0.5)
+			.setScrollFactor(0)
+			.setDepth(1001);
+
+		//--- Shared restart handler ---
+		const doRestart = () => {
+			if (player.clearTint) {
+				player.clearTint();
+			}
+			this.scene.restart();
+		};
+
+		//--- click on button background ---
+		restartButton.on("pointerup", doRestart);
+
+		//--- allows clicking on the text itself ---
+		restartLabel.setInteractive({ useHandCursor: true });
+		restartLabel.on("pointerup", doRestart);
+
+		//--- Simple hover effect ---
+		restartButton.on("pointerover", () => {
+			restartButton.setFillStyle(0x222222);
+		});
+		restartButton.on("pointerout", () => {
+			restartButton.setFillStyle(0x000000);
+		});
 	}
 
 	//--- Shooting Logic ---
@@ -712,6 +826,9 @@ export default class LevelTwo extends Phaser.Scene {
 			//add 10 points to score for killing enemy
 			this.score += 10;
 
+			//saves the score so the next level sees the new value
+			this.registry.set("score", this.score);
+
 			//updates score text
 			if (this.scoreText && this.scoreText.setText) {
 				this.scoreText.setText("Score: " + this.score);
@@ -745,7 +862,8 @@ export default class LevelTwo extends Phaser.Scene {
 			"Key + 1",
 			{
 				fontSize: "28px",
-				color: "#ffff00"
+				color: "#ffff00",
+				fontStyle: "bold"
 			}
 		)
 		.setOrigin(0.5)
@@ -786,10 +904,21 @@ export default class LevelTwo extends Phaser.Scene {
 
 		//shows Level Complete text
 		const { width, height } = this.scale;
-		this.add.text(width / 2, height / 2, "LEVEL 2 COMPLETE", {
-			fontSize: "48px",
-			color: "#00ff00"
-		}).setOrigin(0.5);
+		
+		//creates text object for level complete
+		const levelCompleteText = this.add.text(
+			width / 2,
+			height / 2,
+			"LEVEL 2 COMPLETE",
+			{
+				fontSize: "64px",
+				color: "0f7a2b",
+				fontStyle: "bold"
+			}
+		).setOrigin(0.5);
+
+		//outline to make it look bigger
+		levelCompleteText.setStroke("#0f7a2b", 6);
 
 		//after a short delay this starts the second level 
 		this.time.delayedCall(1500, () => {
@@ -959,6 +1088,17 @@ export default class LevelTwo extends Phaser.Scene {
 		this.joystickLeft = false;
 		this.joystickRight = false;
 		this.joystickUp = false;
+	}
+
+	//--- Timer Logic ---
+	formatTime(totalSeconds) {
+		const minutes = Math.floor(totalSeconds / 60);
+		const seconds = totalSeconds % 60;
+
+		const mStr = minutes.toString();
+		const sStr = seconds.toString().padStart(2, "0");
+
+		return mStr + ":" + sStr;
 	}
 
 	/* END-USER-CODE */
