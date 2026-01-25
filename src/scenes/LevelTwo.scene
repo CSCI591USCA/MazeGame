@@ -554,27 +554,6 @@
             "body.offset.y": -8
         },
         {
-            "type": "ArcadeSprite",
-            "id": "b6ea4631-0b21-4bdb-838a-ceff1df35fa9",
-            "label": "door",
-            "scope": "CLASS",
-            "texture": {
-                "key": "Door",
-                "frame": 0
-            },
-            "x": 1179,
-            "y": 485,
-            "scaleX": 0.4,
-            "scaleY": 0.4,
-            "moves": false,
-            "allowGravity": false,
-            "collideWorldBounds": true,
-            "pushable": false,
-            "immovable": true,
-            "body.width": 512,
-            "body.height": 512
-        },
-        {
             "type": "ArcadeImage",
             "id": "692a78ee-9c65-4baa-87ef-297212e36b71",
             "label": "key",
@@ -586,6 +565,26 @@
             "y": 618,
             "scaleX": 0.2,
             "scaleY": 0.2,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 480,
+            "body.height": 480
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "2be9d0c3-07a3-4f1d-b033-eaf0454ea4e2",
+            "label": "door",
+            "scope": "CLASS",
+            "texture": {
+                "key": "Door-1"
+            },
+            "x": 1182,
+            "y": 480,
+            "scaleX": 0.4,
+            "scaleY": 0.4,
             "moves": false,
             "allowGravity": false,
             "collideWorldBounds": true,

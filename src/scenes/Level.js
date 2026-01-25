@@ -306,17 +306,6 @@ export default class Level extends Phaser.Scene {
 		const prefabwall_59 = new Prefabwall(this, 1038, 135);
 		this.add.existing(prefabwall_59);
 
-		// door
-		const door = this.physics.add.sprite(1209, 87, "Door", 0);
-		door.scaleX = 0.3;
-		door.scaleY = 0.3;
-		door.body.moves = false;
-		door.body.allowGravity = false;
-		door.body.collideWorldBounds = true;
-		door.body.pushable = false;
-		door.body.immovable = true;
-		door.body.setSize(512, 512, false);
-
 		// key
 		const key = this.physics.add.image(72, 127, "New Piskel");
 		key.scaleX = 0.2;
@@ -327,6 +316,17 @@ export default class Level extends Phaser.Scene {
 		key.body.pushable = false;
 		key.body.immovable = true;
 		key.body.setSize(480, 480, false);
+
+		// door
+		const door = this.physics.add.sprite(1213, 77, "Door-1");
+		door.scaleX = 0.3;
+		door.scaleY = 0.3;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(480, 480, false);
 
 		// lists
 		const ground = [prefabwall_1, prefabwall_2, prefabwall_3, prefabwall_4, prefabwall_5, prefabwall_6, prefabwall_7, prefabwall_8, prefabwall_9, prefabwall_10, prefabwall_11, prefabwall_12, prefabwall_13, prefabwall_14, prefabwall_15, prefabwall_16, prefabwall_17, prefabwall_18, prefabwall_19, prefabwall_20, prefabwall_21, prefabwall_22, prefabwall_23, prefabwall_24, prefabwall_25, prefabwall_26, prefabwall_27, prefabwall_28, prefabwall_29, prefabwall_30, prefabwall_31, prefabwall_32, prefabwall_33, prefabwall_34, prefabwall_35, prefabwall_36, prefabwall_37, prefabwall_38, prefabwall_39, prefabwall_40, prefabwall_41, prefabwall_42, prefabwall_43, prefabwall_44, prefabwall_45, prefabwall_46, prefabwall_47, prefabwall_48, prefabwall_49, prefabwall_50, prefabwall_51, prefabwall_52, prefabwall_53, prefabwall_54, prefabwall_55, prefabwall_56, prefabwall_57, prefabwall_58, prefabwall, prefabwall_59];
@@ -342,8 +342,8 @@ export default class Level extends Phaser.Scene {
 		this.enemy1 = enemy1;
 		this.enemy2 = enemy2;
 		this.enemy3 = enemy3;
-		this.door = door;
 		this.key = key;
+		this.door = door;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -358,10 +358,10 @@ export default class Level extends Phaser.Scene {
 	enemy2;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy3;
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	door;
 	/** @type {Phaser.Physics.Arcade.Image} */
 	key;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	door;
 	/** @type {Prefabwall[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -471,15 +471,23 @@ export default class Level extends Phaser.Scene {
 		if (!this.anims.exists("door_open")) {
 			this.anims.create({
 				key: "door_open",
-				frames: this.anims.generateFrameNumbers("Door", { start: 0, end: 4 }),
-				frameRate: 8,	//speed of animation
+				frames: [
+					{ key: "Door-1" },
+					{ key: "Door-2" },
+					{ key: "Door-3" },
+					{ key: "Door-4" },
+					{ key: "Door-5" },
+					{ key: "Door-6" },
+					{ key: "Door-7" }
+				],
+				frameRate: 10,
 				repeat: 0
 			});
 		}
 
-		//makes sure door starts on frame 0 when door is closed
-		if (this.door && this.door.setFrame) {
-			this.door.setFrame(0);
+		//this makes sure the door starts on the closed frame
+		if (this.door && this.door.setTexture) {
+			this.door.setTexture("Door-1");
 		}
 
 		//--- Bullet Texture ---

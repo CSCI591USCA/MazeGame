@@ -40,6 +40,41 @@
                 "key": "Door"
             },
             {
+                "url": "assets/Door-1.png",
+                "type": "image",
+                "key": "Door-1"
+            },
+            {
+                "url": "assets/Door-2.png",
+                "type": "image",
+                "key": "Door-2"
+            },
+            {
+                "url": "assets/Door-3.png",
+                "type": "image",
+                "key": "Door-3"
+            },
+            {
+                "url": "assets/Door-4.png",
+                "type": "image",
+                "key": "Door-4"
+            },
+            {
+                "url": "assets/Door-5.png",
+                "type": "image",
+                "key": "Door-5"
+            },
+            {
+                "url": "assets/Door-6.png",
+                "type": "image",
+                "key": "Door-6"
+            },
+            {
+                "url": "assets/Door-7.png",
+                "type": "image",
+                "key": "Door-7"
+            },
+            {
                 "url": "src/scenes/enemywalkingright1.png",
                 "type": "image",
                 "key": "enemywalkingright1"

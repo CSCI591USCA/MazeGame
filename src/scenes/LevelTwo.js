@@ -248,17 +248,6 @@ export default class LevelTwo extends Phaser.Scene {
 		enemy1.body.setOffset(6, -8);
 		enemy1.body.setSize(28, 40, false);
 
-		// door
-		const door = this.physics.add.sprite(1179, 485, "Door", 0);
-		door.scaleX = 0.4;
-		door.scaleY = 0.4;
-		door.body.moves = false;
-		door.body.allowGravity = false;
-		door.body.collideWorldBounds = true;
-		door.body.pushable = false;
-		door.body.immovable = true;
-		door.body.setSize(512, 512, false);
-
 		// key
 		const key = this.physics.add.image(979, 618, "New Piskel");
 		key.scaleX = 0.2;
@@ -269,6 +258,17 @@ export default class LevelTwo extends Phaser.Scene {
 		key.body.pushable = false;
 		key.body.immovable = true;
 		key.body.setSize(480, 480, false);
+
+		// door
+		const door = this.physics.add.sprite(1182, 480, "Door-1");
+		door.scaleX = 0.4;
+		door.scaleY = 0.4;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(480, 480, false);
 
 		// lists
 		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39];
@@ -282,8 +282,8 @@ export default class LevelTwo extends Phaser.Scene {
 
 		this.player = player;
 		this.enemy1 = enemy1;
-		this.door = door;
 		this.key = key;
+		this.door = door;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -294,10 +294,10 @@ export default class LevelTwo extends Phaser.Scene {
 	player;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy1;
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	door;
 	/** @type {Phaser.Physics.Arcade.Image} */
 	key;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	door;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -407,15 +407,23 @@ export default class LevelTwo extends Phaser.Scene {
 		if (!this.anims.exists("door_open")) {
 			this.anims.create({
 				key: "door_open",
-				frames: this.anims.generateFrameNumbers("Door", { start: 0, end: 4 }),
-				frameRate: 8,	//speed of animation
+				frames: [
+					{ key: "Door-1" },
+					{ key: "Door-2" },
+					{ key: "Door-3" },
+					{ key: "Door-4" },
+					{ key: "Door-5" },
+					{ key: "Door-6" },
+					{ key: "Door-7" }
+				],
+				frameRate: 10,
 				repeat: 0
 			});
 		}
 
-		//makes sure door starts on frame 0 when door is closed
-		if (this.door && this.door.setFrame) {
-			this.door.setFrame(0);
+		//this makes sure the door starts on the closed frame
+		if (this.door && this.door.setTexture) {
+			this.door.setTexture("Door-1");
 		}
 
 		//--- Bullet Texture ---
