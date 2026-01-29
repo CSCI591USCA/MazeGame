@@ -3,14 +3,13 @@
 
 /* START OF COMPILED CODE */
 
-import Prefabwall from "./Prefabwall.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Level extends Phaser.Scene {
+export default class LevelFour extends Phaser.Scene {
 
 	constructor() {
-		super("Level");
+		super("LevelFour");
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -21,293 +20,299 @@ export default class Level extends Phaser.Scene {
 	editorCreate() {
 
 		// background1
-		const background1 = this.add.image(-2, 0, "castlebg1");
-		background1.scaleX = 2.2254355424635595;
-		background1.scaleY = 2.2359550008840916;
+		const background1 = this.add.image(0, 0, "castlebg3");
+		background1.scaleX = 2.22;
+		background1.scaleY = 2.24;
 		background1.setOrigin(0, 0);
 
-		// prefabwall
-		const prefabwall = new Prefabwall(this, 28, 690);
-		this.add.existing(prefabwall);
+		// tile_0000
+		const tile_0000 = this.add.image(25, 694, "tile_0000");
+		tile_0000.scaleX = 3;
+		tile_0000.scaleY = 3;
 
-		// prefabwall_1
-		const prefabwall_1 = new Prefabwall(this, 80, 690);
-		this.add.existing(prefabwall_1);
-		prefabwall_1.body.allowGravity = false;
+		// tile
+		const tile = this.add.image(77, 694, "tile_0000");
+		tile.scaleX = 3;
+		tile.scaleY = 3;
 
-		// prefabwall_2
-		const prefabwall_2 = new Prefabwall(this, 132, 690);
-		this.add.existing(prefabwall_2);
-		prefabwall_2.body.allowGravity = false;
+		// tile_1
+		const tile_1 = this.add.image(129, 694, "tile_0000");
+		tile_1.scaleX = 3;
+		tile_1.scaleY = 3;
 
-		// prefabwall_3
-		const prefabwall_3 = new Prefabwall(this, 186, 690);
-		this.add.existing(prefabwall_3);
-		prefabwall_3.body.allowGravity = false;
+		// tile_2
+		const tile_2 = this.add.image(181, 694, "tile_0000");
+		tile_2.scaleX = 3;
+		tile_2.scaleY = 3;
 
-		// prefabwall_4
-		const prefabwall_4 = new Prefabwall(this, 236, 690);
-		this.add.existing(prefabwall_4);
-		prefabwall_4.body.allowGravity = false;
+		// tile_3
+		const tile_3 = this.add.image(233, 694, "tile_0000");
+		tile_3.scaleX = 3;
+		tile_3.scaleY = 3;
 
-		// prefabwall_5
-		const prefabwall_5 = new Prefabwall(this, 289, 690);
-		this.add.existing(prefabwall_5);
+		// tile_4
+		const tile_4 = this.add.image(285, 694, "tile_0000");
+		tile_4.scaleX = 3;
+		tile_4.scaleY = 3;
 
-		// prefabwall_6
-		const prefabwall_6 = new Prefabwall(this, 341, 690);
-		this.add.existing(prefabwall_6);
+		// tile_5
+		const tile_5 = this.add.image(337, 694, "tile_0000");
+		tile_5.scaleX = 3;
+		tile_5.scaleY = 3;
 
-		// prefabwall_7
-		const prefabwall_7 = new Prefabwall(this, 394, 690);
-		this.add.existing(prefabwall_7);
+		// tile_6
+		const tile_6 = this.add.image(389, 693, "tile_0000");
+		tile_6.scaleX = 3;
+		tile_6.scaleY = 3;
 
-		// prefabwall_8
-		const prefabwall_8 = new Prefabwall(this, 445, 690);
-		this.add.existing(prefabwall_8);
+		// tile_7
+		const tile_7 = this.add.image(441, 694, "tile_0000");
+		tile_7.scaleX = 3;
+		tile_7.scaleY = 3;
 
-		// prefabwall_9
-		const prefabwall_9 = new Prefabwall(this, 500, 690);
-		this.add.existing(prefabwall_9);
+		// tile_8
+		const tile_8 = this.add.image(493, 694, "tile_0000");
+		tile_8.scaleX = 3;
+		tile_8.scaleY = 3;
 
-		// prefabwall_10
-		const prefabwall_10 = new Prefabwall(this, 553, 690);
-		this.add.existing(prefabwall_10);
+		// tile_9
+		const tile_9 = this.add.image(545, 694, "tile_0000");
+		tile_9.scaleX = 3;
+		tile_9.scaleY = 3;
 
-		// prefabwall_11
-		const prefabwall_11 = new Prefabwall(this, 606, 690);
-		this.add.existing(prefabwall_11);
+		// tile_10
+		const tile_10 = this.add.image(597, 694, "tile_0000");
+		tile_10.scaleX = 3;
+		tile_10.scaleY = 3;
 
-		// prefabwall_12
-		const prefabwall_12 = new Prefabwall(this, 658, 690);
-		this.add.existing(prefabwall_12);
+		// tile_11
+		const tile_11 = this.add.image(649, 694, "tile_0000");
+		tile_11.scaleX = 3;
+		tile_11.scaleY = 3;
 
-		// prefabwall_13
-		const prefabwall_13 = new Prefabwall(this, 710, 690);
-		this.add.existing(prefabwall_13);
+		// tile_12
+		const tile_12 = this.add.image(701, 694, "tile_0000");
+		tile_12.scaleX = 3;
+		tile_12.scaleY = 3;
 
-		// prefabwall_14
-		const prefabwall_14 = new Prefabwall(this, 759, 690);
-		this.add.existing(prefabwall_14);
+		// tile_13
+		const tile_13 = this.add.image(753, 694, "tile_0000");
+		tile_13.scaleX = 3;
+		tile_13.scaleY = 3;
 
-		// prefabwall_15
-		const prefabwall_15 = new Prefabwall(this, 813, 690);
-		this.add.existing(prefabwall_15);
+		// tile_14
+		const tile_14 = this.add.image(805, 694, "tile_0000");
+		tile_14.scaleX = 3;
+		tile_14.scaleY = 3;
 
-		// prefabwall_16
-		const prefabwall_16 = new Prefabwall(this, 866, 690);
-		this.add.existing(prefabwall_16);
+		// tile_15
+		const tile_15 = this.add.image(857, 694, "tile_0000");
+		tile_15.scaleX = 3;
+		tile_15.scaleY = 3;
 
-		// prefabwall_17
-		const prefabwall_17 = new Prefabwall(this, 914, 690);
-		this.add.existing(prefabwall_17);
+		// tile_16
+		const tile_16 = this.add.image(909, 694, "tile_0000");
+		tile_16.scaleX = 3;
+		tile_16.scaleY = 3;
 
-		// prefabwall_18
-		const prefabwall_18 = new Prefabwall(this, 962, 690);
-		this.add.existing(prefabwall_18);
+		// tile_17
+		const tile_17 = this.add.image(961, 694, "tile_0000");
+		tile_17.scaleX = 3;
+		tile_17.scaleY = 3;
 
-		// prefabwall_19
-		const prefabwall_19 = new Prefabwall(this, 1014, 690);
-		this.add.existing(prefabwall_19);
+		// tile_18
+		const tile_18 = this.add.image(1013, 694, "tile_0000");
+		tile_18.scaleX = 3;
+		tile_18.scaleY = 3;
 
-		// prefabwall_20
-		const prefabwall_20 = new Prefabwall(this, 1066, 690);
-		this.add.existing(prefabwall_20);
+		// tile_19
+		const tile_19 = this.add.image(1065, 694, "tile_0000");
+		tile_19.scaleX = 3;
+		tile_19.scaleY = 3;
 
-		// prefabwall_21
-		const prefabwall_21 = new Prefabwall(this, 1118, 690);
-		this.add.existing(prefabwall_21);
+		// tile_20
+		const tile_20 = this.add.image(1117, 694, "tile_0000");
+		tile_20.scaleX = 3;
+		tile_20.scaleY = 3;
 
-		// prefabwall_22
-		const prefabwall_22 = new Prefabwall(this, 1170, 690);
-		this.add.existing(prefabwall_22);
+		// tile_21
+		const tile_21 = this.add.image(1169, 694, "tile_0000");
+		tile_21.scaleX = 3;
+		tile_21.scaleY = 3;
 
-		// prefabwall_23
-		const prefabwall_23 = new Prefabwall(this, 1221, 690);
-		this.add.existing(prefabwall_23);
+		// tile_22
+		const tile_22 = this.add.image(1221, 694, "tile_0000");
+		tile_22.scaleX = 3;
+		tile_22.scaleY = 3;
 
-		// prefabwall_24
-		const prefabwall_24 = new Prefabwall(this, 1271, 690);
-		this.add.existing(prefabwall_24);
+		// tile_23
+		const tile_23 = this.add.image(1264, 694, "tile_0000");
+		tile_23.scaleX = 2;
+		tile_23.scaleY = 3;
 
-		// player
-		const player = this.physics.add.sprite(38, 661, "idlefront1");
-		player.scaleX = 1.7;
-		player.scaleY = 1.7;
-		player.setOrigin(0.5, 1);
-		player.body.collideWorldBounds = true;
-		player.body.setOffset(10, 0);
-		player.body.setSize(28, 40, false);
+		// tile_24
+		const tile_24 = this.add.image(673, 641, "tile_0000");
+		tile_24.scaleX = 3;
+		tile_24.scaleY = 3;
 
-		// prefabwall_25
-		const prefabwall_25 = new Prefabwall(this, 370, 559);
-		this.add.existing(prefabwall_25);
+		// tile_25
+		const tile_25 = this.add.image(673, 589, "tile_0000");
+		tile_25.scaleX = 3;
+		tile_25.scaleY = 3;
 
-		// prefabwall_26
-		const prefabwall_26 = new Prefabwall(this, 419, 559);
-		this.add.existing(prefabwall_26);
+		// tile_26
+		const tile_26 = this.add.image(673, 537, "tile_0000");
+		tile_26.scaleX = 3;
+		tile_26.scaleY = 3;
 
-		// prefabwall_27
-		const prefabwall_27 = new Prefabwall(this, 467, 559);
-		this.add.existing(prefabwall_27);
+		// tile_27
+		const tile_27 = this.add.image(673, 485, "tile_0000");
+		tile_27.scaleX = 3;
+		tile_27.scaleY = 3;
 
-		// prefabwall_28
-		const prefabwall_28 = new Prefabwall(this, 704, 450);
-		this.add.existing(prefabwall_28);
+		// tile_28
+		const tile_28 = this.add.image(725, 485, "tile_0000");
+		tile_28.scaleX = 3;
+		tile_28.scaleY = 3;
 
-		// prefabwall_29
-		const prefabwall_29 = new Prefabwall(this, 756, 450);
-		this.add.existing(prefabwall_29);
+		// tile_29
+		const tile_29 = this.add.image(777, 485, "tile_0000");
+		tile_29.scaleX = 3;
+		tile_29.scaleY = 3;
 
-		// prefabwall_30
-		const prefabwall_30 = new Prefabwall(this, 806, 450);
-		this.add.existing(prefabwall_30);
+		// tile_30
+		const tile_30 = this.add.image(829, 485, "tile_0000");
+		tile_30.scaleX = 3;
+		tile_30.scaleY = 3;
 
-		// prefabwall_31
-		const prefabwall_31 = new Prefabwall(this, 854, 450);
-		this.add.existing(prefabwall_31);
+		// tile_31
+		const tile_31 = this.add.image(881, 485, "tile_0000");
+		tile_31.scaleX = 3;
+		tile_31.scaleY = 3;
 
-		// prefabwall_32
-		const prefabwall_32 = new Prefabwall(this, 1151, 335);
-		this.add.existing(prefabwall_32);
+		// tile_32
+		const tile_32 = this.add.image(933, 485, "tile_0000");
+		tile_32.scaleX = 3;
+		tile_32.scaleY = 3;
 
-		// prefabwall_33
-		const prefabwall_33 = new Prefabwall(this, 1196, 335);
-		this.add.existing(prefabwall_33);
+		// tile_33
+		const tile_33 = this.add.image(985, 485, "tile_0000");
+		tile_33.scaleX = 3;
+		tile_33.scaleY = 3;
 
-		// prefabwall_34
-		const prefabwall_34 = new Prefabwall(this, 1247, 335);
-		this.add.existing(prefabwall_34);
+		// tile_34
+		const tile_34 = this.add.image(1037, 485, "tile_0000");
+		tile_34.scaleX = 3;
+		tile_34.scaleY = 3;
 
-		// prefabwall_35
-		const prefabwall_35 = new Prefabwall(this, 1100, 335);
-		this.add.existing(prefabwall_35);
+		// tile_35
+		const tile_35 = this.add.image(1089, 485, "tile_0000");
+		tile_35.scaleX = 3;
+		tile_35.scaleY = 3;
 
-		// prefabwall_36
-		const prefabwall_36 = new Prefabwall(this, 1052, 335);
-		this.add.existing(prefabwall_36);
+		// tile_36
+		const tile_36 = this.add.image(621, 641, "tile_0000");
+		tile_36.scaleX = 3;
+		tile_36.scaleY = 3;
 
-		// prefabwall_37
-		const prefabwall_37 = new Prefabwall(this, 857, 205);
-		this.add.existing(prefabwall_37);
+		// tile_37
+		const tile_37 = this.add.image(1253, 328, "tile_0000");
+		tile_37.scaleX = 3;
+		tile_37.scaleY = 3;
 
-		// prefabwall_38
-		const prefabwall_38 = new Prefabwall(this, 755, 205);
-		this.add.existing(prefabwall_38);
+		// tile_38
+		const tile_38 = this.add.image(1201, 328, "tile_0000");
+		tile_38.scaleX = 3;
+		tile_38.scaleY = 3;
 
-		// prefabwall_39
-		const prefabwall_39 = new Prefabwall(this, 806, 205);
-		this.add.existing(prefabwall_39);
+		// tile_39
+		const tile_39 = this.add.image(1149, 328, "tile_0000");
+		tile_39.scaleX = 3;
+		tile_39.scaleY = 3;
 
-		// prefabwall_40
-		const prefabwall_40 = new Prefabwall(this, 707, 205);
-		this.add.existing(prefabwall_40);
+		// tile_40
+		const tile_40 = this.add.image(1097, 328, "tile_0000");
+		tile_40.scaleX = 3;
+		tile_40.scaleY = 3;
 
-		// prefabwall_41
-		const prefabwall_41 = new Prefabwall(this, 656, 205);
-		this.add.existing(prefabwall_41);
+		// tile_41
+		const tile_41 = this.add.image(929, 221, "tile_0000");
+		tile_41.scaleX = 3;
+		tile_41.scaleY = 3;
 
-		// prefabwall_42
-		const prefabwall_42 = new Prefabwall(this, 605, 205);
-		this.add.existing(prefabwall_42);
+		// tile_42
+		const tile_42 = this.add.image(877, 221, "tile_0000");
+		tile_42.scaleX = 3;
+		tile_42.scaleY = 3;
 
-		// prefabwall_43
-		const prefabwall_43 = new Prefabwall(this, 554, 205);
-		this.add.existing(prefabwall_43);
+		// tile_43
+		const tile_43 = this.add.image(825, 221, "tile_0000");
+		tile_43.scaleX = 3;
+		tile_43.scaleY = 3;
 
-		// prefabwall_44
-		const prefabwall_44 = new Prefabwall(this, 505, 205);
-		this.add.existing(prefabwall_44);
+		// tile_44
+		const tile_44 = this.add.image(773, 221, "tile_0000");
+		tile_44.scaleX = 3;
+		tile_44.scaleY = 3;
 
-		// prefabwall_45
-		const prefabwall_45 = new Prefabwall(this, 460, 205);
-		this.add.existing(prefabwall_45);
+		// tile_45
+		const tile_45 = this.add.image(721, 221, "tile_0000");
+		tile_45.scaleX = 3;
+		tile_45.scaleY = 3;
 
-		// prefabwall_46
-		const prefabwall_46 = new Prefabwall(this, 412, 205);
-		this.add.existing(prefabwall_46);
+		// tile_46
+		const tile_46 = this.add.image(669, 221, "tile_0000");
+		tile_46.scaleX = 3;
+		tile_46.scaleY = 3;
 
-		// prefabwall_47
-		const prefabwall_47 = new Prefabwall(this, 364, 205);
-		this.add.existing(prefabwall_47);
+		// tile_47
+		const tile_47 = this.add.image(617, 221, "tile_0000");
+		tile_47.scaleX = 3;
+		tile_47.scaleY = 3;
 
-		// prefabwall_48
-		const prefabwall_48 = new Prefabwall(this, 315, 205);
-		this.add.existing(prefabwall_48);
+		// tile_48
+		const tile_48 = this.add.image(565, 221, "tile_0000");
+		tile_48.scaleX = 3;
+		tile_48.scaleY = 3;
 
-		// prefabwall_49
-		const prefabwall_49 = new Prefabwall(this, 265, 205);
-		this.add.existing(prefabwall_49);
+		// tile_49
+		const tile_49 = this.add.image(513, 221, "tile_0000");
+		tile_49.scaleX = 3;
+		tile_49.scaleY = 3;
 
-		// prefabwall_50
-		const prefabwall_50 = new Prefabwall(this, 217, 205);
-		this.add.existing(prefabwall_50);
+		// tile_50
+		const tile_50 = this.add.image(461, 221, "tile_0000");
+		tile_50.scaleX = 3;
+		tile_50.scaleY = 3;
 
-		// prefabwall_51
-		const prefabwall_51 = new Prefabwall(this, 169, 205);
-		this.add.existing(prefabwall_51);
+		// tile_51
+		const tile_51 = this.add.image(25, 450, "tile_0000");
+		tile_51.scaleX = 3;
+		tile_51.scaleY = 3;
 
-		// prefabwall_52
-		const prefabwall_52 = new Prefabwall(this, 118, 205);
-		this.add.existing(prefabwall_52);
+		// tile_52
+		const tile_52 = this.add.image(77, 450, "tile_0000");
+		tile_52.scaleX = 3;
+		tile_52.scaleY = 3;
 
-		// prefabwall_53
-		const prefabwall_53 = new Prefabwall(this, 70, 205);
-		this.add.existing(prefabwall_53);
+		// tile_53
+		const tile_53 = this.add.image(129, 450, "tile_0000");
+		tile_53.scaleX = 3;
+		tile_53.scaleY = 3;
 
-		// prefabwall_54
-		const prefabwall_54 = new Prefabwall(this, 22, 205);
-		this.add.existing(prefabwall_54);
-
-		// prefabwall_55
-		const prefabwall_55 = new Prefabwall(this, 1199, 135);
-		this.add.existing(prefabwall_55);
-
-		// prefabwall_56
-		const prefabwall_56 = new Prefabwall(this, 1250, 135);
-		this.add.existing(prefabwall_56);
-
-		// prefabwall_57
-		const prefabwall_57 = new Prefabwall(this, 1146, 135);
-		this.add.existing(prefabwall_57);
-
-		// prefabwall_58
-		const prefabwall_58 = new Prefabwall(this, 1092, 135);
-		this.add.existing(prefabwall_58);
-
-		// enemy1
-		const enemy1 = this.physics.add.sprite(773, 407, "enemywalkingright1");
-		enemy1.scaleX = 2;
-		enemy1.scaleY = 2;
-		enemy1.setOrigin(0.5, 1);
-		enemy1.body.collideWorldBounds = true;
-		enemy1.body.setOffset(6, -8);
-		enemy1.body.setSize(28, 40, false);
-
-		// enemy2
-		const enemy2 = this.physics.add.sprite(1120, 301, "enemywalkingright1");
-		enemy2.scaleX = 2;
-		enemy2.scaleY = 2;
-		enemy2.setOrigin(0.5, 1);
-		enemy2.body.collideWorldBounds = true;
-		enemy2.body.setOffset(6, -8);
-		enemy2.body.setSize(28, 40, false);
-
-		// enemy3
-		const enemy3 = this.physics.add.sprite(462, 165, "enemywalkingright1");
-		enemy3.scaleX = 2;
-		enemy3.scaleY = 2;
-		enemy3.setOrigin(0.5, 1);
-		enemy3.body.collideWorldBounds = true;
-		enemy3.body.setOffset(6, -8);
-		enemy3.body.setSize(28, 40, false);
-
-		// prefabwall_59
-		const prefabwall_59 = new Prefabwall(this, 1038, 135);
-		this.add.existing(prefabwall_59);
+		// door
+		const door = this.physics.add.sprite(774, 629, "Door-1");
+		door.scaleX = 0.4;
+		door.scaleY = 0.4;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(480, 480, false);
 
 		// key
-		const key = this.physics.add.image(72, 127, "New Piskel");
+		const key = this.physics.add.image(78, 374, "New Piskel");
 		key.scaleX = 0.2;
 		key.scaleY = 0.2;
 		key.body.moves = false;
@@ -317,20 +322,59 @@ export default class Level extends Phaser.Scene {
 		key.body.immovable = true;
 		key.body.setSize(480, 480, false);
 
-		// door
-		const door = this.physics.add.sprite(1213, 77, "Door-1");
-		door.scaleX = 0.3;
-		door.scaleY = 0.3;
-		door.body.moves = false;
-		door.body.allowGravity = false;
-		door.body.collideWorldBounds = true;
-		door.body.pushable = false;
-		door.body.immovable = true;
-		door.body.setSize(480, 480, false);
+		// player
+		const player = this.physics.add.sprite(48, 666, "idlefront1");
+		player.scaleX = 1.7;
+		player.scaleY = 1.7;
+		player.setOrigin(0.5, 1);
+		player.body.collideWorldBounds = true;
+		player.body.setOffset(10, 0);
+		player.body.setSize(28, 40, false);
+
+		// enemy1
+		const enemy1 = this.physics.add.sprite(883, 454, "enemywalkingright1");
+		enemy1.scaleX = 2;
+		enemy1.scaleY = 2;
+		enemy1.setOrigin(0.5, 1);
+		enemy1.body.collideWorldBounds = true;
+		enemy1.body.setOffset(6, -8);
+		enemy1.body.setSize(28, 40, false);
+
+		// enemy2
+		const enemy2 = this.physics.add.sprite(1008, 663, "enemywalkingright1");
+		enemy2.scaleX = 2;
+		enemy2.scaleY = 2;
+		enemy2.setOrigin(0.5, 1);
+		enemy2.body.collideWorldBounds = true;
+		enemy2.body.setOffset(6, -8);
+		enemy2.body.setSize(28, 40, false);
+
+		// enemy3
+		const enemy3 = this.physics.add.sprite(1151, 300, "enemywalkingright1");
+		enemy3.scaleX = 2;
+		enemy3.scaleY = 2;
+		enemy3.setOrigin(0.5, 1);
+		enemy3.body.collideWorldBounds = true;
+		enemy3.body.setOffset(6, -8);
+		enemy3.body.setSize(28, 40, false);
+
+		// enemy4
+		const enemy4 = this.physics.add.sprite(664, 190, "enemywalkingright1");
+		enemy4.scaleX = 2;
+		enemy4.scaleY = 2;
+		enemy4.setOrigin(0.5, 1);
+		enemy4.body.collideWorldBounds = true;
+		enemy4.body.setOffset(6, -8);
+		enemy4.body.setSize(28, 40, false);
+
+		// tile_54
+		const tile_54 = this.add.image(1250, 641, "tile_0000");
+		tile_54.scaleX = 3;
+		tile_54.scaleY = 3;
 
 		// lists
-		const ground = [prefabwall_1, prefabwall_2, prefabwall_3, prefabwall_4, prefabwall_5, prefabwall_6, prefabwall_7, prefabwall_8, prefabwall_9, prefabwall_10, prefabwall_11, prefabwall_12, prefabwall_13, prefabwall_14, prefabwall_15, prefabwall_16, prefabwall_17, prefabwall_18, prefabwall_19, prefabwall_20, prefabwall_21, prefabwall_22, prefabwall_23, prefabwall_24, prefabwall_25, prefabwall_26, prefabwall_27, prefabwall_28, prefabwall_29, prefabwall_30, prefabwall_31, prefabwall_32, prefabwall_33, prefabwall_34, prefabwall_35, prefabwall_36, prefabwall_37, prefabwall_38, prefabwall_39, prefabwall_40, prefabwall_41, prefabwall_42, prefabwall_43, prefabwall_44, prefabwall_45, prefabwall_46, prefabwall_47, prefabwall_48, prefabwall_49, prefabwall_50, prefabwall_51, prefabwall_52, prefabwall_53, prefabwall_54, prefabwall_55, prefabwall_56, prefabwall_57, prefabwall_58, prefabwall, prefabwall_59];
-		const enemies = [enemy1, enemy2, enemy3];
+		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39, tile_40, tile_41, tile_42, tile_43, tile_44, tile_45, tile_46, tile_47, tile_48, tile_49, tile_50, tile_51, tile_52, tile_53, tile_54];
+		const enemies = [enemy1, enemy2, enemy3, enemy4];
 
 		// collider
 		this.physics.add.collider(player, ground);
@@ -338,18 +382,23 @@ export default class Level extends Phaser.Scene {
 		// collider_1
 		this.physics.add.collider(enemies, ground, undefined, undefined, this);
 
+		this.door = door;
+		this.key = key;
 		this.player = player;
 		this.enemy1 = enemy1;
 		this.enemy2 = enemy2;
 		this.enemy3 = enemy3;
-		this.key = key;
-		this.door = door;
+		this.enemy4 = enemy4;
 		this.ground = ground;
 		this.enemies = enemies;
 
 		this.events.emit("scene-awake");
 	}
 
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	door;
+	/** @type {Phaser.Physics.Arcade.Image} */
+	key;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
@@ -358,18 +407,16 @@ export default class Level extends Phaser.Scene {
 	enemy2;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy3;
-	/** @type {Phaser.Physics.Arcade.Image} */
-	key;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
-	door;
-	/** @type {Prefabwall[]} */
+	enemy4;
+	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
 	enemies;
 
 	/* START-USER-CODE */
 
-	// Write more your code here
+	// Write your code here
 
 	create() {
 
@@ -515,6 +562,7 @@ export default class Level extends Phaser.Scene {
 		if (this.enemy1) this.enemies.add(this.enemy1);
 		if (this.enemy2) this.enemies.add(this.enemy2);
 		if (this.enemy3) this.enemies.add(this.enemy3);
+		if (this.enemy4) this.enemies.add(this.enemy4);
 
 		const PATROL_SPEED = 70; //enemy speed
 		const PATROL_RANGE = 96; //enemy patrol range
@@ -1013,7 +1061,7 @@ export default class Level extends Phaser.Scene {
 		const levelCompleteText = this.add.text(
 			width / 2,
 			height / 2,
-			"LEVEL 3 COMPLETE",
+			"LEVEL 4 COMPLETE",
 			{
 				fontSize: "64px",
 				color: "0f7a2b",
@@ -1023,11 +1071,6 @@ export default class Level extends Phaser.Scene {
 
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
-
-		//after a short delay this starts the second level 
-		this.time.delayedCall(1500, () => {
-			this.scene.start("LevelFour");
-		});
 	}
 
 	//--- Mobile Controls: Joystick + Shoot Button ---

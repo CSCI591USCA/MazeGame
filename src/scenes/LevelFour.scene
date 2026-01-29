@@ -1,0 +1,933 @@
+{
+    "id": "04cb28cb-f0b8-463e-b336-f8fc7038feb3",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "LevelFour",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "cbfe2625-b0d3-4d33-a6bc-d6348ae86475",
+            "label": "background1",
+            "texture": {
+                "key": "castlebg3"
+            },
+            "scaleX": 2.22,
+            "scaleY": 2.24,
+            "originX": 0,
+            "originY": 0
+        },
+        {
+            "type": "Image",
+            "id": "aa40dcbd-1816-41a8-862b-e3574d1700e1",
+            "label": "tile_0000",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 25,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "e3d28871-7745-4876-b97a-feac888b7eeb",
+            "label": "tile",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 77,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "3b887ee4-bc93-4e2a-acfa-493411a50c43",
+            "label": "tile_1",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 129,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "edcead3b-a5c4-498c-b6e5-d86324fd7478",
+            "label": "tile_2",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 181,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "d6f9e1bb-5330-47e4-9733-d647b4272698",
+            "label": "tile_3",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 233,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "2947424b-b387-4866-9099-3bb6a0ad4dcf",
+            "label": "tile_4",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 285,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "479ceb07-f12d-4408-bf09-f4708de9a33b",
+            "label": "tile_5",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 337,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "62093061-fbb4-4ad9-919b-e46729025117",
+            "label": "tile_6",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 389,
+            "y": 693,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "31566c72-dbe2-4dd0-8ba5-c931f639518d",
+            "label": "tile_7",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 441,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "805f8dfd-a9bb-4a09-a980-77c8a77d96eb",
+            "label": "tile_8",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 493,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "8a64e73a-8d81-4331-9c21-f55fac727030",
+            "label": "tile_9",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 545,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "c5dbdd11-317a-4a4c-b121-7847cc7369fb",
+            "label": "tile_10",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 597,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "f9854656-b8ea-4006-8477-0c1f921f3953",
+            "label": "tile_11",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 649,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "886a2a12-9a65-4a38-9936-86310746d3aa",
+            "label": "tile_12",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 701,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "531eeaff-5144-4ecc-8149-e02565f87606",
+            "label": "tile_13",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 753,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "08d4cfb8-9f79-45f0-a147-7563afc4d006",
+            "label": "tile_14",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 805,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "25252f21-d753-4938-93d4-1929a5b531af",
+            "label": "tile_15",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 857,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "b013268d-1190-4158-b9a5-8ebb6461fb70",
+            "label": "tile_16",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 909,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "712da18e-dd89-4c17-ac1d-18c6f0087e83",
+            "label": "tile_17",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 961,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "2f028eb7-d8cb-4a04-8277-7d4ef0782e89",
+            "label": "tile_18",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1013,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "a5199f9b-f272-441a-b3cf-17080e95f851",
+            "label": "tile_19",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1065,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "84a07d00-5ca1-4a57-85d8-318156b74236",
+            "label": "tile_20",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1117,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "5ac82695-ff75-45c8-9e44-8dff928790ad",
+            "label": "tile_21",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1169,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "4cf09d42-4a15-45c6-a006-7f7d8a506b71",
+            "label": "tile_22",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1221,
+            "y": 694,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "dc796459-fccf-4f31-b6c7-9052089000ee",
+            "label": "tile_23",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1264,
+            "y": 694,
+            "scaleX": 2,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "c72fd684-69cd-4c47-8018-f2e68bad35e4",
+            "label": "tile_24",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 673,
+            "y": 641,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "de8d6dd6-3c31-45c2-8737-c67908e56a94",
+            "label": "tile_25",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 673,
+            "y": 589,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "a2332610-1cf8-441a-9b12-07a8d35d8cc7",
+            "label": "tile_26",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 673,
+            "y": 537,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "f1cb17c1-f095-4acc-8049-61bdd21d4bba",
+            "label": "tile_27",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 673,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "9f8ae65d-4873-4a2e-b122-1ddfc660161a",
+            "label": "tile_28",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 725,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "13355db7-d5d1-4ca9-88b4-de6e4006e175",
+            "label": "tile_29",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 777,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "0864dd87-b3b7-4b2d-975d-f75628e84b38",
+            "label": "tile_30",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 829,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "8ec3d704-9734-4fa9-af76-71fd9fa532ff",
+            "label": "tile_31",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 881,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "44d05a14-e9fb-49f3-97dc-e7dc97dbb686",
+            "label": "tile_32",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 933,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "d73c19d1-7cc9-44e3-9b52-df568bc15f57",
+            "label": "tile_33",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 985,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "8fd1c6bc-023e-4ba5-860f-7823a0f717ce",
+            "label": "tile_34",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1037,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "6dd2dbd1-5f2a-422e-911a-d4bde00e09f0",
+            "label": "tile_35",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1089,
+            "y": 485,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "c0efedb5-dac3-429a-86c0-12b4c2de672b",
+            "label": "tile_36",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 621,
+            "y": 641,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "43283b88-71ff-4d29-bd8a-2c2ed49fe5db",
+            "label": "tile_37",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1253,
+            "y": 328,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "31acbfe2-045e-4ab9-8187-53cf7cec5c43",
+            "label": "tile_38",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1201,
+            "y": 328,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "93df79a5-31d0-4734-9a05-62cf1e1cbcac",
+            "label": "tile_39",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1149,
+            "y": 328,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "759c8086-5059-46f3-9ff7-caffe8a73add",
+            "label": "tile_40",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1097,
+            "y": 328,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "61f41fc9-77da-4a06-9d6d-2d543fc7d979",
+            "label": "tile_41",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 929,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "39d0fc54-1318-40d2-a629-10c2b39393c2",
+            "label": "tile_42",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 877,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "2b424691-ed9d-44ce-b4c5-b6964b889b4b",
+            "label": "tile_43",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 825,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "62deda1c-2ed2-48c6-becf-de3b303b1c86",
+            "label": "tile_44",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 773,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "db8983e2-15d6-455c-860e-1a6581d70d0b",
+            "label": "tile_45",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 721,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "d655659b-3f99-47ce-a3f2-7cd012c29b3b",
+            "label": "tile_46",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 669,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "3564b97f-ba56-4d75-9f94-d951321b2b84",
+            "label": "tile_47",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 617,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "245de982-7b46-4ce9-a4fa-f0a2ed9f9362",
+            "label": "tile_48",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 565,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "b4da79cf-fa5d-4839-8726-63dd56cdafb0",
+            "label": "tile_49",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 513,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "0f65fd8a-3f1b-40d3-afbc-972ac6747967",
+            "label": "tile_50",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 461,
+            "y": 221,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "ee5310f4-3ba7-44fc-80e0-abd7ddcd0947",
+            "label": "tile_51",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 25,
+            "y": 450,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "9cb132b6-3d62-468c-9348-0b5da7307554",
+            "label": "tile_52",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 77,
+            "y": 450,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "Image",
+            "id": "96a13e0f-818e-4829-8613-6b01b323ebe6",
+            "label": "tile_53",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 129,
+            "y": 450,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "f8f5516b-6b67-4331-a223-ceba96100a63",
+            "label": "door",
+            "scope": "CLASS",
+            "texture": {
+                "key": "Door-1"
+            },
+            "x": 774,
+            "y": 629,
+            "scaleX": 0.4,
+            "scaleY": 0.4,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 480,
+            "body.height": 480
+        },
+        {
+            "type": "ArcadeImage",
+            "id": "e96552f4-2bf3-4554-a39d-91104e415e11",
+            "label": "key",
+            "scope": "CLASS",
+            "texture": {
+                "key": "New Piskel"
+            },
+            "x": 78,
+            "y": 374,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 480,
+            "body.height": 480
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "526b7080-538c-4f67-80b1-f4fb55027143",
+            "label": "player",
+            "scope": "CLASS",
+            "texture": {
+                "key": "idlefront1"
+            },
+            "x": 48,
+            "y": 666,
+            "scaleX": 1.7,
+            "scaleY": 1.7,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 10
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "abcbc902-bfe9-4849-a4c9-6b7b044dd9ee",
+            "label": "enemy1",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 883,
+            "y": 454,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "93c46432-15fd-4648-bf36-f075d1497dbb",
+            "label": "enemy2",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 1008,
+            "y": 663,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "dadab621-ecc0-4deb-b424-6ed828cc3fec",
+            "label": "enemy3",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 1151,
+            "y": 300,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "6c6858ac-4c4a-4c7f-aab9-625e9db5a4f7",
+            "label": "enemy4",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalkingright1"
+            },
+            "x": 664,
+            "y": 190,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
+        },
+        {
+            "type": "Image",
+            "id": "a42dea7b-6632-453f-8055-602586eab80a",
+            "label": "tile_54",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1250,
+            "y": 641,
+            "scaleX": 3,
+            "scaleY": 3
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "9ed85b97-7be2-40c4-a31f-b5fd708275da",
+            "type": "Collider",
+            "label": "collider",
+            "scope": "LOCAL",
+            "object1": "player",
+            "object2": "ground"
+        },
+        {
+            "id": "f3005475-fa90-452b-8d72-c8ee7870bc55",
+            "type": "Collider",
+            "label": "collider_1",
+            "scope": "LOCAL",
+            "object1": "enemies",
+            "object2": "ground",
+            "callbackContext": "this"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "lists": [
+        {
+            "id": "7de3eb7b-2d2f-4dcb-b745-d76d831a94ff",
+            "label": "ground",
+            "objectIds": [
+                "aa40dcbd-1816-41a8-862b-e3574d1700e1",
+                "e3d28871-7745-4876-b97a-feac888b7eeb",
+                "3b887ee4-bc93-4e2a-acfa-493411a50c43",
+                "edcead3b-a5c4-498c-b6e5-d86324fd7478",
+                "d6f9e1bb-5330-47e4-9733-d647b4272698",
+                "2947424b-b387-4866-9099-3bb6a0ad4dcf",
+                "479ceb07-f12d-4408-bf09-f4708de9a33b",
+                "62093061-fbb4-4ad9-919b-e46729025117",
+                "31566c72-dbe2-4dd0-8ba5-c931f639518d",
+                "805f8dfd-a9bb-4a09-a980-77c8a77d96eb",
+                "8a64e73a-8d81-4331-9c21-f55fac727030",
+                "c5dbdd11-317a-4a4c-b121-7847cc7369fb",
+                "f9854656-b8ea-4006-8477-0c1f921f3953",
+                "886a2a12-9a65-4a38-9936-86310746d3aa",
+                "531eeaff-5144-4ecc-8149-e02565f87606",
+                "08d4cfb8-9f79-45f0-a147-7563afc4d006",
+                "25252f21-d753-4938-93d4-1929a5b531af",
+                "b013268d-1190-4158-b9a5-8ebb6461fb70",
+                "712da18e-dd89-4c17-ac1d-18c6f0087e83",
+                "2f028eb7-d8cb-4a04-8277-7d4ef0782e89",
+                "a5199f9b-f272-441a-b3cf-17080e95f851",
+                "84a07d00-5ca1-4a57-85d8-318156b74236",
+                "5ac82695-ff75-45c8-9e44-8dff928790ad",
+                "4cf09d42-4a15-45c6-a006-7f7d8a506b71",
+                "dc796459-fccf-4f31-b6c7-9052089000ee",
+                "c72fd684-69cd-4c47-8018-f2e68bad35e4",
+                "de8d6dd6-3c31-45c2-8737-c67908e56a94",
+                "a2332610-1cf8-441a-9b12-07a8d35d8cc7",
+                "f1cb17c1-f095-4acc-8049-61bdd21d4bba",
+                "9f8ae65d-4873-4a2e-b122-1ddfc660161a",
+                "13355db7-d5d1-4ca9-88b4-de6e4006e175",
+                "0864dd87-b3b7-4b2d-975d-f75628e84b38",
+                "8ec3d704-9734-4fa9-af76-71fd9fa532ff",
+                "44d05a14-e9fb-49f3-97dc-e7dc97dbb686",
+                "d73c19d1-7cc9-44e3-9b52-df568bc15f57",
+                "8fd1c6bc-023e-4ba5-860f-7823a0f717ce",
+                "6dd2dbd1-5f2a-422e-911a-d4bde00e09f0",
+                "c0efedb5-dac3-429a-86c0-12b4c2de672b",
+                "43283b88-71ff-4d29-bd8a-2c2ed49fe5db",
+                "31acbfe2-045e-4ab9-8187-53cf7cec5c43",
+                "93df79a5-31d0-4734-9a05-62cf1e1cbcac",
+                "759c8086-5059-46f3-9ff7-caffe8a73add",
+                "61f41fc9-77da-4a06-9d6d-2d543fc7d979",
+                "39d0fc54-1318-40d2-a629-10c2b39393c2",
+                "2b424691-ed9d-44ce-b4c5-b6964b889b4b",
+                "62deda1c-2ed2-48c6-becf-de3b303b1c86",
+                "db8983e2-15d6-455c-860e-1a6581d70d0b",
+                "d655659b-3f99-47ce-a3f2-7cd012c29b3b",
+                "3564b97f-ba56-4d75-9f94-d951321b2b84",
+                "245de982-7b46-4ce9-a4fa-f0a2ed9f9362",
+                "b4da79cf-fa5d-4839-8726-63dd56cdafb0",
+                "0f65fd8a-3f1b-40d3-afbc-972ac6747967",
+                "ee5310f4-3ba7-44fc-80e0-abd7ddcd0947",
+                "9cb132b6-3d62-468c-9348-0b5da7307554",
+                "96a13e0f-818e-4829-8613-6b01b323ebe6",
+                "a42dea7b-6632-453f-8055-602586eab80a"
+            ]
+        },
+        {
+            "id": "27995c77-242d-4769-b9b5-7929aecb627e",
+            "label": "enemies",
+            "objectIds": [
+                "abcbc902-bfe9-4849-a4c9-6b7b044dd9ee",
+                "93c46432-15fd-4648-bf36-f075d1497dbb",
+                "dadab621-ecc0-4deb-b424-6ed828cc3fec",
+                "6c6858ac-4c4a-4c7f-aab9-625e9db5a4f7"
+            ]
+        }
+    ]
+}

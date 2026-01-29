@@ -2,6 +2,7 @@ import Preload from "./scenes/Preload.js";
 import LevelOne from "./scenes/LevelOne.js";
 import LevelTwo from "./scenes/LevelTwo.js";
 import Level from "./scenes/Level.js";
+import LevelFour from "./scenes/LevelFour.js";
 
 window.addEventListener('load', function () {
 
@@ -29,6 +30,7 @@ window.addEventListener('load', function () {
 	game.scene.add("LevelOne", LevelOne);
 	game.scene.add("LevelTwo", LevelTwo);
 	game.scene.add("Level", Level);
+	game.scene.add("LevelFour", LevelFour);
 	game.scene.add("Boot", Boot, true);
 });
 
