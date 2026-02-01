@@ -300,6 +300,11 @@ export default class LevelFour extends Phaser.Scene {
 		tile_53.scaleX = 3;
 		tile_53.scaleY = 3;
 
+		// tile_54
+		const tile_54 = this.add.image(1250, 641, "tile_0000");
+		tile_54.scaleX = 3;
+		tile_54.scaleY = 3;
+
 		// door
 		const door = this.physics.add.sprite(774, 629, "Door-1");
 		door.scaleX = 0.4;
@@ -366,11 +371,6 @@ export default class LevelFour extends Phaser.Scene {
 		enemy4.body.collideWorldBounds = true;
 		enemy4.body.setOffset(6, -8);
 		enemy4.body.setSize(28, 40, false);
-
-		// tile_54
-		const tile_54 = this.add.image(1250, 641, "tile_0000");
-		tile_54.scaleX = 3;
-		tile_54.scaleY = 3;
 
 		// lists
 		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39, tile_40, tile_41, tile_42, tile_43, tile_44, tile_45, tile_46, tile_47, tile_48, tile_49, tile_50, tile_51, tile_52, tile_53, tile_54];
@@ -1071,6 +1071,11 @@ export default class LevelFour extends Phaser.Scene {
 
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
+
+		//after a short delay this starts the next level 
+		this.time.delayedCall(1500, () => {
+			this.scene.start("LevelFive");
+		});
 	}
 
 	//--- Mobile Controls: Joystick + Shoot Button ---

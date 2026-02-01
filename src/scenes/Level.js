@@ -1024,7 +1024,7 @@ export default class Level extends Phaser.Scene {
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
 
-		//after a short delay this starts the second level 
+		//after a short delay this starts the next level 
 		this.time.delayedCall(1500, () => {
 			this.scene.start("LevelFour");
 		});

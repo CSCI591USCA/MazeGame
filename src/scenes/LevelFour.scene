@@ -685,6 +685,18 @@
             "scaleY": 3
         },
         {
+            "type": "Image",
+            "id": "a42dea7b-6632-453f-8055-602586eab80a",
+            "label": "tile_54",
+            "texture": {
+                "key": "tile_0000"
+            },
+            "x": 1250,
+            "y": 641,
+            "scaleX": 3,
+            "scaleY": 3
+        },
+        {
             "type": "ArcadeSprite",
             "id": "f8f5516b-6b67-4331-a223-ceba96100a63",
             "label": "door",
@@ -817,18 +829,6 @@
             "body.height": 40,
             "body.offset.x": 6,
             "body.offset.y": -8
-        },
-        {
-            "type": "Image",
-            "id": "a42dea7b-6632-453f-8055-602586eab80a",
-            "label": "tile_54",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 1250,
-            "y": 641,
-            "scaleX": 3,
-            "scaleY": 3
         }
     ],
     "plainObjects": [
