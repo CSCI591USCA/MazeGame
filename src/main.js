@@ -4,6 +4,7 @@ import LevelTwo from "./scenes/LevelTwo.js";
 import Level from "./scenes/Level.js";
 import LevelFour from "./scenes/LevelFour.js";
 import LevelFive from "./scenes/LevelFive.js";
+import LevelSix from "./scenes/LevelSix.js";
 
 window.addEventListener('load', function () {
 
@@ -33,6 +34,7 @@ window.addEventListener('load', function () {
 	game.scene.add("Level", Level);
 	game.scene.add("LevelFour", LevelFour);
 	game.scene.add("LevelFive", LevelFive);
+	game.scene.add("LevelSix", LevelSix);
 	game.scene.add("Boot", Boot, true);
 });
 
