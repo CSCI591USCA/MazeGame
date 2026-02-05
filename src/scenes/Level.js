@@ -515,9 +515,15 @@ export default class Level extends Phaser.Scene {
 		if (this.enemy1) this.enemies.add(this.enemy1);
 		if (this.enemy2) this.enemies.add(this.enemy2);
 		if (this.enemy3) this.enemies.add(this.enemy3);
+		// --- Per-enemy patrol distances ---
+		this.enemy1.patrolRange = 70;   // small platform
+		this.enemy2.patrolRange = 90;  // medium platform
+		this.enemy3.patrolRange = 250;  // long platform
 
-		const PATROL_SPEED = 70; //enemy speed
-		const PATROL_RANGE = 96; //enemy patrol range
+
+		const PATROL_SPEED = 85; //enemy speed
+		const DEFAULT_PATROL_RANGE = 80; //fallback
+
 
 		this.enemies.children.iterate(enemy => {
 			if (!enemy || !enemy.body) return;
@@ -525,17 +531,26 @@ export default class Level extends Phaser.Scene {
 			enemy.body.setCollideWorldBounds(true);
 			enemy.body.setBounce(0, 0);
 
-			//starting point where enemies will patrol
+			// patrol data
 			enemy.startX = enemy.x;
-			enemy.minX = enemy.startX - PATROL_RANGE;
-			enemy.maxX = enemy.startX + PATROL_RANGE;
+
+			// use per-enemy patrol range
+			enemy.patrolRange = enemy.patrolRange || DEFAULT_PATROL_RANGE;
+
+			enemy.minX = enemy.startX - enemy.patrolRange;
+			enemy.maxX = enemy.startX + enemy.patrolRange;
 
 			enemy.patrolDir = 1;
 			enemy.patrolSpeed = PATROL_SPEED;
 
-			//start moving to the right
+			// NEW: enemy AI state
+			enemy.state = "PATROL";
+			enemy.chaseSpeed = 110;     // faster than patrol
+			enemy.detectRange = 180;    // how close player must be
+
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
-		})
+		});
+
 
 		// --- Bullet Group ---
 		/**
@@ -674,7 +689,7 @@ export default class Level extends Phaser.Scene {
 		});
 	}
 
-	update(){
+	update() {
 
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
@@ -747,20 +762,44 @@ export default class Level extends Phaser.Scene {
 
 				enemy.play("enemy_walk", true);
 
-				//enemy reaches left limit and goes right
-				if (enemy.x <= enemy.minX) {
-					enemy.patrolDir = 1;
-					if (enemy.setFlipX) enemy.setFlipX(false);	//enemy faces right
-				}
-				//reach right limit and go left
-				else if (enemy.x >= enemy.maxX) {
-					enemy.patrolDir = -1;
-					if (enemy.setFlipX) enemy.setFlipX(true); //face left
+				const player = this.player;
+				const distToPlayer = Phaser.Math.Distance.Between(
+					enemy.x, enemy.y,
+					player.x, player.y
+				);
+
+				// --- STATE SWITCH ---
+				if (distToPlayer < enemy.detectRange) {
+					enemy.state = "CHASE";
+				} else if (enemy.state === "CHASE") {
+					enemy.state = "PATROL";
 				}
 
-				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				// --- PATROL STATE ---
+				if (enemy.state === "PATROL") {
+
+					if (enemy.x <= enemy.minX) {
+						enemy.patrolDir = 1;
+						enemy.setFlipX(false);
+					}
+					else if (enemy.x >= enemy.maxX) {
+						enemy.patrolDir = -1;
+						enemy.setFlipX(true);
+					}
+
+					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				}
+
+				// --- CHASE STATE ---
+				else if (enemy.state === "CHASE") {
+					const dir = player.x < enemy.x ? -1 : 1;
+
+					enemy.setFlipX(dir < 0);
+					enemy.body.setVelocityX(enemy.chaseSpeed * dir);
+				}
 			});
 		}
+
 	}
 
 	//--- Enemy hits player Game Over ---
@@ -918,7 +957,7 @@ export default class Level extends Phaser.Scene {
 	 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
-			bullet.destroy() ;
+			bullet.destroy();
 		}
 		if (enemy && enemy.destroy) {
 			enemy.destroy();
@@ -966,8 +1005,8 @@ export default class Level extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		)
-		.setOrigin(0.5)
-		.setDepth(999);
+			.setOrigin(0.5)
+			.setDepth(999);
 
 		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
@@ -1067,7 +1106,7 @@ export default class Level extends Phaser.Scene {
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */
-		this.input.on("pointerdown", (pointer) => {		
+		this.input.on("pointerdown", (pointer) => {
 			if (this.joystickPointerId !== null) {
 				return;
 			}

@@ -449,20 +449,36 @@ export default class LevelTwo extends Phaser.Scene {
 		 */
 		this.enemies = this.physics.add.group();
 		if (this.enemy1) this.enemies.add(this.enemy1);
+		// --- Per-enemy patrol distances ---
+		this.enemy1.patrolRange = 280;   // small platform
 
-		const PATROL_SPEED = 70; //enemy speed
-		const PATROL_RANGE = 96; //enemy patrol range
+
+		const PATROL_SPEED = 85; //enemy speed
+		const DEFAULT_PATROL_RANGE = 80; //fallback range
+
 
 		this.enemies.children.iterate(enemy => {
 			if (!enemy || !enemy.body) return;
+			// --- Enemy behavior flags ---
+			this.enemy1.canRandomTurn = true;
+			this.enemy1.turnChance = 0.008;   // higher = more turns
+
+			this.enemy1.canRandomJump = true;
+			this.enemy1.jumpChance = 0.005;   // higher = more jumps
+			this.enemy1.jumpPower = 260;
+
 
 			enemy.body.setCollideWorldBounds(true);
 			enemy.body.setBounce(0, 0);
 
 			//starting point where enemies will patrol
 			enemy.startX = enemy.x;
-			enemy.minX = enemy.startX - PATROL_RANGE;
-			enemy.maxX = enemy.startX + PATROL_RANGE;
+
+			// use per-enemy patrol range
+			enemy.patrolRange = enemy.patrolRange || DEFAULT_PATROL_RANGE;
+
+			enemy.minX = enemy.startX - enemy.patrolRange;
+			enemy.maxX = enemy.startX + enemy.patrolRange;
 
 			enemy.patrolDir = 1;
 			enemy.patrolSpeed = PATROL_SPEED;
@@ -608,7 +624,7 @@ export default class LevelTwo extends Phaser.Scene {
 		});
 	}
 
-	update(){
+	update() {
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
 			return;
@@ -674,27 +690,65 @@ export default class LevelTwo extends Phaser.Scene {
 		/**
 		 * Updates enemy patrol behavior, making them move between defined limits.
 		 */
+		//--- Enemy behavior: chase player if close, otherwise patrol ---
 		if (this.enemies) {
 			this.enemies.children.iterate(enemy => {
 				if (!enemy || !enemy.body) return;
 
 				enemy.play("enemy_walk", true);
 
+				const distanceToPlayer = Phaser.Math.Distance.Between(
+					enemy.x,
+					enemy.y,
+					this.player.x,
+					this.player.y
+				);
 
-				//enemy reaches left limit and goes right
-				if (enemy.x <= enemy.minX) {
-					enemy.patrolDir = 1;
-					if (enemy.setFlipX) enemy.setFlipX(false);	//enemy faces right
+				const CHASE_DISTANCE = 200;
+
+				// --- CHASE PLAYER ---
+				if (distanceToPlayer < CHASE_DISTANCE) {
+
+					if (this.player.x < enemy.x) {
+						enemy.patrolDir = -1;
+						enemy.setFlipX(true);
+					} else {
+						enemy.patrolDir = 1;
+						enemy.setFlipX(false);
+					}
+
+					enemy.body.setVelocityX(enemy.patrolSpeed * 1.5 * enemy.patrolDir);
 				}
-				//reach right limit and go left
-				else if (enemy.x >= enemy.maxX) {
-					enemy.patrolDir = -1;
-					if (enemy.setFlipX) enemy.setFlipX(true); //face left
+				// --- NORMAL PATROL ---
+				else {
+					if (enemy.x <= enemy.minX) {
+						enemy.patrolDir = 1;
+						enemy.setFlipX(false);
+					}
+					else if (enemy.x >= enemy.maxX) {
+						enemy.patrolDir = -1;
+						enemy.setFlipX(true);
+					}
+
+					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				}
+				// --- Random direction change ---
+				if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
+					enemy.patrolDir *= -1;
+					enemy.setFlipX(enemy.patrolDir < 0);
+				}
+				// --- Random jump (ground only) ---
+				if (
+					enemy.canRandomJump &&
+					enemy.body.blocked.down &&
+					Math.random() < enemy.jumpChance
+				) {
+					enemy.body.setVelocityY(-enemy.jumpPower);
 				}
 
-				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 			});
 		}
+
 	}
 
 	//--- Enemy hits player Game Over ---
@@ -850,7 +904,7 @@ export default class LevelTwo extends Phaser.Scene {
 	 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
-			bullet.destroy() ;
+			bullet.destroy();
 		}
 		if (enemy && enemy.destroy) {
 			enemy.destroy();
@@ -898,8 +952,8 @@ export default class LevelTwo extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		)
-		.setOrigin(0.5)
-		.setDepth(999);
+			.setOrigin(0.5)
+			.setDepth(999);
 
 		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
@@ -1000,7 +1054,7 @@ export default class LevelTwo extends Phaser.Scene {
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */
-		this.input.on("pointerdown", (pointer) => {		
+		this.input.on("pointerdown", (pointer) => {
 			if (this.joystickPointerId !== null) {
 				return;
 			}
