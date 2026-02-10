@@ -779,7 +779,7 @@ export default class LevelFive extends Phaser.Scene {
 		if (this.enemy3) this.enemies.add(this.enemy3);
 		if (this.enemy4) this.enemies.add(this.enemy4);
 
-		const PATROL_SPEED = 70; //enemy speed
+		const PATROL_SPEED = 105; //enemy speed
 		const PATROL_RANGE = 96; //enemy patrol range
 
 		this.enemies.children.iterate(enemy => {
@@ -795,6 +795,40 @@ export default class LevelFive extends Phaser.Scene {
 
 			enemy.patrolDir = 1;
 			enemy.patrolSpeed = PATROL_SPEED;
+			// =====================================
+			// ENEMY PERSONALITY SETTINGS
+			// =====================================
+
+			// top platform enemy
+			this.enemy1.canRandomTurn = true;
+			this.enemy1.turnChance = 0.003;
+
+			this.enemy1.canRandomJump = true;
+			this.enemy1.jumpChance = 0.004;
+			this.enemy1.jumpPower = 260;
+
+
+			// bottom right
+			this.enemy2.canRandomTurn = true;
+			this.enemy2.turnChance = 0.002;
+
+			this.enemy2.canRandomJump = false;
+
+
+			// bottom middle
+			this.enemy3.canRandomTurn = true;
+			this.enemy3.turnChance = 0.002;
+
+			this.enemy3.canRandomJump = false;
+
+
+			// small mid platform
+			this.enemy4.canRandomTurn = true;
+			this.enemy4.turnChance = 0.004;
+
+			this.enemy4.canRandomJump = true;
+			this.enemy4.jumpChance = 0.006;
+			this.enemy4.jumpPower = 260;
 
 			//start moving to the right
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
@@ -937,7 +971,7 @@ export default class LevelFive extends Phaser.Scene {
 		});
 	}
 
-	update(){
+	update() {
 
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
@@ -1019,6 +1053,24 @@ export default class LevelFive extends Phaser.Scene {
 				else if (enemy.x >= enemy.maxX) {
 					enemy.patrolDir = -1;
 					if (enemy.setFlipX) enemy.setFlipX(true); //face left
+				}
+				// ================================
+				// RANDOM TURN
+				// ================================
+				if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
+					enemy.patrolDir *= -1;
+					if (enemy.setFlipX) enemy.setFlipX(enemy.patrolDir < 0);
+				}
+
+				// ================================
+				// RANDOM JUMP
+				// ================================
+				if (
+					enemy.canRandomJump &&
+					enemy.body.blocked.down &&
+					Math.random() < enemy.jumpChance
+				) {
+					enemy.body.setVelocityY(-enemy.jumpPower);
 				}
 
 				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
@@ -1181,7 +1233,7 @@ export default class LevelFive extends Phaser.Scene {
 	 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
-			bullet.destroy() ;
+			bullet.destroy();
 		}
 		if (enemy && enemy.destroy) {
 			enemy.destroy();
@@ -1229,8 +1281,8 @@ export default class LevelFive extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		)
-		.setOrigin(0.5)
-		.setDepth(999);
+			.setOrigin(0.5)
+			.setDepth(999);
 
 		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
@@ -1330,7 +1382,7 @@ export default class LevelFive extends Phaser.Scene {
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */
-		this.input.on("pointerdown", (pointer) => {		
+		this.input.on("pointerdown", (pointer) => {
 			if (this.joystickPointerId !== null) {
 				return;
 			}

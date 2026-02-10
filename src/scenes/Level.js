@@ -516,12 +516,12 @@ export default class Level extends Phaser.Scene {
 		if (this.enemy2) this.enemies.add(this.enemy2);
 		if (this.enemy3) this.enemies.add(this.enemy3);
 		// --- Per-enemy patrol distances ---
-		this.enemy1.patrolRange = 70;   // small platform
+		this.enemy1.patrolRange = 90;   // small platform
 		this.enemy2.patrolRange = 90;  // medium platform
-		this.enemy3.patrolRange = 250;  // long platform
+		this.enemy3.patrolRange = 360;  // long platform
 
 
-		const PATROL_SPEED = 85; //enemy speed
+		const PATROL_SPEED = 93; //enemy speed
 		const DEFAULT_PATROL_RANGE = 80; //fallback
 
 
@@ -547,6 +547,35 @@ export default class Level extends Phaser.Scene {
 			enemy.state = "PATROL";
 			enemy.chaseSpeed = 110;     // faster than patrol
 			enemy.detectRange = 180;    // how close player must be
+			// ================================
+			// Enemy personality tuning
+			// ================================
+
+			// enemy1 → small platform
+			this.enemy1.canRandomTurn = true;
+			this.enemy1.turnChance = 0.005;
+
+			this.enemy1.canRandomJump = true;
+			this.enemy1.jumpChance = 0.010;
+			this.enemy1.jumpPower = 260;
+
+
+			// enemy2 → medium
+			this.enemy2.canRandomTurn = true;
+			this.enemy2.turnChance = 0.006;
+
+			this.enemy2.canRandomJump = true;
+			this.enemy2.jumpChance = 0.002;
+			this.enemy2.jumpPower = 260;
+
+
+			// enemy3 → long floor
+			this.enemy3.canRandomTurn = true;
+			this.enemy3.turnChance = 0.009;
+
+			this.enemy3.canRandomJump = true;
+			this.enemy3.jumpChance = 0.004;
+			this.enemy3.jumpPower = 200;
 
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 		});
@@ -786,6 +815,18 @@ export default class Level extends Phaser.Scene {
 						enemy.patrolDir = -1;
 						enemy.setFlipX(true);
 					}
+					if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
+						enemy.patrolDir *= -1;
+						enemy.setFlipX(enemy.patrolDir < 0);
+					}
+					if (
+						enemy.canRandomJump &&
+						enemy.body.blocked.down &&
+						Math.random() < enemy.jumpChance
+					) {
+						enemy.body.setVelocityY(-enemy.jumpPower);
+					}
+
 
 					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 				}
