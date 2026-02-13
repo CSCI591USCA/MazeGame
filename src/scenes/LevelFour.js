@@ -514,6 +514,29 @@ export default class LevelFour extends Phaser.Scene {
 			}
 		});
 
+		//--- Adaptive Difficulty ---
+		if (this.registry.get("playerDifficulty") === undefined) {
+			this.registry.set("playerDifficulty", { speedMult: 1 });
+		}
+
+		this.playerDifficulty = this.registry.get("playerDifficulty");
+		this.levelStartTime = this.elapsedTime;
+		this.deathsThisLevel = 0;
+
+		//---Difficulty Multiplier---
+		this.diffDebugText = this.add.text(
+			16,
+			48,
+			"Diff: " + this.playerDifficulty.speedMult.toFixed(2),
+			{
+				fontSize: "20px",
+				color: "#d4b100",
+				fontStyle: "bold"
+			}
+		);
+		this.diffDebugText.setScrollFactor(0);
+		this.diffDebugText.setStroke("#000000", 2);
+
 		//--- Door Animation ---
 		if (!this.anims.exists("door_open")) {
 			this.anims.create({
@@ -564,8 +587,12 @@ export default class LevelFour extends Phaser.Scene {
 		if (this.enemy3) this.enemies.add(this.enemy3);
 		if (this.enemy4) this.enemies.add(this.enemy4);
 
-		const PATROL_SPEED = 100; //enemy speed
+		const BASE_PATROL_SPEED = 70; //enemy speed
 		const PATROL_RANGE = 96; //enemy patrol range
+
+		const speedMult = (this.playerDifficulty && this.playerDifficulty.speedMult) || 1;
+
+		const PATROL_SPEED = BASE_PATROL_SPEED * speedMult;
 
 		this.enemies.children.iterate(enemy => {
 			if (!enemy || !enemy.body) return;
@@ -584,43 +611,6 @@ export default class LevelFour extends Phaser.Scene {
 			//start moving to the right
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 		})
-		// ================================
-		// Enemy Behavior Tuning (Level 4)
-		// ================================
-
-		// bottom big platform
-		this.enemy2.canRandomTurn = true;
-		this.enemy2.turnChance = 0.005;
-
-		this.enemy2.canRandomJump = false;   // big floor = no jumping
-
-
-		// middle platform
-		this.enemy1.canRandomTurn = true;
-		this.enemy1.turnChance = 0.005;
-
-		this.enemy1.canRandomJump = true;
-		this.enemy1.jumpChance = 0.008;
-		this.enemy1.jumpPower = 260;
-
-
-		// top right
-		this.enemy3.canRandomTurn = true;
-		this.enemy3.turnChance = 0.009;
-
-		this.enemy3.canRandomJump = true;
-		this.enemy3.jumpChance = 0.004;
-		this.enemy3.jumpPower = 260;
-
-
-		// top left
-		this.enemy4.canRandomTurn = true;
-		this.enemy4.turnChance = 0.008;
-
-		this.enemy4.canRandomJump = true;
-		this.enemy4.jumpChance = 0.008;
-		this.enemy4.jumpPower = 260;
-
 
 		// --- Bullet Group ---
 		/**
@@ -759,7 +749,7 @@ export default class LevelFour extends Phaser.Scene {
 		});
 	}
 
-	update() {
+	update(){
 
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
@@ -842,19 +832,6 @@ export default class LevelFour extends Phaser.Scene {
 					enemy.patrolDir = -1;
 					if (enemy.setFlipX) enemy.setFlipX(true); //face left
 				}
-				if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
-					enemy.patrolDir *= -1;
-					enemy.setFlipX(enemy.patrolDir < 0);
-				}
-				if (
-					enemy.canRandomJump &&
-					enemy.body.blocked.down &&
-					Math.random() < enemy.jumpChance
-				) {
-					enemy.body.setVelocityY(-enemy.jumpPower);
-				}
-
-
 
 				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 			});
@@ -863,6 +840,9 @@ export default class LevelFour extends Phaser.Scene {
 
 	//--- Enemy hits player Game Over ---
 	onPlayerHitEnemy(player, enemy) {
+
+		//count this death for adaptive difficulty
+		this.deathsThisLevel = (this.deathsThisLevel || 0) + 1;
 
 		// prevents double-triggering
 		if (this.gameOver) return;
@@ -1016,7 +996,7 @@ export default class LevelFour extends Phaser.Scene {
 	 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
-			bullet.destroy();
+			bullet.destroy() ;
 		}
 		if (enemy && enemy.destroy) {
 			enemy.destroy();
@@ -1064,8 +1044,8 @@ export default class LevelFour extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		)
-			.setOrigin(0.5)
-			.setDepth(999);
+		.setOrigin(0.5)
+		.setDepth(999);
 
 		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
@@ -1122,6 +1102,26 @@ export default class LevelFour extends Phaser.Scene {
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
 
+		//--- Adaptive Difficulty: updates difficulty for next level ---
+		const endTime = this.elapsedTime;
+		const levelDuration = endTime - (this.levelStartTime || 0);
+		const deaths = this.deathsThisLevel || 0;
+
+		let diff = this.registry.get("playerDifficulty") || { speedMult: 1 };
+
+		//difficulty tuning rules:
+		//-if player had NO deaths and finished quickly = slightly harder
+		//-if player had MANY deaths or took a long time = slightly easier
+		if (deaths === 0 && levelDuration < 30) {
+			diff.speedMult = Math.min(diff.speedMult + 0.15, 1.8); //caps it at 1.8x
+		} else if (deaths >= 3 || levelDuration > 45) {
+			diff.speedMult = Math.max(diff.speedMult - 0.15, 0.6); //floor at 0.6x
+		}
+		//otherwise speedMult is left as is normal
+
+		//save updated difficulty so the next level can use it
+		this.registry.set("playerDifficulty", diff);
+
 		//after a short delay this starts the next level 
 		this.time.delayedCall(1500, () => {
 			this.scene.start("LevelFive");
@@ -1165,7 +1165,7 @@ export default class LevelFour extends Phaser.Scene {
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */
-		this.input.on("pointerdown", (pointer) => {
+		this.input.on("pointerdown", (pointer) => {		
 			if (this.joystickPointerId !== null) {
 				return;
 			}

@@ -729,6 +729,29 @@ export default class LevelFive extends Phaser.Scene {
 			}
 		});
 
+		//--- Adaptive Difficulty ---
+		if (this.registry.get("playerDifficulty") === undefined) {
+			this.registry.set("playerDifficulty", { speedMult: 1 });
+		}
+
+		this.playerDifficulty = this.registry.get("playerDifficulty");
+		this.levelStartTime = this.elapsedTime;
+		this.deathsThisLevel = 0;
+
+		//--- Difficulty Multiplier Text---
+		this.diffDebugText = this.add.text(
+			16,
+			48,
+			"Diff: " + this.playerDifficulty.speedMult.toFixed(2),
+			{
+				fontSize: "20px",
+				color: "#d4b100",
+				fontStyle: "bold"
+			}
+		);
+		this.diffDebugText.setScrollFactor(0);
+		this.diffDebugText.setStroke("#000000", 2);
+
 		//--- Door Animation ---
 		if (!this.anims.exists("door_open")) {
 			this.anims.create({
@@ -779,8 +802,11 @@ export default class LevelFive extends Phaser.Scene {
 		if (this.enemy3) this.enemies.add(this.enemy3);
 		if (this.enemy4) this.enemies.add(this.enemy4);
 
-		const PATROL_SPEED = 105; //enemy speed
+		const BASE_PATROL_SPEED = 105; //enemy speed
 		const PATROL_RANGE = 96; //enemy patrol range
+
+		const speedMult = (this.playerDifficulty && this.playerDifficulty.speedMult) || 1;
+		const PATROL_SPEED = BASE_PATROL_SPEED * speedMult;
 
 		this.enemies.children.iterate(enemy => {
 			if (!enemy || !enemy.body) return;
@@ -1081,6 +1107,9 @@ export default class LevelFive extends Phaser.Scene {
 	//--- Enemy hits player Game Over ---
 	onPlayerHitEnemy(player, enemy) {
 
+		//count this death for adaptive difficulty
+		this.deathsThisLevel = (this.deathsThisLevel || 0) + 1;
+
 		// prevents double-triggering
 		if (this.gameOver) return;
 
@@ -1338,6 +1367,26 @@ export default class LevelFive extends Phaser.Scene {
 
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
+
+		//--- Adaptive Difficulty: updates difficulty for next level ---
+		const endTime = this.elapsedTime;
+		const levelDuration = endTime - (this.levelStartTime || 0);
+		const deaths = this.deathsThisLevel || 0;
+
+		let diff = this.registry.get("playerDifficulty") || { speedMult: 1 };
+
+		//difficulty tuning rules:
+		//-if player had NO deaths and finished quickly = slightly harder
+		//-if player had MANY deaths or took a long time = slightly easier
+		if (deaths === 0 && levelDuration < 30) {
+			diff.speedMult = Math.min(diff.speedMult + 0.15, 1.8); //caps it at 1.8x
+		} else if (deaths >= 3 || levelDuration > 45) {
+			diff.speedMult = Math.max(diff.speedMult - 0.15, 0.6); //floor at 0.6x
+		}
+		//otherwise speedMult is left as is normal
+
+		//save updated difficulty so the next level can use it
+		this.registry.set("playerDifficulty", diff);
 
 		//after a short delay this starts the next level 
 		this.time.delayedCall(1500, () => {
