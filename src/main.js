@@ -2,8 +2,11 @@ import Preload from "./scenes/Preload.js";
 import LevelOne from "./scenes/LevelOne.js";
 import LevelTwo from "./scenes/LevelTwo.js";
 import Level from "./scenes/Level.js";
+import LevelFourEasy from "./scenes/LevelFourEasy.js";
 import LevelFour from "./scenes/LevelFour.js";
+import LevelFiveEasy from "./scenes/LevelFiveEasy.js";
 import LevelFive from "./scenes/LevelFive.js";
+import LevelSixEasy from "./scenes/LevelSixEasy.js";
 import LevelSix from "./scenes/LevelSix.js";
 
 window.addEventListener('load', function () {
@@ -32,8 +35,11 @@ window.addEventListener('load', function () {
 	game.scene.add("LevelOne", LevelOne);
 	game.scene.add("LevelTwo", LevelTwo);
 	game.scene.add("Level", Level);
+	game.scene.add("LevelFourEasy", LevelFourEasy);
 	game.scene.add("LevelFour", LevelFour);
+	game.scene.add("LevelFiveEasy", LevelFiveEasy);
 	game.scene.add("LevelFive", LevelFive);
+	game.scene.add("LevelSixEasy", LevelSixEasy);
 	game.scene.add("LevelSix", LevelSix);
 	game.scene.add("Boot", Boot, true);
 });

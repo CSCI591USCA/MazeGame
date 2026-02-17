@@ -1,5 +1,5 @@
 {
-    "id": "04cb28cb-f0b8-463e-b336-f8fc7038feb3",
+    "id": "1dab2bf6-d3e8-43af-8c85-966034396e9d",
     "sceneType": "SCENE",
     "settings": {
         "exportClass": true,
@@ -7,14 +7,14 @@
         "importFileExtension": true,
         "preloadPackFiles": [],
         "createMethodName": "editorCreate",
-        "sceneKey": "LevelFour",
+        "sceneKey": "LevelFourEasy",
         "borderWidth": 1280,
         "borderHeight": 720
     },
     "displayList": [
         {
             "type": "Image",
-            "id": "cbfe2625-b0d3-4d33-a6bc-d6348ae86475",
+            "id": "82c9f9dc-6030-4275-a1ef-5eeeaa4d2241",
             "label": "background1",
             "texture": {
                 "key": "castlebg3"
@@ -26,686 +26,614 @@
         },
         {
             "type": "Image",
-            "id": "aa40dcbd-1816-41a8-862b-e3574d1700e1",
+            "id": "a5b881a6-e951-483e-aae0-cd4071773c61",
             "label": "tile_0000",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 25,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "e3d28871-7745-4876-b97a-feac888b7eeb",
+            "id": "c7149041-b3e0-4c23-bf6b-df4c38f57351",
             "label": "tile",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 77,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "3b887ee4-bc93-4e2a-acfa-493411a50c43",
+            "id": "a79cfef4-4b98-4dfb-9da2-16ac261335f9",
             "label": "tile_1",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 129,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "edcead3b-a5c4-498c-b6e5-d86324fd7478",
+            "id": "3b343eba-a679-4698-9539-58ba87a38f98",
             "label": "tile_2",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 181,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "d6f9e1bb-5330-47e4-9733-d647b4272698",
+            "id": "09f1486c-288b-4a94-8845-f4e53a1fe124",
             "label": "tile_3",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 233,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "2947424b-b387-4866-9099-3bb6a0ad4dcf",
+            "id": "825a9b77-1abc-4468-be37-4457984895b8",
             "label": "tile_4",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 285,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "479ceb07-f12d-4408-bf09-f4708de9a33b",
+            "id": "fb2faeb9-547b-4be5-b89a-7fdca667957c",
             "label": "tile_5",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 337,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "62093061-fbb4-4ad9-919b-e46729025117",
+            "id": "11c6a4a1-21ae-419c-89b7-f5394767818b",
             "label": "tile_6",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 389,
-            "y": 693,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "31566c72-dbe2-4dd0-8ba5-c931f639518d",
+            "id": "e9c46475-5148-47a7-bc03-75eaca2f1682",
             "label": "tile_7",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 441,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "805f8dfd-a9bb-4a09-a980-77c8a77d96eb",
+            "id": "453ecfac-6064-484c-a9b6-bce252307482",
             "label": "tile_8",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 493,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "8a64e73a-8d81-4331-9c21-f55fac727030",
+            "id": "ce1c77c9-7ffa-496e-9317-b41bbd2bde7a",
             "label": "tile_9",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 545,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "c5dbdd11-317a-4a4c-b121-7847cc7369fb",
+            "id": "4add8e51-b696-4508-809e-d9580e6f803a",
             "label": "tile_10",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 597,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "f9854656-b8ea-4006-8477-0c1f921f3953",
+            "id": "5419eae6-3697-4c25-a7f1-18d9a3328550",
             "label": "tile_11",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 649,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "886a2a12-9a65-4a38-9936-86310746d3aa",
+            "id": "e8c87105-e7ef-4a24-9b0d-b3b363674335",
             "label": "tile_12",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 701,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "531eeaff-5144-4ecc-8149-e02565f87606",
+            "id": "2f9f0be7-1a79-431d-b88b-d2a3c92ff54a",
             "label": "tile_13",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 753,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "08d4cfb8-9f79-45f0-a147-7563afc4d006",
+            "id": "ee1f990f-f25f-47ff-9aba-c22a9be56116",
             "label": "tile_14",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 805,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "25252f21-d753-4938-93d4-1929a5b531af",
+            "id": "82b66ec5-5eb2-4e48-b23f-f57d31f4ae2c",
             "label": "tile_15",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 857,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "b013268d-1190-4158-b9a5-8ebb6461fb70",
+            "id": "746cebcc-f3a8-4add-90ae-572d2a63a5e2",
             "label": "tile_16",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 909,
-            "y": 694,
+            "x": 912,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "712da18e-dd89-4c17-ac1d-18c6f0087e83",
+            "id": "908b14f8-14e4-4c9a-9e1f-1848bb10dcc4",
             "label": "tile_17",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 961,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "2f028eb7-d8cb-4a04-8277-7d4ef0782e89",
+            "id": "9f967648-b160-4d14-90cc-b56974363d81",
             "label": "tile_18",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 1013,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "a5199f9b-f272-441a-b3cf-17080e95f851",
+            "id": "d3f9d71c-df98-4d9a-9a8e-ae6cce5fcb5c",
             "label": "tile_19",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 1065,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "84a07d00-5ca1-4a57-85d8-318156b74236",
+            "id": "782cb192-4acf-46ee-ba8f-cd8f370f0305",
             "label": "tile_20",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 1117,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "5ac82695-ff75-45c8-9e44-8dff928790ad",
+            "id": "367b5eeb-bd23-489b-96c5-9a7f4e6df9e9",
             "label": "tile_21",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 1169,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "4cf09d42-4a15-45c6-a006-7f7d8a506b71",
+            "id": "25618a93-2cc9-4ba6-842c-06fd12dba63a",
             "label": "tile_22",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 1221,
-            "y": 694,
+            "y": 700,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "dc796459-fccf-4f31-b6c7-9052089000ee",
+            "id": "dd7ae501-fbf4-4f06-9e13-aa06211c6377",
             "label": "tile_23",
             "texture": {
                 "key": "tile_0000"
             },
             "x": 1264,
-            "y": 694,
+            "y": 700,
             "scaleX": 2,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "c72fd684-69cd-4c47-8018-f2e68bad35e4",
+            "id": "c6b95665-862e-439f-a203-7e48122bc5ba",
             "label": "tile_24",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 673,
-            "y": 641,
+            "x": 620,
+            "y": 650,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "de8d6dd6-3c31-45c2-8737-c67908e56a94",
+            "id": "4946e294-7441-4c2d-823e-40623dc21ccc",
             "label": "tile_25",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 673,
-            "y": 589,
+            "x": 620,
+            "y": 598,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "a2332610-1cf8-441a-9b12-07a8d35d8cc7",
+            "id": "ca31b66a-dcfd-44fb-a4c6-243173fb1baa",
             "label": "tile_26",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 673,
-            "y": 537,
+            "x": 568,
+            "y": 650,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "f1cb17c1-f095-4acc-8049-61bdd21d4bba",
+            "id": "15858ef0-4b02-4b82-869d-6d0ee7a226b5",
             "label": "tile_27",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 673,
-            "y": 485,
+            "x": 620,
+            "y": 546,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "9f8ae65d-4873-4a2e-b122-1ddfc660161a",
+            "id": "ef2cd492-6c97-48e5-a1ef-d95dfd08e651",
             "label": "tile_28",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 725,
-            "y": 485,
+            "x": 620,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "13355db7-d5d1-4ca9-88b4-de6e4006e175",
+            "id": "aeb49ae3-535f-4857-8fe7-fc9da618a35a",
             "label": "tile_29",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 777,
-            "y": 485,
+            "x": 672,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "0864dd87-b3b7-4b2d-975d-f75628e84b38",
+            "id": "d92aaa29-97b9-4cbf-9e24-72b5f9f0f7ef",
             "label": "tile_30",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 829,
-            "y": 485,
+            "x": 724,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "8ec3d704-9734-4fa9-af76-71fd9fa532ff",
+            "id": "20acacd5-8773-4868-81df-4fc0d71cf84c",
             "label": "tile_31",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 881,
-            "y": 485,
+            "x": 776,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "44d05a14-e9fb-49f3-97dc-e7dc97dbb686",
+            "id": "b6aa7afc-4251-465e-a32b-f8957c93a0b0",
             "label": "tile_32",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 933,
-            "y": 485,
+            "x": 828,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "d73c19d1-7cc9-44e3-9b52-df568bc15f57",
+            "id": "4ee07825-edd9-4de4-9579-717b037d514f",
             "label": "tile_33",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 985,
-            "y": 485,
+            "x": 880,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "8fd1c6bc-023e-4ba5-860f-7823a0f717ce",
+            "id": "b99f51b9-440f-4980-95ce-e154ede9e118",
             "label": "tile_34",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 1037,
-            "y": 485,
+            "x": 932,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "6dd2dbd1-5f2a-422e-911a-d4bde00e09f0",
+            "id": "8ab22a00-e565-493f-9e7d-70941327cc20",
             "label": "tile_35",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 1089,
-            "y": 485,
+            "x": 984,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "c0efedb5-dac3-429a-86c0-12b4c2de672b",
+            "id": "143eccd1-8d4d-4a29-a63a-e5d5a49b160d",
             "label": "tile_36",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 621,
-            "y": 641,
+            "x": 1036,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "43283b88-71ff-4d29-bd8a-2c2ed49fe5db",
+            "id": "7f4f6af1-3e96-4080-87e3-9d5e71a6e4d1",
             "label": "tile_37",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 1253,
-            "y": 328,
+            "x": 1088,
+            "y": 494,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "31acbfe2-045e-4ab9-8187-53cf7cec5c43",
+            "id": "7e49e9d9-ba8d-4689-9d30-c617f220ea13",
             "label": "tile_38",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 1201,
-            "y": 328,
+            "x": 1255,
+            "y": 650,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "93df79a5-31d0-4734-9a05-62cf1e1cbcac",
+            "id": "c267691d-c3ef-4236-841f-8dbf688467ad",
             "label": "tile_39",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 1149,
-            "y": 328,
+            "x": 441,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "759c8086-5059-46f3-9ff7-caffe8a73add",
+            "id": "356628d6-f7e5-462f-a7c2-5cbe0ac9a6a3",
             "label": "tile_40",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 1097,
-            "y": 328,
+            "x": 389,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "61f41fc9-77da-4a06-9d6d-2d543fc7d979",
+            "id": "4c8ae1d0-b3cf-480a-8dea-2695753a3be4",
             "label": "tile_41",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 929,
-            "y": 221,
+            "x": 337,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "39d0fc54-1318-40d2-a629-10c2b39393c2",
+            "id": "b37a25be-4b5d-40aa-83cd-76bedcae3cf8",
             "label": "tile_42",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 877,
-            "y": 221,
+            "x": 285,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "2b424691-ed9d-44ce-b4c5-b6964b889b4b",
+            "id": "acb5138f-dc8f-4907-83d5-31b60943714d",
             "label": "tile_43",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 825,
-            "y": 221,
+            "x": 233,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "62deda1c-2ed2-48c6-becf-de3b303b1c86",
+            "id": "ac7cc8f4-9af1-4d7c-9acc-ec6d67364431",
             "label": "tile_44",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 773,
-            "y": 221,
+            "x": 181,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "db8983e2-15d6-455c-860e-1a6581d70d0b",
+            "id": "d3080b4a-601d-432c-aa65-2cbc99571e4f",
             "label": "tile_45",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 721,
-            "y": 221,
+            "x": 129,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "d655659b-3f99-47ce-a3f2-7cd012c29b3b",
+            "id": "67ba8a65-7468-461b-ad15-7e153aa65d6a",
             "label": "tile_46",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 669,
-            "y": 221,
+            "x": 77,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "3564b97f-ba56-4d75-9f94-d951321b2b84",
+            "id": "7f4eec65-3199-4996-a9a9-98a7aa7bce11",
             "label": "tile_47",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 617,
-            "y": 221,
+            "x": 25,
+            "y": 360,
             "scaleX": 3,
             "scaleY": 3
         },
         {
             "type": "Image",
-            "id": "245de982-7b46-4ce9-a4fa-f0a2ed9f9362",
+            "id": "a3d1e8aa-5596-4b25-a2d0-3fcba3a6d309",
             "label": "tile_48",
             "texture": {
                 "key": "tile_0000"
             },
-            "x": 565,
-            "y": 221,
-            "scaleX": 3,
-            "scaleY": 3
-        },
-        {
-            "type": "Image",
-            "id": "b4da79cf-fa5d-4839-8726-63dd56cdafb0",
-            "label": "tile_49",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 513,
-            "y": 221,
-            "scaleX": 3,
-            "scaleY": 3
-        },
-        {
-            "type": "Image",
-            "id": "0f65fd8a-3f1b-40d3-afbc-972ac6747967",
-            "label": "tile_50",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 461,
-            "y": 221,
-            "scaleX": 3,
-            "scaleY": 3
-        },
-        {
-            "type": "Image",
-            "id": "ee5310f4-3ba7-44fc-80e0-abd7ddcd0947",
-            "label": "tile_51",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 25,
-            "y": 450,
-            "scaleX": 3,
-            "scaleY": 3
-        },
-        {
-            "type": "Image",
-            "id": "9cb132b6-3d62-468c-9348-0b5da7307554",
-            "label": "tile_52",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 77,
-            "y": 450,
-            "scaleX": 3,
-            "scaleY": 3
-        },
-        {
-            "type": "Image",
-            "id": "96a13e0f-818e-4829-8613-6b01b323ebe6",
-            "label": "tile_53",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 129,
-            "y": 450,
-            "scaleX": 3,
-            "scaleY": 3
-        },
-        {
-            "type": "Image",
-            "id": "a42dea7b-6632-453f-8055-602586eab80a",
-            "label": "tile_54",
-            "texture": {
-                "key": "tile_0000"
-            },
-            "x": 1250,
-            "y": 641,
-            "scaleX": 3,
+            "x": 485,
+            "y": 360,
+            "scaleX": 2,
             "scaleY": 3
         },
         {
             "type": "ArcadeSprite",
-            "id": "f8f5516b-6b67-4331-a223-ceba96100a63",
+            "id": "833b6748-cccf-4379-9d06-0d429c3a5ac1",
             "label": "door",
             "scope": "CLASS",
             "texture": {
                 "key": "Door-1"
             },
-            "x": 774,
-            "y": 629,
+            "x": 737,
+            "y": 633,
             "scaleX": 0.4,
             "scaleY": 0.4,
             "moves": false,
@@ -718,14 +646,14 @@
         },
         {
             "type": "ArcadeImage",
-            "id": "e96552f4-2bf3-4554-a39d-91104e415e11",
+            "id": "48dd6ccb-8e6b-407c-ad37-9287d074290d",
             "label": "key",
             "scope": "CLASS",
             "texture": {
                 "key": "New Piskel"
             },
-            "x": 78,
-            "y": 377,
+            "x": 45,
+            "y": 285,
             "scaleX": 0.2,
             "scaleY": 0.2,
             "moves": false,
@@ -738,14 +666,14 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "526b7080-538c-4f67-80b1-f4fb55027143",
+            "id": "ab3de490-1b2b-4879-b147-16df5024d649",
             "label": "player",
             "scope": "CLASS",
             "texture": {
                 "key": "idlefront1"
             },
-            "x": 48,
-            "y": 666,
+            "x": 71,
+            "y": 671,
             "scaleX": 1.7,
             "scaleY": 1.7,
             "originY": 1,
@@ -756,14 +684,14 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "abcbc902-bfe9-4849-a4c9-6b7b044dd9ee",
+            "id": "266382fb-68d5-49fe-9f99-2e1ff3dcf1fb",
             "label": "enemy1",
             "scope": "CLASS",
             "texture": {
                 "key": "enemywalkingright1"
             },
-            "x": 883,
-            "y": 454,
+            "x": 857,
+            "y": 674,
             "scaleX": 2,
             "scaleY": 2,
             "originY": 1,
@@ -775,52 +703,14 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "93c46432-15fd-4648-bf36-f075d1497dbb",
+            "id": "ad6ed026-4513-4277-b0b3-16b27c2b861b",
             "label": "enemy2",
             "scope": "CLASS",
             "texture": {
                 "key": "enemywalkingright1"
             },
-            "x": 1008,
-            "y": 663,
-            "scaleX": 2,
-            "scaleY": 2,
-            "originY": 1,
-            "collideWorldBounds": true,
-            "body.width": 28,
-            "body.height": 40,
-            "body.offset.x": 6,
-            "body.offset.y": -8
-        },
-        {
-            "type": "ArcadeSprite",
-            "id": "dadab621-ecc0-4deb-b424-6ed828cc3fec",
-            "label": "enemy3",
-            "scope": "CLASS",
-            "texture": {
-                "key": "enemywalkingright1"
-            },
-            "x": 1151,
-            "y": 300,
-            "scaleX": 2,
-            "scaleY": 2,
-            "originY": 1,
-            "collideWorldBounds": true,
-            "body.width": 28,
-            "body.height": 40,
-            "body.offset.x": 6,
-            "body.offset.y": -8
-        },
-        {
-            "type": "ArcadeSprite",
-            "id": "6c6858ac-4c4a-4c7f-aab9-625e9db5a4f7",
-            "label": "enemy4",
-            "scope": "CLASS",
-            "texture": {
-                "key": "enemywalkingright1"
-            },
-            "x": 664,
-            "y": 190,
+            "x": 145,
+            "y": 334,
             "scaleX": 2,
             "scaleY": 2,
             "originY": 1,
@@ -833,7 +723,7 @@
     ],
     "plainObjects": [
         {
-            "id": "9ed85b97-7be2-40c4-a31f-b5fd708275da",
+            "id": "4ae42400-b1ea-40e0-b351-f5c2f97bdc9e",
             "type": "Collider",
             "label": "collider",
             "scope": "LOCAL",
@@ -841,7 +731,7 @@
             "object2": "ground"
         },
         {
-            "id": "f3005475-fa90-452b-8d72-c8ee7870bc55",
+            "id": "d030ae53-3ce7-4bf4-b6a1-b6593820b1cb",
             "type": "Collider",
             "label": "collider_1",
             "scope": "LOCAL",
@@ -858,75 +748,67 @@
     },
     "lists": [
         {
-            "id": "7de3eb7b-2d2f-4dcb-b745-d76d831a94ff",
+            "id": "c8d4d59c-cc5c-45bf-81d7-7304a55dea13",
             "label": "ground",
             "objectIds": [
-                "aa40dcbd-1816-41a8-862b-e3574d1700e1",
-                "e3d28871-7745-4876-b97a-feac888b7eeb",
-                "3b887ee4-bc93-4e2a-acfa-493411a50c43",
-                "edcead3b-a5c4-498c-b6e5-d86324fd7478",
-                "d6f9e1bb-5330-47e4-9733-d647b4272698",
-                "2947424b-b387-4866-9099-3bb6a0ad4dcf",
-                "479ceb07-f12d-4408-bf09-f4708de9a33b",
-                "62093061-fbb4-4ad9-919b-e46729025117",
-                "31566c72-dbe2-4dd0-8ba5-c931f639518d",
-                "805f8dfd-a9bb-4a09-a980-77c8a77d96eb",
-                "8a64e73a-8d81-4331-9c21-f55fac727030",
-                "c5dbdd11-317a-4a4c-b121-7847cc7369fb",
-                "f9854656-b8ea-4006-8477-0c1f921f3953",
-                "886a2a12-9a65-4a38-9936-86310746d3aa",
-                "531eeaff-5144-4ecc-8149-e02565f87606",
-                "08d4cfb8-9f79-45f0-a147-7563afc4d006",
-                "25252f21-d753-4938-93d4-1929a5b531af",
-                "b013268d-1190-4158-b9a5-8ebb6461fb70",
-                "712da18e-dd89-4c17-ac1d-18c6f0087e83",
-                "2f028eb7-d8cb-4a04-8277-7d4ef0782e89",
-                "a5199f9b-f272-441a-b3cf-17080e95f851",
-                "84a07d00-5ca1-4a57-85d8-318156b74236",
-                "5ac82695-ff75-45c8-9e44-8dff928790ad",
-                "4cf09d42-4a15-45c6-a006-7f7d8a506b71",
-                "dc796459-fccf-4f31-b6c7-9052089000ee",
-                "c72fd684-69cd-4c47-8018-f2e68bad35e4",
-                "de8d6dd6-3c31-45c2-8737-c67908e56a94",
-                "a2332610-1cf8-441a-9b12-07a8d35d8cc7",
-                "f1cb17c1-f095-4acc-8049-61bdd21d4bba",
-                "9f8ae65d-4873-4a2e-b122-1ddfc660161a",
-                "13355db7-d5d1-4ca9-88b4-de6e4006e175",
-                "0864dd87-b3b7-4b2d-975d-f75628e84b38",
-                "8ec3d704-9734-4fa9-af76-71fd9fa532ff",
-                "44d05a14-e9fb-49f3-97dc-e7dc97dbb686",
-                "d73c19d1-7cc9-44e3-9b52-df568bc15f57",
-                "8fd1c6bc-023e-4ba5-860f-7823a0f717ce",
-                "6dd2dbd1-5f2a-422e-911a-d4bde00e09f0",
-                "c0efedb5-dac3-429a-86c0-12b4c2de672b",
-                "43283b88-71ff-4d29-bd8a-2c2ed49fe5db",
-                "31acbfe2-045e-4ab9-8187-53cf7cec5c43",
-                "93df79a5-31d0-4734-9a05-62cf1e1cbcac",
-                "759c8086-5059-46f3-9ff7-caffe8a73add",
-                "61f41fc9-77da-4a06-9d6d-2d543fc7d979",
-                "39d0fc54-1318-40d2-a629-10c2b39393c2",
-                "2b424691-ed9d-44ce-b4c5-b6964b889b4b",
-                "62deda1c-2ed2-48c6-becf-de3b303b1c86",
-                "db8983e2-15d6-455c-860e-1a6581d70d0b",
-                "d655659b-3f99-47ce-a3f2-7cd012c29b3b",
-                "3564b97f-ba56-4d75-9f94-d951321b2b84",
-                "245de982-7b46-4ce9-a4fa-f0a2ed9f9362",
-                "b4da79cf-fa5d-4839-8726-63dd56cdafb0",
-                "0f65fd8a-3f1b-40d3-afbc-972ac6747967",
-                "ee5310f4-3ba7-44fc-80e0-abd7ddcd0947",
-                "9cb132b6-3d62-468c-9348-0b5da7307554",
-                "96a13e0f-818e-4829-8613-6b01b323ebe6",
-                "a42dea7b-6632-453f-8055-602586eab80a"
+                "a5b881a6-e951-483e-aae0-cd4071773c61",
+                "c7149041-b3e0-4c23-bf6b-df4c38f57351",
+                "a79cfef4-4b98-4dfb-9da2-16ac261335f9",
+                "3b343eba-a679-4698-9539-58ba87a38f98",
+                "09f1486c-288b-4a94-8845-f4e53a1fe124",
+                "825a9b77-1abc-4468-be37-4457984895b8",
+                "fb2faeb9-547b-4be5-b89a-7fdca667957c",
+                "11c6a4a1-21ae-419c-89b7-f5394767818b",
+                "e9c46475-5148-47a7-bc03-75eaca2f1682",
+                "453ecfac-6064-484c-a9b6-bce252307482",
+                "ce1c77c9-7ffa-496e-9317-b41bbd2bde7a",
+                "4add8e51-b696-4508-809e-d9580e6f803a",
+                "5419eae6-3697-4c25-a7f1-18d9a3328550",
+                "e8c87105-e7ef-4a24-9b0d-b3b363674335",
+                "2f9f0be7-1a79-431d-b88b-d2a3c92ff54a",
+                "ee1f990f-f25f-47ff-9aba-c22a9be56116",
+                "82b66ec5-5eb2-4e48-b23f-f57d31f4ae2c",
+                "746cebcc-f3a8-4add-90ae-572d2a63a5e2",
+                "908b14f8-14e4-4c9a-9e1f-1848bb10dcc4",
+                "9f967648-b160-4d14-90cc-b56974363d81",
+                "d3f9d71c-df98-4d9a-9a8e-ae6cce5fcb5c",
+                "782cb192-4acf-46ee-ba8f-cd8f370f0305",
+                "367b5eeb-bd23-489b-96c5-9a7f4e6df9e9",
+                "25618a93-2cc9-4ba6-842c-06fd12dba63a",
+                "dd7ae501-fbf4-4f06-9e13-aa06211c6377",
+                "c6b95665-862e-439f-a203-7e48122bc5ba",
+                "4946e294-7441-4c2d-823e-40623dc21ccc",
+                "ca31b66a-dcfd-44fb-a4c6-243173fb1baa",
+                "15858ef0-4b02-4b82-869d-6d0ee7a226b5",
+                "ef2cd492-6c97-48e5-a1ef-d95dfd08e651",
+                "aeb49ae3-535f-4857-8fe7-fc9da618a35a",
+                "d92aaa29-97b9-4cbf-9e24-72b5f9f0f7ef",
+                "20acacd5-8773-4868-81df-4fc0d71cf84c",
+                "b6aa7afc-4251-465e-a32b-f8957c93a0b0",
+                "4ee07825-edd9-4de4-9579-717b037d514f",
+                "b99f51b9-440f-4980-95ce-e154ede9e118",
+                "8ab22a00-e565-493f-9e7d-70941327cc20",
+                "143eccd1-8d4d-4a29-a63a-e5d5a49b160d",
+                "7f4f6af1-3e96-4080-87e3-9d5e71a6e4d1",
+                "7e49e9d9-ba8d-4689-9d30-c617f220ea13",
+                "c267691d-c3ef-4236-841f-8dbf688467ad",
+                "356628d6-f7e5-462f-a7c2-5cbe0ac9a6a3",
+                "4c8ae1d0-b3cf-480a-8dea-2695753a3be4",
+                "b37a25be-4b5d-40aa-83cd-76bedcae3cf8",
+                "acb5138f-dc8f-4907-83d5-31b60943714d",
+                "ac7cc8f4-9af1-4d7c-9acc-ec6d67364431",
+                "d3080b4a-601d-432c-aa65-2cbc99571e4f",
+                "67ba8a65-7468-461b-ad15-7e153aa65d6a",
+                "7f4eec65-3199-4996-a9a9-98a7aa7bce11",
+                "a3d1e8aa-5596-4b25-a2d0-3fcba3a6d309"
             ]
         },
         {
-            "id": "27995c77-242d-4769-b9b5-7929aecb627e",
+            "id": "ccc6aa40-d063-4908-a870-d162350af899",
             "label": "enemies",
             "objectIds": [
-                "abcbc902-bfe9-4849-a4c9-6b7b044dd9ee",
-                "93c46432-15fd-4648-bf36-f075d1497dbb",
-                "dadab621-ecc0-4deb-b424-6ed828cc3fec",
-                "6c6858ac-4c4a-4c7f-aab9-625e9db5a4f7"
+                "266382fb-68d5-49fe-9f99-2e1ff3dcf1fb",
+                "ad6ed026-4513-4277-b0b3-16b27c2b861b"
             ]
         }
     ]

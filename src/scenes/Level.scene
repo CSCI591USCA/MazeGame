@@ -19,9 +19,8 @@
             "texture": {
                 "key": "castlebg1"
             },
-            "x": -2,
-            "scaleX": 2.2254355424635595,
-            "scaleY": 2.2359550008840916,
+            "scaleX": 2.22,
+            "scaleY": 2.24,
             "originX": 0,
             "originY": 0
         },
@@ -307,24 +306,6 @@
             "label": "prefabwall_24",
             "x": 1271,
             "y": 690
-        },
-        {
-            "type": "ArcadeSprite",
-            "id": "4646a3f7-ab45-418e-b407-fb84b02e7000",
-            "label": "player",
-            "scope": "CLASS",
-            "texture": {
-                "key": "idlefront1"
-            },
-            "x": 38,
-            "y": 661,
-            "scaleX": 1.7,
-            "scaleY": 1.7,
-            "originY": 1,
-            "collideWorldBounds": true,
-            "body.width": 28,
-            "body.height": 40,
-            "body.offset.x": 10
         },
         {
             "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
@@ -701,6 +682,37 @@
             "y": 135
         },
         {
+            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
+            "id": "673491b0-04f2-4f53-8105-dc411ddb85b0",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "prefabwall_59",
+            "x": 1038,
+            "y": 135
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "86d49d30-17d3-48e2-ac14-7204b5d5f91f",
+            "label": "door",
+            "scope": "CLASS",
+            "texture": {
+                "key": "Door-1"
+            },
+            "x": 1213,
+            "y": 77,
+            "scaleX": 0.3,
+            "scaleY": 0.3,
+            "moves": false,
+            "allowGravity": false,
+            "collideWorldBounds": true,
+            "pushable": false,
+            "immovable": true,
+            "body.width": 480,
+            "body.height": 480
+        },
+        {
             "type": "ArcadeSprite",
             "id": "3b73d60f-e374-45df-bd7a-82f73bf8b0aa",
             "label": "enemy1",
@@ -758,17 +770,6 @@
             "body.offset.y": -8
         },
         {
-            "prefabId": "dc58e8bb-58bc-4a40-901d-ff69d9c6a9a6",
-            "id": "673491b0-04f2-4f53-8105-dc411ddb85b0",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "prefabwall_59",
-            "x": 1038,
-            "y": 135
-        },
-        {
             "type": "ArcadeImage",
             "id": "6032a53d-8ea7-41bd-8765-cac6bd0a0a87",
             "label": "key",
@@ -790,23 +791,21 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "86d49d30-17d3-48e2-ac14-7204b5d5f91f",
-            "label": "door",
+            "id": "4646a3f7-ab45-418e-b407-fb84b02e7000",
+            "label": "player",
             "scope": "CLASS",
             "texture": {
-                "key": "Door-1"
+                "key": "idlefront1"
             },
-            "x": 1213,
-            "y": 77,
-            "scaleX": 0.3,
-            "scaleY": 0.3,
-            "moves": false,
-            "allowGravity": false,
+            "x": 38,
+            "y": 661,
+            "scaleX": 1.7,
+            "scaleY": 1.7,
+            "originY": 1,
             "collideWorldBounds": true,
-            "pushable": false,
-            "immovable": true,
-            "body.width": 480,
-            "body.height": 480
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 10
         }
     ],
     "plainObjects": [

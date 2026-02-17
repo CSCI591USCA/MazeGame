@@ -230,6 +230,17 @@ export default class LevelTwo extends Phaser.Scene {
 		tile_39.scaleX = 1.7;
 		tile_39.scaleY = 3;
 
+		// door
+		const door = this.physics.add.sprite(1182, 480, "Door-1");
+		door.scaleX = 0.4;
+		door.scaleY = 0.4;
+		door.body.moves = false;
+		door.body.allowGravity = false;
+		door.body.collideWorldBounds = true;
+		door.body.pushable = false;
+		door.body.immovable = true;
+		door.body.setSize(480, 480, false);
+
 		// player
 		const player = this.physics.add.sprite(107, 670, "idlefront1");
 		player.scaleX = 1.7;
@@ -259,17 +270,6 @@ export default class LevelTwo extends Phaser.Scene {
 		key.body.immovable = true;
 		key.body.setSize(480, 480, false);
 
-		// door
-		const door = this.physics.add.sprite(1182, 480, "Door-1");
-		door.scaleX = 0.4;
-		door.scaleY = 0.4;
-		door.body.moves = false;
-		door.body.allowGravity = false;
-		door.body.collideWorldBounds = true;
-		door.body.pushable = false;
-		door.body.immovable = true;
-		door.body.setSize(480, 480, false);
-
 		// lists
 		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39];
 		const enemies = [enemy1];
@@ -280,10 +280,10 @@ export default class LevelTwo extends Phaser.Scene {
 		// collider_1
 		this.physics.add.collider(enemies, ground, undefined, undefined, this);
 
+		this.door = door;
 		this.player = player;
 		this.enemy1 = enemy1;
 		this.key = key;
-		this.door = door;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -291,13 +291,13 @@ export default class LevelTwo extends Phaser.Scene {
 	}
 
 	/** @type {Phaser.Physics.Arcade.Sprite} */
+	door;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy1;
 	/** @type {Phaser.Physics.Arcade.Image} */
 	key;
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	door;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -409,7 +409,23 @@ export default class LevelTwo extends Phaser.Scene {
 		};
 		this.registry.set("playerDifficulty", this.playerDifficulty);
 		this.levelStartTime = this.elapsedTime;
-		this.deathThisLevel = 0;
+		this.deathsThisLevel = 0;
+
+		//--- Jump Skill Tracking Initialization ---
+		this.totalJumps = 0;
+		this.totalLandings = 0;
+		this.totalLandingOffset = 0;
+		this.totalDirectionSwitches = 0;
+		this.totalWaitTime = 0;
+		this.waitSamples = 0;
+
+		//per-jump state
+		this.isAirborne = false;
+		this.currentAirDir = 0;
+		this.currentAirDirectionSwitches = 0;
+
+		//first frame is treated as "already landed"
+		this.lastLandTime = this.elapsedTime;
 
 		//--- show current difficulty multiplier on screen ---
 		this.diffDebugText = this.add.text(
@@ -526,7 +542,13 @@ export default class LevelTwo extends Phaser.Scene {
 
 		//--- Colliders ---
 		//player vs ground
-		this.physics.add.collider(this.player, this.platforms);
+		this.physics.add.collider(
+			this.player,
+			this.platforms,
+			this.onPlayerLand,
+			null,
+			this
+		);
 
 		//enemies vs ground
 		this.physics.add.collider(this.enemies, this.platforms);
@@ -567,15 +589,6 @@ export default class LevelTwo extends Phaser.Scene {
 			this
 		);
 
-		//Player reaching door
-		this.physics.add.overlap(
-			this.player,
-			this.door,
-			this.onPlayerReachDoor,
-			null,
-			this
-		);
-
 		//--- Input ---
 		/**
 		 * Creates keyboard input for player movement and shooting.
@@ -591,6 +604,11 @@ export default class LevelTwo extends Phaser.Scene {
 		//Spacebar for shooting
 		this.shootKey = this.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.SPACE
+		);
+
+		//--- CLick 'K' key for opening doors ---
+		this.interactKey = this.input.keyboard.addKey(
+			Phaser.Input.Keyboard.KeyCodes.K
 		);
 
 		//--- Mobile Detection & Controls ---
@@ -679,12 +697,25 @@ export default class LevelTwo extends Phaser.Scene {
 			this.wasd.up.isDown ||
 			!!this.joystickUp;
 
+		// Current horizontal input direction
+		let hDir = 0;
+		if (leftPressed) {
+			hDir = -1;
+		} else if (rightPressed){
+			hDir = 1;
+		}
+
 		//--- Shoot Bullets ----
 		/**
 		 * Checks if the shoot key is pressed and calls the shootBullet method.
 		 */
 		if (Phaser.Input.Keyboard.JustDown(this.shootKey)) {
 			this.shootBullet();
+		}
+
+		//--- Interact with door using 'K' key
+		if (Phaser.Input.Keyboard.JustDown(this.interactKey)) {
+			this.tryOpenDoor();
 		}
 
 		// --- Movement and Animation ---
@@ -706,10 +737,52 @@ export default class LevelTwo extends Phaser.Scene {
 
 		//--- Jump Logic ---
 		/**
-		 * Handles player jumping when the up key is pressed and the player is on the ground.
+		 * When the player is on the ground and presses jump:
+		 * 1) measures how long they waited since the last standing.
+		 * 2) start tracking jump statistics including direction changes in air.
 		 */
 		if (upPressed && player.body.blocked.down) {
+
+			// Waiting Time:
+			//how long did the player stand on the platform before this jump.
+			if (typeof this.lastLandTime === "number") {
+				const wait = this.elapsedTime - this.lastLandTime;
+				if (wait >= 0) {
+					this.totalWaitTime += wait;
+					this.waitSamples++;
+				}
+			}
+
+			//marks the jump started so landing callback knows this was a legit jump.
+			this.totalJumps++;
+			this.isAirborne = true;
+			this.currentAirDirectionSwitches = 0;
+			this.currentAirDir = hDir; //initial horizontal direction of the jump.
+
 			player.body.setVelocityY(jumpSpeed);
+		}
+
+		//--- In-air horizontal direction tracking ---
+		/**
+		 * Switch direction in air:
+		 * while airborne count how many times the player
+		 * changes between left and right input.
+		 */
+		if (!player.body.blocked.down && this.isAirborne) {
+			//only counts the switches between left/right, not between moving and standing still
+			if (
+				this.currentAirDir !== 0 &&
+				hDir !== 0 &&
+				hDir !== this.currentAirDir
+			) {
+				this.currentAirDirectionSwitches++;
+				this.totalDirectionSwitches++;
+			}
+
+			//updates current direction
+			if (hDir !== 0) {
+				this.currentAirDir = hDir;
+			}
 		}
 
 		//--- Enemy patrol between minX and maxX ---
@@ -926,6 +999,36 @@ export default class LevelTwo extends Phaser.Scene {
 		}
 	}
 
+	//--- Player lands on platform ---
+	/**
+	 * called when the player collides with a platform.
+	 * 1) Accuracy: measures how far the player.x landing position is from the center of the platform
+	 * landing close to the center means safe accurate jumps were made
+	 * landing near edges means riskier less accurate jumps.
+	 * 
+	 */
+	onPlayerLand(player, platform) {
+		//if player was not in an airborne jump it tracks and skips it
+		if (!this.isAirborne) {
+			//updates lastLandTime so that the waiting time for the next jump works.
+			this.lastLandTime = this.elapsedTime;
+			return;
+		}
+
+		//jump is now finished.
+		this.isAirborne = false;
+
+		//Accuracy: distance from platform center.
+		const platformX = platform.x;
+		const landingOffset = Math.abs(player.x - platformX);
+
+		this.totalLandings++;
+		this.totalLandingOffset += landingOffset;
+
+		//starts the on platform timer
+		this.lastLandTime = this.elapsedTime;
+	}
+
 	//--- Bullet hits enemy ---
 	/**
 	 * Handles the event when a bullet hits an enemy.
@@ -993,6 +1096,33 @@ export default class LevelTwo extends Phaser.Scene {
 		});
 	}
 
+	//--- Try to open the door by using 'K' key or mobile button ---
+	tryOpenDoor() {
+		//must have the key and be in a valid game state
+		if (!this.hasKey || this.gameOver || this.levelComplete) {
+			return;
+		}
+
+		if (!this.player || !this.door) {
+			return;
+		}
+
+		// Require the player to by physically near the door
+		const OPEN_DISTANCE = 70;
+
+		const dist = Phaser.Math.Distance.Between(
+			this.player.x,
+			this.player.y,
+			this.door.x,
+			this.door.y
+		);
+
+		if (dist <= OPEN_DISTANCE) {
+			// Reuses completion logic
+			this.onPlayerReachDoor(this.player, this.door);
+		}
+	}
+
 	//--- Player reaches door ---
 	/**
 	 * Handles the event when the player reaches the door.
@@ -1053,11 +1183,54 @@ export default class LevelTwo extends Phaser.Scene {
 		//-if player had NO deaths and finished quickly = slightly harder
 		//-if player had MANY deaths or took a long time = slightly easier
 		if (deaths === 0 && levelDuration < 30) {
-			diff.speedMult = Math.min(diff.speedMult + 0.15, 1.6); //caps it at 1.6x
+			diff.speedMult = Math.min(diff.speedMult + 0.15, 2); //caps it at 1.6x
 		} else if (deaths >= 3 || levelDuration > 45) {
-			diff.speedMult = Math.max(diff.speedMult - 0.15, 0.6); //floor at 0.6x
+			diff.speedMult = Math.max(diff.speedMult - 0.15, 0.5); //floor at 0.6x
 		}
 		//otherwise speedMult is left as is normal
+
+		//--- Jumping Skill Measurements ---
+		const avgLandingOffset =
+			this.totalLandings > 0
+				? this.totalLandingOffset / this.totalLandings
+				: null;
+
+		const avgDirectionSwitches =
+			this.totalJumps > 0
+				? this.totalDirectionSwitches / this.totalJumps
+				: null;
+
+		const avgWaitTime = 
+			this.waitSamples > 0
+				? this.totalWaitTime / this.waitSamples
+				: null;
+
+		//Accuracy: closer to center = slightly harder; way off center = slightly easier.
+		if (avgLandingOffset !== null) {
+			if (avgLandingOffset < 40) {
+				diff.speedMult = Math.min(diff.speedMult + 0.05, 2);
+			} else if (avgLandingOffset > 80) {
+				diff.speedMult = Math.max(diff.speedMult - 0.05, 0.5);
+			}
+		}
+
+		//Direction switches in air: smooth = slightly harder; lots of switches = easier. 
+		if (avgDirectionSwitches !== null) {
+			if (avgDirectionSwitches < 0.5) {
+				diff.speedMult = Math.min(diff.speedMult + 0.05, 2);
+			} else if (avgDirectionSwitches > 1.5) {
+				diff.speedMult = Math.max(diff.speedMult - 0.05, 0.5);
+			}
+		}
+
+		//Waiting time: quick jumps = harder; hesitating long jumps = easier.
+		if (avgWaitTime !== null) {
+			if (avgWaitTime < 1.5) {
+				diff.speedMult = Math.min(diff.speedMult + 0.05, 2);
+			} else if (avgWaitTime > 4) {
+				diff.speedMult = Math.max(diff.speedMult - 0.05, 0.5);
+			}
+		}
 
 		//save updated difficulty so the next level can use it
 		this.registry.set("playerDifficulty", diff);
@@ -1156,6 +1329,30 @@ export default class LevelTwo extends Phaser.Scene {
 		});
 
 		this.shootButton = shoot;
+
+		//--- Door Interact Button ---
+		const interactRadius = 30;
+		const interact = this.add.circle(
+			width - 150,	// a bit to the left of the mobile shoot button
+			height - 80,
+			interactRadius,
+			0x44ff44,	//green button
+			0.7
+		);
+		interact.setScrollFactor(0);
+		interact.setDepth(1000);
+		interact.setInteractive();
+
+		/**
+		 * if the interact button is pressed, player tries and opens door
+		 */
+		interact.on("pointerdown", () => {
+			if (!this.gameOver && !this.levelComplete) {
+				this.tryOpenDoor();
+			}
+		});
+
+		this.interactButton = interact;
 	}
 
 	//--- Update Joystick State ---

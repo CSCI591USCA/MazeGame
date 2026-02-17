@@ -6,10 +6,10 @@
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class LevelFive extends Phaser.Scene {
+export default class LevelFourEasy extends Phaser.Scene {
 
 	constructor() {
-		super("LevelFive");
+		super("LevelFourEasy");
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -20,510 +20,265 @@ export default class LevelFive extends Phaser.Scene {
 	editorCreate() {
 
 		// background1
-		const background1 = this.add.image(0, 0, "castlebg1");
+		const background1 = this.add.image(0, 0, "castlebg3");
 		background1.scaleX = 2.22;
 		background1.scaleY = 2.24;
 		background1.setOrigin(0, 0);
 
 		// tile_0000
-		const tile_0000 = this.add.image(25, 155, "tile_0000");
+		const tile_0000 = this.add.image(25, 700, "tile_0000");
 		tile_0000.scaleX = 3;
 		tile_0000.scaleY = 3;
 
 		// tile
-		const tile = this.add.image(77, 155, "tile_0000");
+		const tile = this.add.image(77, 700, "tile_0000");
 		tile.scaleX = 3;
 		tile.scaleY = 3;
 
 		// tile_1
-		const tile_1 = this.add.image(129, 155, "tile_0000");
+		const tile_1 = this.add.image(129, 700, "tile_0000");
 		tile_1.scaleX = 3;
 		tile_1.scaleY = 3;
 
 		// tile_2
-		const tile_2 = this.add.image(25, 700, "tile_0000");
+		const tile_2 = this.add.image(181, 700, "tile_0000");
 		tile_2.scaleX = 3;
 		tile_2.scaleY = 3;
 
 		// tile_3
-		const tile_3 = this.add.image(77, 700, "tile_0000");
+		const tile_3 = this.add.image(233, 700, "tile_0000");
 		tile_3.scaleX = 3;
 		tile_3.scaleY = 3;
 
 		// tile_4
-		const tile_4 = this.add.image(129, 700, "tile_0000");
+		const tile_4 = this.add.image(285, 700, "tile_0000");
 		tile_4.scaleX = 3;
 		tile_4.scaleY = 3;
 
 		// tile_5
-		const tile_5 = this.add.image(181, 700, "tile_0000");
+		const tile_5 = this.add.image(337, 700, "tile_0000");
 		tile_5.scaleX = 3;
 		tile_5.scaleY = 3;
 
 		// tile_6
-		const tile_6 = this.add.image(233, 700, "tile_0000");
+		const tile_6 = this.add.image(389, 700, "tile_0000");
 		tile_6.scaleX = 3;
 		tile_6.scaleY = 3;
 
 		// tile_7
-		const tile_7 = this.add.image(285, 700, "tile_0000");
+		const tile_7 = this.add.image(441, 700, "tile_0000");
 		tile_7.scaleX = 3;
 		tile_7.scaleY = 3;
 
 		// tile_8
-		const tile_8 = this.add.image(337, 700, "tile_0000");
+		const tile_8 = this.add.image(493, 700, "tile_0000");
 		tile_8.scaleX = 3;
 		tile_8.scaleY = 3;
 
 		// tile_9
-		const tile_9 = this.add.image(389, 700, "tile_0000");
+		const tile_9 = this.add.image(545, 700, "tile_0000");
 		tile_9.scaleX = 3;
 		tile_9.scaleY = 3;
 
 		// tile_10
-		const tile_10 = this.add.image(441, 700, "tile_0000");
+		const tile_10 = this.add.image(597, 700, "tile_0000");
 		tile_10.scaleX = 3;
 		tile_10.scaleY = 3;
 
 		// tile_11
-		const tile_11 = this.add.image(493, 700, "tile_0000");
+		const tile_11 = this.add.image(649, 700, "tile_0000");
 		tile_11.scaleX = 3;
 		tile_11.scaleY = 3;
 
 		// tile_12
-		const tile_12 = this.add.image(545, 700, "tile_0000");
+		const tile_12 = this.add.image(701, 700, "tile_0000");
 		tile_12.scaleX = 3;
 		tile_12.scaleY = 3;
 
 		// tile_13
-		const tile_13 = this.add.image(597, 700, "tile_0000");
+		const tile_13 = this.add.image(753, 700, "tile_0000");
 		tile_13.scaleX = 3;
 		tile_13.scaleY = 3;
 
 		// tile_14
-		const tile_14 = this.add.image(649, 700, "tile_0000");
+		const tile_14 = this.add.image(805, 700, "tile_0000");
 		tile_14.scaleX = 3;
 		tile_14.scaleY = 3;
 
 		// tile_15
-		const tile_15 = this.add.image(701, 700, "tile_0000");
+		const tile_15 = this.add.image(857, 700, "tile_0000");
 		tile_15.scaleX = 3;
 		tile_15.scaleY = 3;
 
 		// tile_16
-		const tile_16 = this.add.image(753, 700, "tile_0000");
+		const tile_16 = this.add.image(912, 700, "tile_0000");
 		tile_16.scaleX = 3;
 		tile_16.scaleY = 3;
 
 		// tile_17
-		const tile_17 = this.add.image(805, 700, "tile_0000");
+		const tile_17 = this.add.image(961, 700, "tile_0000");
 		tile_17.scaleX = 3;
 		tile_17.scaleY = 3;
 
 		// tile_18
-		const tile_18 = this.add.image(857, 700, "tile_0000");
+		const tile_18 = this.add.image(1013, 700, "tile_0000");
 		tile_18.scaleX = 3;
 		tile_18.scaleY = 3;
 
 		// tile_19
-		const tile_19 = this.add.image(909, 700, "tile_0000");
+		const tile_19 = this.add.image(1065, 700, "tile_0000");
 		tile_19.scaleX = 3;
 		tile_19.scaleY = 3;
 
 		// tile_20
-		const tile_20 = this.add.image(961, 700, "tile_0000");
+		const tile_20 = this.add.image(1117, 700, "tile_0000");
 		tile_20.scaleX = 3;
 		tile_20.scaleY = 3;
 
 		// tile_21
-		const tile_21 = this.add.image(1013, 700, "tile_0000");
+		const tile_21 = this.add.image(1169, 700, "tile_0000");
 		tile_21.scaleX = 3;
 		tile_21.scaleY = 3;
 
 		// tile_22
-		const tile_22 = this.add.image(1065, 700, "tile_0000");
+		const tile_22 = this.add.image(1221, 700, "tile_0000");
 		tile_22.scaleX = 3;
 		tile_22.scaleY = 3;
 
 		// tile_23
-		const tile_23 = this.add.image(1117, 700, "tile_0000");
-		tile_23.scaleX = 3;
+		const tile_23 = this.add.image(1264, 700, "tile_0000");
+		tile_23.scaleX = 2;
 		tile_23.scaleY = 3;
 
 		// tile_24
-		const tile_24 = this.add.image(1169, 700, "tile_0000");
+		const tile_24 = this.add.image(620, 650, "tile_0000");
 		tile_24.scaleX = 3;
 		tile_24.scaleY = 3;
 
 		// tile_25
-		const tile_25 = this.add.image(1221, 700, "tile_0000");
+		const tile_25 = this.add.image(620, 598, "tile_0000");
 		tile_25.scaleX = 3;
 		tile_25.scaleY = 3;
 
 		// tile_26
-		const tile_26 = this.add.image(1265, 700, "tile_0000");
-		tile_26.scaleX = 2;
+		const tile_26 = this.add.image(568, 650, "tile_0000");
+		tile_26.scaleX = 3;
 		tile_26.scaleY = 3;
 
 		// tile_27
-		const tile_27 = this.add.image(179, 205, "tile_0000");
+		const tile_27 = this.add.image(620, 546, "tile_0000");
 		tile_27.scaleX = 3;
 		tile_27.scaleY = 3;
 
 		// tile_28
-		const tile_28 = this.add.image(230, 256, "tile_0000");
+		const tile_28 = this.add.image(620, 494, "tile_0000");
 		tile_28.scaleX = 3;
 		tile_28.scaleY = 3;
 
 		// tile_29
-		const tile_29 = this.add.image(280, 305, "tile_0000");
+		const tile_29 = this.add.image(672, 494, "tile_0000");
 		tile_29.scaleX = 3;
 		tile_29.scaleY = 3;
 
 		// tile_30
-		const tile_30 = this.add.image(332, 305, "tile_0000");
+		const tile_30 = this.add.image(724, 494, "tile_0000");
 		tile_30.scaleX = 3;
 		tile_30.scaleY = 3;
 
 		// tile_31
-		const tile_31 = this.add.image(384, 305, "tile_0000");
+		const tile_31 = this.add.image(776, 494, "tile_0000");
 		tile_31.scaleX = 3;
 		tile_31.scaleY = 3;
 
 		// tile_32
-		const tile_32 = this.add.image(436, 305, "tile_0000");
+		const tile_32 = this.add.image(828, 494, "tile_0000");
 		tile_32.scaleX = 3;
 		tile_32.scaleY = 3;
 
 		// tile_33
-		const tile_33 = this.add.image(488, 305, "tile_0000");
+		const tile_33 = this.add.image(880, 494, "tile_0000");
 		tile_33.scaleX = 3;
 		tile_33.scaleY = 3;
 
 		// tile_34
-		const tile_34 = this.add.image(540, 305, "tile_0000");
+		const tile_34 = this.add.image(932, 494, "tile_0000");
 		tile_34.scaleX = 3;
 		tile_34.scaleY = 3;
 
 		// tile_35
-		const tile_35 = this.add.image(592, 305, "tile_0000");
+		const tile_35 = this.add.image(984, 494, "tile_0000");
 		tile_35.scaleX = 3;
 		tile_35.scaleY = 3;
 
 		// tile_36
-		const tile_36 = this.add.image(644, 305, "tile_0000");
+		const tile_36 = this.add.image(1036, 494, "tile_0000");
 		tile_36.scaleX = 3;
 		tile_36.scaleY = 3;
 
 		// tile_37
-		const tile_37 = this.add.image(696, 305, "tile_0000");
+		const tile_37 = this.add.image(1088, 494, "tile_0000");
 		tile_37.scaleX = 3;
 		tile_37.scaleY = 3;
 
 		// tile_38
-		const tile_38 = this.add.image(746, 258, "tile_0000");
+		const tile_38 = this.add.image(1255, 650, "tile_0000");
 		tile_38.scaleX = 3;
 		tile_38.scaleY = 3;
 
 		// tile_39
-		const tile_39 = this.add.image(796, 209, "tile_0000");
+		const tile_39 = this.add.image(441, 360, "tile_0000");
 		tile_39.scaleX = 3;
 		tile_39.scaleY = 3;
 
 		// tile_40
-		const tile_40 = this.add.image(847, 160, "tile_0000");
+		const tile_40 = this.add.image(389, 360, "tile_0000");
 		tile_40.scaleX = 3;
 		tile_40.scaleY = 3;
 
 		// tile_41
-		const tile_41 = this.add.image(899, 160, "tile_0000");
+		const tile_41 = this.add.image(337, 360, "tile_0000");
 		tile_41.scaleX = 3;
 		tile_41.scaleY = 3;
 
 		// tile_42
-		const tile_42 = this.add.image(951, 160, "tile_0000");
+		const tile_42 = this.add.image(285, 360, "tile_0000");
 		tile_42.scaleX = 3;
 		tile_42.scaleY = 3;
 
 		// tile_43
-		const tile_43 = this.add.image(1255, 650, "tile_0000");
+		const tile_43 = this.add.image(233, 360, "tile_0000");
 		tile_43.scaleX = 3;
 		tile_43.scaleY = 3;
 
 		// tile_44
-		const tile_44 = this.add.image(1255, 598, "tile_0000");
+		const tile_44 = this.add.image(181, 360, "tile_0000");
 		tile_44.scaleX = 3;
 		tile_44.scaleY = 3;
 
 		// tile_45
-		const tile_45 = this.add.image(1255, 546, "tile_0000");
+		const tile_45 = this.add.image(129, 360, "tile_0000");
 		tile_45.scaleX = 3;
 		tile_45.scaleY = 3;
 
 		// tile_46
-		const tile_46 = this.add.image(1255, 494, "tile_0000");
+		const tile_46 = this.add.image(77, 360, "tile_0000");
 		tile_46.scaleX = 3;
 		tile_46.scaleY = 3;
 
 		// tile_47
-		const tile_47 = this.add.image(1255, 442, "tile_0000");
+		const tile_47 = this.add.image(25, 360, "tile_0000");
 		tile_47.scaleX = 3;
 		tile_47.scaleY = 3;
 
 		// tile_48
-		const tile_48 = this.add.image(1255, 390, "tile_0000");
-		tile_48.scaleX = 3;
+		const tile_48 = this.add.image(485, 360, "tile_0000");
+		tile_48.scaleX = 2;
 		tile_48.scaleY = 3;
 
-		// tile_49
-		const tile_49 = this.add.image(1255, 338, "tile_0000");
-		tile_49.scaleX = 3;
-		tile_49.scaleY = 3;
-
-		// tile_50
-		const tile_50 = this.add.image(1255, 286, "tile_0000");
-		tile_50.scaleX = 3;
-		tile_50.scaleY = 3;
-
-		// tile_51
-		const tile_51 = this.add.image(1255, 234, "tile_0000");
-		tile_51.scaleX = 3;
-		tile_51.scaleY = 3;
-
-		// tile_52
-		const tile_52 = this.add.image(1255, 182, "tile_0000");
-		tile_52.scaleX = 3;
-		tile_52.scaleY = 3;
-
-		// tile_53
-		const tile_53 = this.add.image(1255, 130, "tile_0000");
-		tile_53.scaleX = 3;
-		tile_53.scaleY = 3;
-
-		// tile_54
-		const tile_54 = this.add.image(1203, 130, "tile_0000");
-		tile_54.scaleX = 3;
-		tile_54.scaleY = 3;
-
-		// tile_55
-		const tile_55 = this.add.image(1203, 182, "tile_0000");
-		tile_55.scaleX = 3;
-		tile_55.scaleY = 3;
-
-		// tile_56
-		const tile_56 = this.add.image(1203, 234, "tile_0000");
-		tile_56.scaleX = 3;
-		tile_56.scaleY = 3;
-
-		// tile_57
-		const tile_57 = this.add.image(1203, 286, "tile_0000");
-		tile_57.scaleX = 3;
-		tile_57.scaleY = 3;
-
-		// tile_58
-		const tile_58 = this.add.image(1203, 338, "tile_0000");
-		tile_58.scaleX = 3;
-		tile_58.scaleY = 3;
-
-		// tile_59
-		const tile_59 = this.add.image(1203, 390, "tile_0000");
-		tile_59.scaleX = 3;
-		tile_59.scaleY = 3;
-
-		// tile_60
-		const tile_60 = this.add.image(1203, 442, "tile_0000");
-		tile_60.scaleX = 3;
-		tile_60.scaleY = 3;
-
-		// tile_61
-		const tile_61 = this.add.image(1203, 494, "tile_0000");
-		tile_61.scaleX = 3;
-		tile_61.scaleY = 3;
-
-		// tile_62
-		const tile_62 = this.add.image(1203, 546, "tile_0000");
-		tile_62.scaleX = 3;
-		tile_62.scaleY = 3;
-
-		// tile_63
-		const tile_63 = this.add.image(1203, 598, "tile_0000");
-		tile_63.scaleX = 3;
-		tile_63.scaleY = 3;
-
-		// tile_64
-		const tile_64 = this.add.image(1203, 650, "tile_0000");
-		tile_64.scaleX = 3;
-		tile_64.scaleY = 3;
-
-		// tile_65
-		const tile_65 = this.add.image(1151, 650, "tile_0000");
-		tile_65.scaleX = 3;
-		tile_65.scaleY = 3;
-
-		// tile_66
-		const tile_66 = this.add.image(1151, 598, "tile_0000");
-		tile_66.scaleX = 3;
-		tile_66.scaleY = 3;
-
-		// tile_67
-		const tile_67 = this.add.image(1151, 546, "tile_0000");
-		tile_67.scaleX = 3;
-		tile_67.scaleY = 3;
-
-		// tile_68
-		const tile_68 = this.add.image(1151, 494, "tile_0000");
-		tile_68.scaleX = 3;
-		tile_68.scaleY = 3;
-
-		// tile_69
-		const tile_69 = this.add.image(1151, 442, "tile_0000");
-		tile_69.scaleX = 3;
-		tile_69.scaleY = 3;
-
-		// tile_70
-		const tile_70 = this.add.image(1151, 390, "tile_0000");
-		tile_70.scaleX = 3;
-		tile_70.scaleY = 3;
-
-		// tile_71
-		const tile_71 = this.add.image(1151, 338, "tile_0000");
-		tile_71.scaleX = 3;
-		tile_71.scaleY = 3;
-
-		// tile_72
-		const tile_72 = this.add.image(1151, 286, "tile_0000");
-		tile_72.scaleX = 3;
-		tile_72.scaleY = 3;
-
-		// tile_73
-		const tile_73 = this.add.image(1099, 650, "tile_0000");
-		tile_73.scaleX = 3;
-		tile_73.scaleY = 3;
-
-		// tile_74
-		const tile_74 = this.add.image(1099, 598, "tile_0000");
-		tile_74.scaleX = 3;
-		tile_74.scaleY = 3;
-
-		// tile_75
-		const tile_75 = this.add.image(1099, 546, "tile_0000");
-		tile_75.scaleX = 3;
-		tile_75.scaleY = 3;
-
-		// tile_76
-		const tile_76 = this.add.image(1099, 494, "tile_0000");
-		tile_76.scaleX = 3;
-		tile_76.scaleY = 3;
-
-		// tile_77
-		const tile_77 = this.add.image(1099, 442, "tile_0000");
-		tile_77.scaleX = 3;
-		tile_77.scaleY = 3;
-
-		// tile_78
-		const tile_78 = this.add.image(1047, 650, "tile_0000");
-		tile_78.scaleX = 3;
-		tile_78.scaleY = 3;
-
-		// tile_79
-		const tile_79 = this.add.image(1047, 598, "tile_0000");
-		tile_79.scaleX = 3;
-		tile_79.scaleY = 3;
-
-		// tile_80
-		const tile_80 = this.add.image(181, 650, "tile_0000");
-		tile_80.scaleX = 3;
-		tile_80.scaleY = 3;
-
-		// tile_81
-		const tile_81 = this.add.image(233, 650, "tile_0000");
-		tile_81.scaleX = 3;
-		tile_81.scaleY = 3;
-
-		// tile_82
-		const tile_82 = this.add.image(285, 650, "tile_0000");
-		tile_82.scaleX = 3;
-		tile_82.scaleY = 3;
-
-		// tile_83
-		const tile_83 = this.add.image(337, 650, "tile_0000");
-		tile_83.scaleX = 3;
-		tile_83.scaleY = 3;
-
-		// tile_84
-		const tile_84 = this.add.image(389, 650, "tile_0000");
-		tile_84.scaleX = 3;
-		tile_84.scaleY = 3;
-
-		// tile_86
-		const tile_86 = this.add.image(129, 650, "tile_0000");
-		tile_86.scaleX = 3;
-		tile_86.scaleY = 3;
-
-		// tile_87
-		const tile_87 = this.add.image(441, 546, "tile_0000");
-		tile_87.scaleX = 3;
-		tile_87.scaleY = 3;
-
-		// tile_88
-		const tile_88 = this.add.image(389, 598, "tile_0000");
-		tile_88.scaleX = 3;
-		tile_88.scaleY = 3;
-
-		// tile_89
-		const tile_89 = this.add.image(337, 598, "tile_0000");
-		tile_89.scaleX = 3;
-		tile_89.scaleY = 3;
-
-		// tile_90
-		const tile_90 = this.add.image(285, 598, "tile_0000");
-		tile_90.scaleX = 3;
-		tile_90.scaleY = 3;
-
-		// tile_91
-		const tile_91 = this.add.image(233, 598, "tile_0000");
-		tile_91.scaleX = 3;
-		tile_91.scaleY = 3;
-
-		// tile_92
-		const tile_92 = this.add.image(181, 598, "tile_0000");
-		tile_92.scaleX = 3;
-		tile_92.scaleY = 3;
-
-		// tile_93
-		const tile_93 = this.add.image(181, 546, "tile_0000");
-		tile_93.scaleX = 3;
-		tile_93.scaleY = 3;
-
-		// tile_94
-		const tile_94 = this.add.image(233, 546, "tile_0000");
-		tile_94.scaleX = 3;
-		tile_94.scaleY = 3;
-
-		// tile_95
-		const tile_95 = this.add.image(285, 546, "tile_0000");
-		tile_95.scaleX = 3;
-		tile_95.scaleY = 3;
-
-		// tile_96
-		const tile_96 = this.add.image(337, 546, "tile_0000");
-		tile_96.scaleX = 3;
-		tile_96.scaleY = 3;
-
-		// tile_97
-		const tile_97 = this.add.image(389, 546, "tile_0000");
-		tile_97.scaleX = 3;
-		tile_97.scaleY = 3;
-
-		// tile_101
-		const tile_101 = this.add.image(710, 546, "tile_0000");
-		tile_101.scaleX = 3;
-		tile_101.scaleY = 3;
-
 		// door
-		const door = this.physics.add.sprite(1236, 78, "Door-1");
-		door.scaleX = 0.3;
-		door.scaleY = 0.3;
+		const door = this.physics.add.sprite(737, 633, "Door-1");
+		door.scaleX = 0.4;
+		door.scaleY = 0.4;
 		door.body.moves = false;
 		door.body.allowGravity = false;
 		door.body.collideWorldBounds = true;
@@ -532,7 +287,7 @@ export default class LevelFive extends Phaser.Scene {
 		door.body.setSize(480, 480, false);
 
 		// key
-		const key = this.physics.add.image(51, 624, "New Piskel");
+		const key = this.physics.add.image(45, 285, "New Piskel");
 		key.scaleX = 0.2;
 		key.scaleY = 0.2;
 		key.body.moves = false;
@@ -543,7 +298,7 @@ export default class LevelFive extends Phaser.Scene {
 		key.body.setSize(480, 480, false);
 
 		// player
-		const player = this.physics.add.sprite(46, 133, "idlefront1");
+		const player = this.physics.add.sprite(71, 671, "idlefront1");
 		player.scaleX = 1.7;
 		player.scaleY = 1.7;
 		player.setOrigin(0.5, 1);
@@ -552,7 +307,7 @@ export default class LevelFive extends Phaser.Scene {
 		player.body.setSize(28, 40, false);
 
 		// enemy1
-		const enemy1 = this.physics.add.sprite(492, 278, "enemywalkingright1");
+		const enemy1 = this.physics.add.sprite(857, 674, "enemywalkingright1");
 		enemy1.scaleX = 2;
 		enemy1.scaleY = 2;
 		enemy1.setOrigin(0.5, 1);
@@ -561,7 +316,7 @@ export default class LevelFive extends Phaser.Scene {
 		enemy1.body.setSize(28, 40, false);
 
 		// enemy2
-		const enemy2 = this.physics.add.sprite(860, 676, "enemywalkingright1");
+		const enemy2 = this.physics.add.sprite(145, 334, "enemywalkingright1");
 		enemy2.scaleX = 2;
 		enemy2.scaleY = 2;
 		enemy2.setOrigin(0.5, 1);
@@ -569,27 +324,9 @@ export default class LevelFive extends Phaser.Scene {
 		enemy2.body.setOffset(6, -8);
 		enemy2.body.setSize(28, 40, false);
 
-		// enemy3
-		const enemy3 = this.physics.add.sprite(569, 678, "enemywalkingright1");
-		enemy3.scaleX = 2;
-		enemy3.scaleY = 2;
-		enemy3.setOrigin(0.5, 1);
-		enemy3.body.collideWorldBounds = true;
-		enemy3.body.setOffset(6, -8);
-		enemy3.body.setSize(28, 40, false);
-
-		// enemy4
-		const enemy4 = this.physics.add.sprite(279, 522, "enemywalkingright1");
-		enemy4.scaleX = 2;
-		enemy4.scaleY = 2;
-		enemy4.setOrigin(0.5, 1);
-		enemy4.body.collideWorldBounds = true;
-		enemy4.body.setOffset(6, -8);
-		enemy4.body.setSize(28, 40, false);
-
 		// lists
-		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39, tile_40, tile_41, tile_42, tile_43, tile_44, tile_45, tile_46, tile_47, tile_48, tile_49, tile_50, tile_51, tile_52, tile_53, tile_54, tile_55, tile_56, tile_57, tile_58, tile_59, tile_60, tile_61, tile_62, tile_63, tile_64, tile_65, tile_66, tile_67, tile_68, tile_69, tile_70, tile_71, tile_72, tile_73, tile_74, tile_75, tile_76, tile_77, tile_78, tile_79, tile_80, tile_81, tile_82, tile_83, tile_84, tile_86, tile_87, tile_88, tile_89, tile_90, tile_91, tile_92, tile_93, tile_94, tile_95, tile_96, tile_97, tile_101];
-		const enemies = [enemy1, enemy2, enemy3, enemy4];
+		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39, tile_40, tile_41, tile_42, tile_43, tile_44, tile_45, tile_46, tile_47, tile_48];
+		const enemies = [enemy1, enemy2];
 
 		// collider
 		this.physics.add.collider(player, ground);
@@ -602,8 +339,6 @@ export default class LevelFive extends Phaser.Scene {
 		this.player = player;
 		this.enemy1 = enemy1;
 		this.enemy2 = enemy2;
-		this.enemy3 = enemy3;
-		this.enemy4 = enemy4;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -620,10 +355,6 @@ export default class LevelFive extends Phaser.Scene {
 	enemy1;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy2;
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	enemy3;
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	enemy4;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -764,13 +495,12 @@ export default class LevelFive extends Phaser.Scene {
 		});
 
 		//--- Adaptive Difficulty ---
-		if (this.registry.get("playerDifficulty") === undefined) {
-			this.registry.set("playerDifficulty", { speedMult: 1 });
-		}
-
-		this.playerDifficulty = this.registry.get("playerDifficulty");
+		this.playerDifficulty = this.registry.get("playerDifficulty") || {
+			speedMult: 1
+		};
+		this.registry.set("playerDifficulty", this.playerDifficulty);
 		this.levelStartTime = this.elapsedTime;
-		this.deathsThisLevel = 0;
+		this.deathThisLevel = 0;
 
 		//--- Jump Skill Tracking Initialization ---
 		this.totalJumps = 0;
@@ -788,7 +518,7 @@ export default class LevelFive extends Phaser.Scene {
 		//first frame is treated as "already landed"
 		this.lastLandTime = this.elapsedTime;
 
-		//--- Difficulty Multiplier Text---
+		//--- show current difficulty multiplier on screen ---
 		this.diffDebugText = this.add.text(
 			16,
 			48,
@@ -849,13 +579,19 @@ export default class LevelFive extends Phaser.Scene {
 		this.enemies = this.physics.add.group();
 		if (this.enemy1) this.enemies.add(this.enemy1);
 		if (this.enemy2) this.enemies.add(this.enemy2);
-		if (this.enemy3) this.enemies.add(this.enemy3);
-		if (this.enemy4) this.enemies.add(this.enemy4);
+		//if (this.enemy3) this.enemies.add(this.enemy3);
+		// --- Per-enemy patrol distances ---
+		this.enemy1.patrolRange = 90;   // small platform
+		this.enemy2.patrolRange = 90;  // medium platform
+		//this.enemy3.patrolRange = 360;  // long platform
 
-		const BASE_PATROL_SPEED = 105; //enemy speed
-		const PATROL_RANGE = 96; //enemy patrol range
 
+		const BASE_PATROL_SPEED = 93; //enemy speed
+		const DEFAULT_PATROL_RANGE = 80; //fallback
+
+		//read difficulty multiplier
 		const speedMult = (this.playerDifficulty && this.playerDifficulty.speedMult) || 1;
+
 		const PATROL_SPEED = BASE_PATROL_SPEED * speedMult;
 
 		this.enemies.children.iterate(enemy => {
@@ -864,51 +600,54 @@ export default class LevelFive extends Phaser.Scene {
 			enemy.body.setCollideWorldBounds(true);
 			enemy.body.setBounce(0, 0);
 
-			//starting point where enemies will patrol
+			// patrol data
 			enemy.startX = enemy.x;
-			enemy.minX = enemy.startX - PATROL_RANGE;
-			enemy.maxX = enemy.startX + PATROL_RANGE;
+
+			// use per-enemy patrol range
+			enemy.patrolRange = enemy.patrolRange || DEFAULT_PATROL_RANGE;
+
+			enemy.minX = enemy.startX - enemy.patrolRange;
+			enemy.maxX = enemy.startX + enemy.patrolRange;
 
 			enemy.patrolDir = 1;
 			enemy.patrolSpeed = PATROL_SPEED;
-			// =====================================
-			// ENEMY PERSONALITY SETTINGS
-			// =====================================
 
-			// top platform enemy
+			// NEW: enemy AI state
+			enemy.state = "PATROL";
+			enemy.chaseSpeed = 110 * speedMult;     // faster than patrol
+			enemy.detectRange = 180;    // how close player must be
+			// ================================
+			// Enemy personality tuning
+			// ================================
+
+			// enemy1 → small platform
 			this.enemy1.canRandomTurn = true;
-			this.enemy1.turnChance = 0.003;
+			this.enemy1.turnChance = 0.005;
 
 			this.enemy1.canRandomJump = true;
-			this.enemy1.jumpChance = 0.004;
+			this.enemy1.jumpChance = 0.010;
 			this.enemy1.jumpPower = 260;
 
 
-			// bottom right
+			// enemy2 → medium
 			this.enemy2.canRandomTurn = true;
-			this.enemy2.turnChance = 0.002;
+			this.enemy2.turnChance = 0.006;
 
-			this.enemy2.canRandomJump = false;
-
-
-			// bottom middle
-			this.enemy3.canRandomTurn = true;
-			this.enemy3.turnChance = 0.002;
-
-			this.enemy3.canRandomJump = false;
+			this.enemy2.canRandomJump = true;
+			this.enemy2.jumpChance = 0.002;
+			this.enemy2.jumpPower = 260;
 
 
-			// small mid platform
-			this.enemy4.canRandomTurn = true;
-			this.enemy4.turnChance = 0.004;
+			// enemy3 → long floor
+			//this.enemy3.canRandomTurn = true;
+			//this.enemy3.turnChance = 0.009;
 
-			this.enemy4.canRandomJump = true;
-			this.enemy4.jumpChance = 0.006;
-			this.enemy4.jumpPower = 260;
+			//this.enemy3.canRandomJump = true;
+			//this.enemy3.jumpChance = 0.004;
+			//this.enemy3.jumpPower = 200;
 
-			//start moving to the right
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
-		})
+		});
 
 		// --- Bullet Group ---
 		/**
@@ -1177,38 +916,56 @@ export default class LevelFive extends Phaser.Scene {
 
 				enemy.play("enemy_walk", true);
 
-				//enemy reaches left limit and goes right
-				if (enemy.x <= enemy.minX) {
-					enemy.patrolDir = 1;
-					if (enemy.setFlipX) enemy.setFlipX(false);	//enemy faces right
-				}
-				//reach right limit and go left
-				else if (enemy.x >= enemy.maxX) {
-					enemy.patrolDir = -1;
-					if (enemy.setFlipX) enemy.setFlipX(true); //face left
-				}
-				// ================================
-				// RANDOM TURN
-				// ================================
-				if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
-					enemy.patrolDir *= -1;
-					if (enemy.setFlipX) enemy.setFlipX(enemy.patrolDir < 0);
+				const player = this.player;
+				const distToPlayer = Phaser.Math.Distance.Between(
+					enemy.x, enemy.y,
+					player.x, player.y
+				);
+
+				// --- STATE SWITCH ---
+				if (distToPlayer < enemy.detectRange) {
+					enemy.state = "CHASE";
+				} else if (enemy.state === "CHASE") {
+					enemy.state = "PATROL";
 				}
 
-				// ================================
-				// RANDOM JUMP
-				// ================================
-				if (
-					enemy.canRandomJump &&
-					enemy.body.blocked.down &&
-					Math.random() < enemy.jumpChance
-				) {
-					enemy.body.setVelocityY(-enemy.jumpPower);
+				// --- PATROL STATE ---
+				if (enemy.state === "PATROL") {
+
+					if (enemy.x <= enemy.minX) {
+						enemy.patrolDir = 1;
+						enemy.setFlipX(false);
+					}
+					else if (enemy.x >= enemy.maxX) {
+						enemy.patrolDir = -1;
+						enemy.setFlipX(true);
+					}
+					if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
+						enemy.patrolDir *= -1;
+						enemy.setFlipX(enemy.patrolDir < 0);
+					}
+					if (
+						enemy.canRandomJump &&
+						enemy.body.blocked.down &&
+						Math.random() < enemy.jumpChance
+					) {
+						enemy.body.setVelocityY(-enemy.jumpPower);
+					}
+
+
+					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 				}
 
-				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				// --- CHASE STATE ---
+				else if (enemy.state === "CHASE") {
+					const dir = player.x < enemy.x ? -1 : 1;
+
+					enemy.setFlipX(dir < 0);
+					enemy.body.setVelocityX(enemy.chaseSpeed * dir);
+				}
 			});
 		}
+
 	}
 
 	//--- Enemy hits player Game Over ---
@@ -1521,7 +1278,7 @@ export default class LevelFive extends Phaser.Scene {
 		const levelCompleteText = this.add.text(
 			width / 2,
 			height / 2,
-			"LEVEL 5 COMPLETE",
+			"LEVEL 4 COMPLETE",
 			{
 				fontSize: "64px",
 				color: "0f7a2b",
@@ -1599,10 +1356,10 @@ export default class LevelFive extends Phaser.Scene {
 		let nextSceneKey;
 		if (diff.speedMult <= 1.0) {
 			//players that were slower/struggled/more cautious = easier path.
-			nextSceneKey = "LevelSixEasy";
+			nextSceneKey = "LevelFiveEasy";
 		} else {
 			//players who were quick and did not struggle = harder path
-			nextSceneKey = "LevelSix";
+			nextSceneKey = "LevelFive";
 		}
 
 		//after a short delay this starts the next level 
