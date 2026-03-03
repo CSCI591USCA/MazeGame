@@ -684,14 +684,14 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "266382fb-68d5-49fe-9f99-2e1ff3dcf1fb",
-            "label": "enemy1",
+            "id": "5b774e62-5d7b-44ba-acaa-be1b8745a448",
+            "label": "scoutEnemy",
             "scope": "CLASS",
             "texture": {
-                "key": "enemywalkingright1"
+                "key": "enemywalk1"
             },
-            "x": 857,
-            "y": 674,
+            "x": 851,
+            "y": 670,
             "scaleX": 2,
             "scaleY": 2,
             "originY": 1,
@@ -703,20 +703,20 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "ad6ed026-4513-4277-b0b3-16b27c2b861b",
-            "label": "enemy2",
+            "id": "c9ed8056-2afb-4024-9e0d-126e646bd5e7",
+            "label": "outlawEnemy",
             "scope": "CLASS",
             "texture": {
-                "key": "enemywalkingright1"
+                "key": "enemyrun1"
             },
-            "x": 145,
-            "y": 334,
+            "x": 154,
+            "y": 327,
             "scaleX": 2,
             "scaleY": 2,
             "originY": 1,
             "collideWorldBounds": true,
             "body.width": 28,
-            "body.height": 40,
+            "body.height": 41,
             "body.offset.x": 6,
             "body.offset.y": -8
         }
@@ -807,8 +807,8 @@
             "id": "ccc6aa40-d063-4908-a870-d162350af899",
             "label": "enemies",
             "objectIds": [
-                "266382fb-68d5-49fe-9f99-2e1ff3dcf1fb",
-                "ad6ed026-4513-4277-b0b3-16b27c2b861b"
+                "5b774e62-5d7b-44ba-acaa-be1b8745a448",
+                "c9ed8056-2afb-4024-9e0d-126e646bd5e7"
             ]
         }
     ]

@@ -392,6 +392,8 @@ export default class LevelFour extends Phaser.Scene {
 		this.ground = ground;
 		this.enemies = enemies;
 
+		this.keyPlatformTiles = [tile_51, tile_52, tile_53];
+
 		this.events.emit("scene-awake");
 	}
 
@@ -413,40 +415,6 @@ export default class LevelFour extends Phaser.Scene {
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
 	enemies;
-	/** @type {Phaser.Input.Keyboard.Key} */
-	interactKey;
-
-	/** Jump skill tracking */
-
-	/** total # of jumps started */
-	totalJumps;
-
-	/**total # of landings detected */
-	totalLandings;
-
-	/**sum of player.x - platform.x at landing */
-	totalLandingOffset;
-
-	/**total # of left/right direction switches while in the air */
-	totalDirectionSwitches;
-
-	/**total time the player waited on the platform before jumping */
-	totalWaitTime;
-
-	/**how many jump-wait samples are recorded */
-	waitSamples;
-
-	/**whether player is currently in the air during a jump that is being measured */
-	isAirborne;
-
-	/** current horizontal input direction during the jump: -1 left, 1 right, 0 none */
-	currentAirDir;
-
-	/**how times player switched left/right during the jump */
-	currentAirDirectionSwitches;
-
-	/** last time player landed on a platform */
-	lastLandTime;
 
 	/* START-USER-CODE */
 
@@ -456,15 +424,38 @@ export default class LevelFour extends Phaser.Scene {
 
 		this.editorCreate();
 
+		//----- Find the 3 tiles platform where the key is positioned -----
+		this.movingPlatformVisualTiles = [];
+
+		if (this.ground && Array.isArray(this.ground)) {
+			this.ground.forEach(t => {
+				if (!t) return;
+
+				// The 3 tiles under the key: X = 25, 77, 129 and Y = 450
+				if (t.y === 450 && (t.x === 25 || t.x === 77 || t.x === 129)) {
+					this.movingPlatformVisualTiles.push(t);
+				}
+			});
+		}
+
 		//--- Forces all ground tiles to be solid ---
 		this.platforms = this.physics.add.staticGroup();
 
 		if (this.ground && Array.isArray(this.ground)) {
 			this.ground.forEach(tile => {
 				if (!tile) return;
+
+				// skips the 3 tile key platform
+				const isKeyPlatformTile =
+					tile.y === 450 && (tile.x === 25 || tile.x === 77 || tile.x === 129);
+
+				if (isKeyPlatformTile) return;
+
 				this.platforms.add(tile);
 			});
 		}
+
+
 
 		const player = this.player;
 
@@ -624,6 +615,35 @@ export default class LevelFour extends Phaser.Scene {
 		player.body.setCollideWorldBounds(true);	//keep player inside the screen
 		player.body.setBounce(0.1, 0.1);
 
+		//---- Moving platform under the key -----
+		this.keyPlatformTriggered = false;
+		this.keyPlatformHidden = false;
+
+		const midTile = this.keyPlatformTiles[1];
+
+		// Physics body for moving platform
+		this.movingKeyPlatform = this.physics.add.image(midTile.x, midTile.y, "tile_0000");
+		this.movingKeyPlatform.setAlpha(0);
+		this.movingKeyPlatform.setImmovable(true);
+		this.movingKeyPlatform.body.setAllowGravity(false);
+
+		const tileW = midTile.displayWidth;
+		const tileH = midTile.displayHeight;
+
+		this.movingKeyPlatform.body.setSize(tileW * 3, tileH * 0.55, true);
+
+		//movement bounds + speed
+		this.keyPlatMinX = 120;
+		this.keyPlatMaxX = 320;
+		this.keyPlatSpeed = 80;
+		this.movingKeyPlatform.body.setVelocityX(this.keyPlatSpeed);
+
+		//start platform at the right bound
+		this.movingKeyPlatform.x = this.keyPlatMaxX;
+
+		//move left first
+		this.movingKeyPlatform.body.setVelocityX(-this.keyPlatSpeed);
+
 		//--- Enemy Group + Patrol ---
 		/**
 		 * Creates a group of enemies and sets their patrol behavior.
@@ -679,6 +699,15 @@ export default class LevelFour extends Phaser.Scene {
 			this.player,
 			this.platforms,
 			this.onPlayerLand,
+			null,
+			this
+		);
+
+		//player vs moving key platform
+		this.physics.add.collider(
+			this.player,
+			this.movingKeyPlatform,
+			this.onPlayerHitMovingKeyPlatform,
 			null,
 			this
 		);
@@ -808,6 +837,25 @@ export default class LevelFour extends Phaser.Scene {
 			return;
 		}
 
+		//----- move the key platform back and forth using physics velocity -----
+		if (this.movingKeyPlatform && this.movingKeyPlatform.body && this.movingKeyPlatform.body.enable) {
+
+			if (this.movingKeyPlatform.x <= this.keyPlatMinX) {
+				this.movingKeyPlatform.x = this.keyPlatMinX;
+				this.movingKeyPlatform.body.setVelocityX(this.keyPlatSpeed);
+			}
+			else if (this.movingKeyPlatform.x >= this.keyPlatMaxX) {
+				this.movingKeyPlatform.x = this.keyPlatMaxX;
+				this.movingKeyPlatform.body.setVelocityX(-this.keyPlatSpeed);
+			}
+		}
+
+		//keep moving platform visuals + physics synced
+		this.syncMovingPlatformVisuals();
+
+		//keep the key attached to the platform so it doesnt fall off
+		this.syncKeyToMovingPlatform();
+
 		const player = this.player;
 		const speed = 200;
 		const jumpSpeed = -450;
@@ -876,7 +924,7 @@ export default class LevelFour extends Phaser.Scene {
 		 * 2) start tracking jump statistics including direction changes in air.
 		 */
 		if (upPressed && player.body.blocked.down) {
-			
+
 			// Waiting Time:
 			//how long did the player stand on the platform before this jump.
 			if (typeof this.lastLandTime === "number") {
@@ -1542,6 +1590,86 @@ export default class LevelFour extends Phaser.Scene {
 		const sStr = seconds.toString().padStart(2, "0");
 
 		return mStr + ":" + sStr;
+	}
+
+	syncMovingPlatformVisuals() {
+		if (!this.movingKeyPlatform || !this.movingPlatformVisualTiles) return;
+
+		const offsets = [-52, 0, 52];
+
+		for (let i = 0; i < this.movingPlatformVisualTiles.length; i++) {
+			const tile = this.movingPlatformVisualTiles[i];
+			if (!tile) continue;
+
+			tile.x = this.movingKeyPlatform.x + offsets[i];
+			tile.y = this.movingKeyPlatform.y;
+		}
+	}
+
+	syncKeyToMovingPlatform() {
+
+
+	}
+
+	onPlayerHitMovingKeyPlatform(player, platform) {
+
+		this.onPlayerLand(player, platform);
+
+		//only trigger when player is standing on it
+		if (!player.body.blocked.down) return;
+
+		//start countdown only once per cycle
+		if (this.keyPlatformTriggered) return;
+		this.keyPlatformTriggered = true;
+
+		//After 5 seconds hide the platform
+		this.time.delayedCall(5000, () => {
+			this.hideMovingKeyPlatform();
+
+			//after another 5 seconds show the platform again
+			this.time.delayedCall(5000, () => {
+				this.showMovingKeyPlatform();
+				this.keyPlatformTriggered = false;
+			});
+		});
+	}
+
+	hideMovingKeyPlatform() {
+		if (!this.movingKeyPlatform) return;
+
+		//hide physics + disable collision
+		this.movingKeyPlatform.setVisible(false);
+		if (this.movingKeyPlatform.body) this.movingKeyPlatform.body.enable = false;
+
+		//hide visual tiles
+		if (this.movingPlatformVisualTiles) {
+			this.movingPlatformVisualTiles.forEach(t => t && t.setVisible(false));
+		}
+
+		//hide the key
+		if (!this.hasKey && this.key) {
+			this.key.setVisible(false);
+			if (this.key.body) this.key.body.enable = false;
+		}
+	}
+
+	showMovingKeyPlatform() {
+		if (!this.movingKeyPlatform) return;
+
+		//show physics + enable collision
+		this.movingKeyPlatform.setVisible(true);
+		if (this.movingKeyPlatform.body) this.movingKeyPlatform.body.enable = true;
+
+		//show visual tiles
+		if (this.movingPlatformVisualTiles) {
+			this.movingPlatformVisualTiles.forEach(t => t && t.setVisible(true));
+		}
+
+		//show key again if not collected
+		if (!this.hasKey && this.key) {
+			this.key.setVisible(true);
+			if (this.key.body) this.key.body.enable = true;
+		}
 	}
 
 	/* END-USER-CODE */

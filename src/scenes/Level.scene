@@ -751,25 +751,6 @@
             "body.offset.y": -8
         },
         {
-            "type": "ArcadeSprite",
-            "id": "0effe365-8724-498d-8356-9f9b70e0abda",
-            "label": "enemy3",
-            "scope": "CLASS",
-            "texture": {
-                "key": "enemywalkingright1"
-            },
-            "x": 462,
-            "y": 165,
-            "scaleX": 2,
-            "scaleY": 2,
-            "originY": 1,
-            "collideWorldBounds": true,
-            "body.width": 28,
-            "body.height": 40,
-            "body.offset.x": 6,
-            "body.offset.y": -8
-        },
-        {
             "type": "ArcadeImage",
             "id": "6032a53d-8ea7-41bd-8765-cac6bd0a0a87",
             "label": "key",
@@ -806,6 +787,25 @@
             "body.width": 28,
             "body.height": 40,
             "body.offset.x": 10
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "ae3b91f4-c435-40e0-9906-2a6020d57db4",
+            "label": "scoutEnemy",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemywalk1"
+            },
+            "x": 419,
+            "y": 174,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
         }
     ],
     "plainObjects": [
@@ -906,7 +906,7 @@
             "objectIds": [
                 "3b73d60f-e374-45df-bd7a-82f73bf8b0aa",
                 "caaf3c37-d4bc-47de-b4ff-454e99d34129",
-                "0effe365-8724-498d-8356-9f9b70e0abda"
+                "ae3b91f4-c435-40e0-9906-2a6020d57db4"
             ]
         }
     ]

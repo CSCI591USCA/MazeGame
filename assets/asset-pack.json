@@ -75,6 +75,76 @@
                 "key": "Door-7"
             },
             {
+                "url": "assets/enemyjump1.png",
+                "type": "image",
+                "key": "enemyjump1"
+            },
+            {
+                "url": "assets/enemyjump2.png",
+                "type": "image",
+                "key": "enemyjump2"
+            },
+            {
+                "url": "assets/enemyjump3.png",
+                "type": "image",
+                "key": "enemyjump3"
+            },
+            {
+                "url": "assets/enemyjump4.png",
+                "type": "image",
+                "key": "enemyjump4"
+            },
+            {
+                "url": "assets/enemyrun1.png",
+                "type": "image",
+                "key": "enemyrun1"
+            },
+            {
+                "url": "assets/enemyrun2.png",
+                "type": "image",
+                "key": "enemyrun2"
+            },
+            {
+                "url": "assets/enemyrun3.png",
+                "type": "image",
+                "key": "enemyrun3"
+            },
+            {
+                "url": "assets/enemyrun4.png",
+                "type": "image",
+                "key": "enemyrun4"
+            },
+            {
+                "url": "assets/enemyrun5.png",
+                "type": "image",
+                "key": "enemyrun5"
+            },
+            {
+                "url": "assets/enemywalk1.png",
+                "type": "image",
+                "key": "enemywalk1"
+            },
+            {
+                "url": "assets/enemywalk2.png",
+                "type": "image",
+                "key": "enemywalk2"
+            },
+            {
+                "url": "assets/enemywalk3.png",
+                "type": "image",
+                "key": "enemywalk3"
+            },
+            {
+                "url": "assets/enemywalk4.png",
+                "type": "image",
+                "key": "enemywalk4"
+            },
+            {
+                "url": "assets/enemywalk5.png",
+                "type": "image",
+                "key": "enemywalk5"
+            },
+            {
                 "url": "src/scenes/enemywalkingright1.png",
                 "type": "image",
                 "key": "enemywalkingright1"

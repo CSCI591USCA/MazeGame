@@ -307,26 +307,26 @@ export default class LevelFourEasy extends Phaser.Scene {
 		player.body.setSize(28, 40, false);
 
 		// enemy1
-		const enemy1 = this.physics.add.sprite(857, 674, "enemywalkingright1");
-		enemy1.scaleX = 2;
-		enemy1.scaleY = 2;
-		enemy1.setOrigin(0.5, 1);
-		enemy1.body.collideWorldBounds = true;
-		enemy1.body.setOffset(6, -8);
-		enemy1.body.setSize(28, 40, false);
+		const scoutEnemy = this.physics.add.sprite(857, 674, "enemywalk1");
+		scoutEnemy.scaleX = 2;
+		scoutEnemy.scaleY = 2;
+		scoutEnemy.setOrigin(0.5, 1);
+		scoutEnemy.body.collideWorldBounds = true;
+		scoutEnemy.body.setOffset(6, -8);
+		scoutEnemy.body.setSize(28, 40, false);
 
 		// enemy2
-		const enemy2 = this.physics.add.sprite(145, 334, "enemywalkingright1");
-		enemy2.scaleX = 2;
-		enemy2.scaleY = 2;
-		enemy2.setOrigin(0.5, 1);
-		enemy2.body.collideWorldBounds = true;
-		enemy2.body.setOffset(6, -8);
-		enemy2.body.setSize(28, 40, false);
+		const outlawEnemy = this.physics.add.sprite(145, 334, "enemyrun1");
+		outlawEnemy.scaleX = 2;
+		outlawEnemy.scaleY = 2;
+		outlawEnemy.setOrigin(0.5, 1);
+		outlawEnemy.body.collideWorldBounds = true;
+		outlawEnemy.body.setOffset(6, -8);
+		outlawEnemy.body.setSize(28, 40, false);
 
 		// lists
 		const ground = [tile_0000, tile, tile_1, tile_2, tile_3, tile_4, tile_5, tile_6, tile_7, tile_8, tile_9, tile_10, tile_11, tile_12, tile_13, tile_14, tile_15, tile_16, tile_17, tile_18, tile_19, tile_20, tile_21, tile_22, tile_23, tile_24, tile_25, tile_26, tile_27, tile_28, tile_29, tile_30, tile_31, tile_32, tile_33, tile_34, tile_35, tile_36, tile_37, tile_38, tile_39, tile_40, tile_41, tile_42, tile_43, tile_44, tile_45, tile_46, tile_47, tile_48];
-		const enemies = [enemy1, enemy2];
+		const enemies = [scoutEnemy, outlawEnemy];
 
 		// collider
 		this.physics.add.collider(player, ground);
@@ -337,8 +337,8 @@ export default class LevelFourEasy extends Phaser.Scene {
 		this.door = door;
 		this.key = key;
 		this.player = player;
-		this.enemy1 = enemy1;
-		this.enemy2 = enemy2;
+		this.scoutEnemy = scoutEnemy;
+		this.outlawEnemy = outlawEnemy;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -352,9 +352,9 @@ export default class LevelFourEasy extends Phaser.Scene {
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
-	enemy1;
+	scoutEnemy;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
-	enemy2;
+	outlawEnemy;
 	/** @type {Phaser.GameObjects.Image[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -500,7 +500,7 @@ export default class LevelFourEasy extends Phaser.Scene {
 		};
 		this.registry.set("playerDifficulty", this.playerDifficulty);
 		this.levelStartTime = this.elapsedTime;
-		this.deathThisLevel = 0;
+		this.deathsThisLevel = 0;
 
 		//--- Jump Skill Tracking Initialization ---
 		this.totalJumps = 0;
@@ -577,13 +577,17 @@ export default class LevelFourEasy extends Phaser.Scene {
 		 * The patrol direction and speed are initialized for each enemy.
 		 */
 		this.enemies = this.physics.add.group();
-		if (this.enemy1) this.enemies.add(this.enemy1);
-		if (this.enemy2) this.enemies.add(this.enemy2);
+		if (this.scoutEnemy) this.enemies.add(this.scoutEnemy);
+		if (this.outlawEnemy) this.enemies.add(this.outlawEnemy);
 		//if (this.enemy3) this.enemies.add(this.enemy3);
 		// --- Per-enemy patrol distances ---
-		this.enemy1.patrolRange = 90;   // small platform
-		this.enemy2.patrolRange = 90;  // medium platform
+		this.scoutEnemy.patrolRange = 90;   // small platform
+		this.outlawEnemy.patrolRange = 90;  // medium platform
 		//this.enemy3.patrolRange = 360;  // long platform
+
+		//----- Tag enemy types ----
+		if (this.scoutEnemy) this.scoutEnemy.enemyType = "scout";
+		if (this.outlawEnemy) this.outlawEnemy.enemyType = "outlaw";
 
 
 		const BASE_PATROL_SPEED = 93; //enemy speed
@@ -621,21 +625,21 @@ export default class LevelFourEasy extends Phaser.Scene {
 			// ================================
 
 			// enemy1 → small platform
-			this.enemy1.canRandomTurn = true;
-			this.enemy1.turnChance = 0.005;
+			this.scoutEnemy.canRandomTurn = true;
+			this.scoutEnemy.turnChance = 0.005;
 
-			this.enemy1.canRandomJump = true;
-			this.enemy1.jumpChance = 0.010;
-			this.enemy1.jumpPower = 260;
+			this.scoutEnemy.canRandomJump = true;
+			this.scoutEnemy.jumpChance = 0.010;
+			this.scoutEnemy.jumpPower = 260;
 
 
 			// enemy2 → medium
-			this.enemy2.canRandomTurn = true;
-			this.enemy2.turnChance = 0.006;
+			this.outlawEnemy.canRandomTurn = true;
+			this.outlawEnemy.turnChance = 0.006;
 
-			this.enemy2.canRandomJump = true;
-			this.enemy2.jumpChance = 0.002;
-			this.enemy2.jumpPower = 260;
+			this.outlawEnemy.canRandomJump = true;
+			this.outlawEnemy.jumpChance = 0.002;
+			this.outlawEnemy.jumpPower = 260;
 
 
 			// enemy3 → long floor
@@ -775,17 +779,53 @@ export default class LevelFourEasy extends Phaser.Scene {
 		/**
 		 * Creates an animation for enemy walking.
 		 */
-		this.anims.create({
-			key: "enemy_walk",
-			frames: [
-				{ key: "enemywalkingright1" },
-				{ key: "enemywalkingright2" },
-				{ key: "enemywalkingright3" },
-				{ key: "enemywalkingright4" }
-			],
-			frameRate: 8,
-			repeat: -1
-		});
+		//--- Enemy Scout Walk Animation ---
+		if (!this.anims.exists("scout_walk")){
+			this.anims.create({
+				key: "scout_walk",
+				frames: [
+					{ key: "enemywalk1" },
+					{ key: "enemywalk2" },
+					{ key: "enemywalk3" },
+					{ key: "enemywalk4" },
+					{ key: "enemywalk5" }
+				],
+				frameRate: 8,
+				repeat: -1
+			});
+		}
+			
+
+		//--- Enemy Scout Jump Animation ---
+		if (!this.anims.exists("scout_jump")){
+			this.anims.create({
+				key: "scout_jump",
+				frames: [
+					{ key: "enemyjump1" },
+					{ key: "enemyjump2" },
+					{ key: "enemyjump3" },
+					{ key: "enemyjump4" }
+				],
+				frameRate: 10,
+				repeat: -1
+			});
+		}
+
+		//--- Outlaw Enemy run animation ----
+		if (!this.anims.exists("outlaw_run")){
+			this.anims.create({
+				key: "outlaw_run",
+				frames:[
+					{ key: "enemyrun1" },
+					{ key: "enemyrun2" },
+					{ key: "enemyrun3" },
+					{ key: "enemyrun4" },
+					{ key: "enemyrun5" }
+				],
+				frameRate: 10,
+				repeat: -1
+			});
+		}
 	}
 
 	update() {
@@ -914,13 +954,26 @@ export default class LevelFourEasy extends Phaser.Scene {
 			this.enemies.children.iterate(enemy => {
 				if (!enemy || !enemy.body) return;
 
-				enemy.play("enemy_walk", true);
-
 				const player = this.player;
 				const distToPlayer = Phaser.Math.Distance.Between(
 					enemy.x, enemy.y,
 					player.x, player.y
 				);
+
+				//------ Pick animation based on enemy type ---
+				const onGround = enemy.body.blocked.down;
+
+				if (enemy.enemyType === "scout") {
+					if (!onGround && Math.abs(enemy.body.velocity.y) > 5) {
+						enemy.anims.play("scout_jump", true);
+					} else {
+						enemy.anims.play("scout_walk", true);
+					}
+				} else if (enemy.enemyType === "outlaw") {
+					enemy.anims.play("outlaw_run", true);
+				} else {
+					enemy.anims.play("outlaw_run", true);
+				}
 
 				// --- STATE SWITCH ---
 				if (distToPlayer < enemy.detectRange) {

@@ -996,25 +996,6 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "402b5803-55fb-4a5f-aa72-bef344883791",
-            "label": "enemy1",
-            "scope": "CLASS",
-            "texture": {
-                "key": "enemywalkingright1"
-            },
-            "x": 412,
-            "y": 154,
-            "scaleX": 2,
-            "scaleY": 2,
-            "originY": 1,
-            "collideWorldBounds": true,
-            "body.width": 28,
-            "body.height": 40,
-            "body.offset.x": 6,
-            "body.offset.y": -8
-        },
-        {
-            "type": "ArcadeSprite",
             "id": "296a43e7-98c9-4f4b-96b3-e3c1b4ac2c4e",
             "label": "enemy2",
             "scope": "CLASS",
@@ -1034,14 +1015,33 @@
         },
         {
             "type": "ArcadeSprite",
-            "id": "d8e0ac7a-2679-4e00-a0d1-deda9398a4f5",
-            "label": "enemy3",
+            "id": "d778322a-c7ea-4aa6-97e0-0d5841758e61",
+            "label": "scoutEnemy",
             "scope": "CLASS",
             "texture": {
-                "key": "enemywalkingright1"
+                "key": "enemywalk1"
             },
-            "x": 333,
-            "y": 671,
+            "x": 168,
+            "y": 667,
+            "scaleX": 2,
+            "scaleY": 2,
+            "originY": 1,
+            "collideWorldBounds": true,
+            "body.width": 28,
+            "body.height": 40,
+            "body.offset.x": 6,
+            "body.offset.y": -8
+        },
+        {
+            "type": "ArcadeSprite",
+            "id": "62b678b6-559e-4326-b303-070f1ea16292",
+            "label": "outlawEnemy",
+            "scope": "CLASS",
+            "texture": {
+                "key": "enemyrun1"
+            },
+            "x": 291,
+            "y": 130,
             "scaleX": 2,
             "scaleY": 2,
             "originY": 1,
@@ -1164,9 +1164,9 @@
             "id": "aa240bb3-eb59-456a-a0bb-3e97cff2243d",
             "label": "enemies",
             "objectIds": [
-                "402b5803-55fb-4a5f-aa72-bef344883791",
                 "296a43e7-98c9-4f4b-96b3-e3c1b4ac2c4e",
-                "d8e0ac7a-2679-4e00-a0d1-deda9398a4f5"
+                "d778322a-c7ea-4aa6-97e0-0d5841758e61",
+                "62b678b6-559e-4326-b303-070f1ea16292"
             ]
         }
     ]

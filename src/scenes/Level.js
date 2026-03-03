@@ -299,15 +299,6 @@ export default class Level extends Phaser.Scene {
 		enemy2.body.setOffset(6, -8);
 		enemy2.body.setSize(28, 40, false);
 
-		// enemy3
-		const enemy3 = this.physics.add.sprite(462, 165, "enemywalkingright1");
-		enemy3.scaleX = 2;
-		enemy3.scaleY = 2;
-		enemy3.setOrigin(0.5, 1);
-		enemy3.body.collideWorldBounds = true;
-		enemy3.body.setOffset(6, -8);
-		enemy3.body.setSize(28, 40, false);
-
 		// key
 		const key = this.physics.add.image(72, 127, "New Piskel");
 		key.scaleX = 0.2;
@@ -328,9 +319,18 @@ export default class Level extends Phaser.Scene {
 		player.body.setOffset(10, 0);
 		player.body.setSize(28, 40, false);
 
+		// scoutEnemy
+		const scoutEnemy = this.physics.add.sprite(419, 174, "enemywalk1");
+		scoutEnemy.scaleX = 2;
+		scoutEnemy.scaleY = 2;
+		scoutEnemy.setOrigin(0.5, 1);
+		scoutEnemy.body.collideWorldBounds = true;
+		scoutEnemy.body.setOffset(6, -8);
+		scoutEnemy.body.setSize(28, 40, false);
+
 		// lists
 		const ground = [prefabwall_1, prefabwall_2, prefabwall_3, prefabwall_4, prefabwall_5, prefabwall_6, prefabwall_7, prefabwall_8, prefabwall_9, prefabwall_10, prefabwall_11, prefabwall_12, prefabwall_13, prefabwall_14, prefabwall_15, prefabwall_16, prefabwall_17, prefabwall_18, prefabwall_19, prefabwall_20, prefabwall_21, prefabwall_22, prefabwall_23, prefabwall_24, prefabwall_25, prefabwall_26, prefabwall_27, prefabwall_28, prefabwall_29, prefabwall_30, prefabwall_31, prefabwall_32, prefabwall_33, prefabwall_34, prefabwall_35, prefabwall_36, prefabwall_37, prefabwall_38, prefabwall_39, prefabwall_40, prefabwall_41, prefabwall_42, prefabwall_43, prefabwall_44, prefabwall_45, prefabwall_46, prefabwall_47, prefabwall_48, prefabwall_49, prefabwall_50, prefabwall_51, prefabwall_52, prefabwall_53, prefabwall_54, prefabwall_55, prefabwall_56, prefabwall_57, prefabwall_58, prefabwall, prefabwall_59];
-		const enemies = [enemy1, enemy2, enemy3];
+		const enemies = [enemy1, enemy2, scoutEnemy];
 
 		// collider
 		this.physics.add.collider(player, ground);
@@ -341,9 +341,9 @@ export default class Level extends Phaser.Scene {
 		this.door = door;
 		this.enemy1 = enemy1;
 		this.enemy2 = enemy2;
-		this.enemy3 = enemy3;
 		this.key = key;
 		this.player = player;
+		this.scoutEnemy = scoutEnemy;
 		this.ground = ground;
 		this.enemies = enemies;
 
@@ -356,12 +356,12 @@ export default class Level extends Phaser.Scene {
 	enemy1;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	enemy2;
-	/** @type {Phaser.Physics.Arcade.Sprite} */
-	enemy3;
 	/** @type {Phaser.Physics.Arcade.Image} */
 	key;
 	/** @type {Phaser.Physics.Arcade.Sprite} */
 	player;
+	/** @type {Phaser.Physics.Arcade.Sprite} */
+	scoutEnemy;
 	/** @type {Prefabwall[]} */
 	ground;
 	/** @type {Phaser.Physics.Arcade.Sprite[]} */
@@ -555,11 +555,16 @@ export default class Level extends Phaser.Scene {
 		this.enemies = this.physics.add.group();
 		if (this.enemy1) this.enemies.add(this.enemy1);
 		if (this.enemy2) this.enemies.add(this.enemy2);
-		if (this.enemy3) this.enemies.add(this.enemy3);
+		if (this.scoutEnemy) this.enemies.add(this.scoutEnemy);
 		// --- Per-enemy patrol distances ---
 		this.enemy1.patrolRange = 90;   // small platform
 		this.enemy2.patrolRange = 90;  // medium platform
-		this.enemy3.patrolRange = 360;  // long platform
+		this.scoutEnemy.patrolRange = 360;  // long platform
+
+		//tag enemy types
+		this.enemy1.enemyType = "basic";
+		this.enemy2.enemyType = "basic";
+		this.scoutEnemy.enemyType = "scout";
 
 
 		const BASE_PATROL_SPEED = 93; //enemy speed
@@ -614,13 +619,13 @@ export default class Level extends Phaser.Scene {
 			this.enemy2.jumpPower = 260;
 
 
-			// enemy3 → long floor
-			this.enemy3.canRandomTurn = true;
-			this.enemy3.turnChance = 0.009;
+			// Scout Enemy → long floor
+			this.scoutEnemy.canRandomTurn = true;
+			this.scoutEnemy.turnChance = 0.009;
 
-			this.enemy3.canRandomJump = true;
-			this.enemy3.jumpChance = 0.004;
-			this.enemy3.jumpPower = 200;
+			this.scoutEnemy.canRandomJump = true;
+			this.scoutEnemy.jumpChance = 0.004;
+			this.scoutEnemy.jumpPower = 200;
 
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 		});
@@ -763,6 +768,33 @@ export default class Level extends Phaser.Scene {
 			frameRate: 8,
 			repeat: -1
 		});
+
+		//--- Enemy Scout Walk Animation ---
+		this.anims.create({
+			key: "scout_walk",
+			frames: [
+				{ key: "enemywalk1" },
+				{ key: "enemywalk2" },
+				{ key: "enemywalk3" },
+				{ key: "enemywalk4" },
+				{ key: "enemywalk5" }
+			],
+			frameRate: 8,
+			repeat: -1
+		});
+
+		//--- Enemy Scout Jump Animation ---
+		this.anims.create({
+			key: "scout_jump",
+			frames: [
+				{ key: "enemyjump1" },
+				{ key: "enemyjump2" },
+				{ key: "enemyjump3" },
+				{ key: "enemyjump4" }
+			],
+			frameRate: 10,
+			repeat: -1
+		});
 	}
 
 	update() {
@@ -891,13 +923,24 @@ export default class Level extends Phaser.Scene {
 			this.enemies.children.iterate(enemy => {
 				if (!enemy || !enemy.body) return;
 
-				enemy.play("enemy_walk", true);
-
 				const player = this.player;
 				const distToPlayer = Phaser.Math.Distance.Between(
 					enemy.x, enemy.y,
 					player.x, player.y
 				);
+
+				//--- Pick Animation based on enemy type ---
+				const onGround = enemy.body.blocked.down;
+
+				if (enemy.enemyType === "scout") {
+					if (!onGround && Math.abs(enemy.body.velocity.y) > 5) {
+						enemy.anims.play("scout_jump", true);
+					} else {
+						enemy.anims.play("scout_walk", true);
+					}
+				} else {
+					enemy.anims.play("enemy_walk", true);
+				}
 
 				// --- STATE SWITCH ---
 				if (distToPlayer < enemy.detectRange) {
