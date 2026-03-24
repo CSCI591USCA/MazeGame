@@ -1,4 +1,3 @@
-
 // You can write more code here
 
 /* START OF COMPILED CODE */
@@ -14,6 +13,13 @@ export default class Level extends Phaser.Scene {
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
+
+		// storm effects
+		this.rainDrops = [];
+		this.rainGraphics = null;
+		this.lightningFlash = null;
+		this.lightningBolt = null;
+		this.lightningTimer = null;
 		/* END-USER-CTR-CODE */
 	}
 
@@ -375,6 +381,9 @@ export default class Level extends Phaser.Scene {
 
 		this.editorCreate();
 
+		// storm effects
+		this.createStormEffects();
+
 		//--- Forces all ground tiles to be solid ---
 		this.platforms = this.physics.add.staticGroup();
 
@@ -428,6 +437,7 @@ export default class Level extends Phaser.Scene {
 		});
 		this.scoreText.setScrollFactor(0);
 		this.scoreText.setStroke("#000000", 2);
+		this.scoreText.setDepth(1000);
 
 		//--- Timer HUD ---
 
@@ -449,6 +459,7 @@ export default class Level extends Phaser.Scene {
 			.setOrigin(1, 0); //anchor top right
 		this.timerText.setScrollFactor(0);
 		this.timerText.setStroke("#000000", 2);
+		this.timerText.setDepth(1000);
 
 		//every 1000 ms increase timer by 1 second
 		this.timerEvent = this.time.addEvent({
@@ -507,6 +518,7 @@ export default class Level extends Phaser.Scene {
 		);
 		this.diffDebugText.setScrollFactor(0);
 		this.diffDebugText.setStroke("#000000", 2);
+		this.diffDebugText.setDepth(1000);
 
 		//--- Door Animation ---
 		if (!this.anims.exists("door_open")) {
@@ -797,7 +809,9 @@ export default class Level extends Phaser.Scene {
 		});
 	}
 
-	update() {
+	update(time, delta) {
+
+		this.updateRain(time, delta);
 
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
@@ -972,7 +986,6 @@ export default class Level extends Phaser.Scene {
 						enemy.body.setVelocityY(-enemy.jumpPower);
 					}
 
-
 					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 				}
 
@@ -1035,6 +1048,7 @@ export default class Level extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		).setOrigin(0.5);
+		gameOverText.setDepth(1000);
 
 		//adds black outline to make it look bigger
 		gameOverText.setStroke("#000000", 6);
@@ -1196,10 +1210,10 @@ export default class Level extends Phaser.Scene {
 
 	//--- Player picks up key ---
 	/**
-	 * Handles the event when the player picks up a key.
-	 * If the player does not already have the key, it marks the key as collected,
-	 * removes it from the level, and displays a "Key + 1" message on screen.
-	 */
+		 * Handles the event when the player picks up a key.
+		 * If the player does not already have the key, it marks the key as collected,
+		 * removes it from the level, and displays a "Key + 1" message on screen.
+		 */
 	onPlayerPickupKey(player, key) {
 		if (this.hasKey) return;
 
@@ -1305,6 +1319,7 @@ export default class Level extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		).setOrigin(0.5);
+		levelCompleteText.setDepth(1000);
 
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
@@ -1390,9 +1405,9 @@ export default class Level extends Phaser.Scene {
 
 	//--- Mobile Controls: Joystick + Shoot Button ---
 	/**
-	 * Creates on-screen joystick and shoot button for mobile devices.
-	 * The joystick allows for player movement, while the shoot button enables shooting bullets.
-	 */
+		 * Creates on-screen joystick and shoot button for mobile devices.
+		 * The joystick allows for player movement, while the shoot button enables shooting bullets.
+		 */
 	createMobileControls() {
 		const width = this.scale.width;
 		const height = this.scale.height;
@@ -1553,8 +1568,8 @@ export default class Level extends Phaser.Scene {
 
 	//--- Reset Joystick ---
 	/**
-	 * Resets the joystick to its neutral position and clears directional flags.
-	 */
+		 * Resets the joystick to its neutral position and clears directional flags.
+		 */
 	resetJoystick() {
 
 		/**
@@ -1585,6 +1600,149 @@ export default class Level extends Phaser.Scene {
 		const sStr = seconds.toString().padStart(2, "0");
 
 		return mStr + ":" + sStr;
+	}
+
+	createStormEffects() {
+		const width = this.scale.width;
+		const height = this.scale.height;
+
+		this.rainGraphics = this.add.graphics();
+		this.rainGraphics.setDepth(20);
+
+		this.lightningBolt = this.add.graphics();
+		this.lightningBolt.setDepth(998);
+
+		this.lightningFlash = this.add.rectangle(width / 2, height / 2, width, height, 0xffffff, 1);
+		this.lightningFlash.setAlpha(0);
+		this.lightningFlash.setDepth(997);
+
+		this.rainDrops = [];
+
+		for (let i = 0; i < 180; i++) {
+			this.rainDrops.push({
+				x: Phaser.Math.Between(0, width),
+				y: Phaser.Math.Between(0, height),
+				length: Phaser.Math.Between(10, 22),
+				speed: Phaser.Math.Between(500, 900),
+				drift: Phaser.Math.Between(-30, -10)
+			});
+		}
+
+		this.scheduleLightning();
+	}
+
+	scheduleLightning() {
+		this.lightningTimer = this.time.delayedCall(4000, () => {
+			this.triggerLightning();
+			this.scheduleLightning();
+		});
+	}
+
+	triggerLightning() {
+		if (!this.lightningFlash || !this.lightningBolt) return;
+
+		const width = this.scale.width;
+		const height = this.scale.height;
+
+		this.lightningBolt.clear();
+
+		const startX = Phaser.Math.Between(width * 0.2, width * 0.8);
+		let x = startX;
+		let y = 0;
+
+		this.lightningBolt.lineStyle(5, 0xffffff, 1);
+		this.lightningBolt.beginPath();
+		this.lightningBolt.moveTo(x, y);
+
+		while (y < height * 0.65) {
+			x += Phaser.Math.Between(-30, 30);
+			y += Phaser.Math.Between(25, 55);
+			this.lightningBolt.lineTo(x, y);
+		}
+
+		this.lightningBolt.strokePath();
+
+		this.lightningFlash.setAlpha(0.55);
+
+		this.tweens.add({
+			targets: this.lightningFlash,
+			alpha: 0,
+			duration: 180,
+			ease: "Quad.easeOut"
+		});
+
+		this.time.delayedCall(120, () => {
+			if (this.lightningBolt) {
+				this.lightningBolt.clear();
+			}
+		});
+
+		this.time.delayedCall(220, () => {
+			if (!this.lightningFlash || !this.lightningBolt) return;
+
+			this.lightningBolt.clear();
+
+			let x2 = startX + Phaser.Math.Between(-20, 20);
+			let y2 = 0;
+
+			this.lightningBolt.lineStyle(3, 0xddeeff, 0.9);
+			this.lightningBolt.beginPath();
+			this.lightningBolt.moveTo(x2, y2);
+
+			while (y2 < height * 0.55) {
+				x2 += Phaser.Math.Between(-20, 20);
+				y2 += Phaser.Math.Between(20, 45);
+				this.lightningBolt.lineTo(x2, y2);
+			}
+
+			this.lightningBolt.strokePath();
+
+			this.lightningFlash.setAlpha(0.35);
+
+			this.tweens.add({
+				targets: this.lightningFlash,
+				alpha: 0,
+				duration: 120,
+				ease: "Quad.easeOut"
+			});
+
+			this.time.delayedCall(100, () => {
+				if (this.lightningBolt) {
+					this.lightningBolt.clear();
+				}
+			});
+		});
+	}
+
+	updateRain(time, delta) {
+		if (!this.rainGraphics) return;
+
+		const width = this.scale.width;
+		const height = this.scale.height;
+		const dt = delta / 1000;
+
+		this.rainGraphics.clear();
+		this.rainGraphics.lineStyle(1, 0xbfd7ff, 0.45);
+
+		for (let i = 0; i < this.rainDrops.length; i++) {
+			const drop = this.rainDrops[i];
+
+			drop.y += drop.speed * dt;
+			drop.x += drop.drift * dt;
+
+			if (drop.y > height + 30 || drop.x < -30) {
+				drop.x = Phaser.Math.Between(0, width);
+				drop.y = Phaser.Math.Between(-200, -20);
+				drop.length = Phaser.Math.Between(10, 22);
+				drop.speed = Phaser.Math.Between(500, 900);
+				drop.drift = Phaser.Math.Between(-30, -10);
+			}
+
+			this.rainGraphics.beginPath();
+			this.rainGraphics.moveTo(drop.x, drop.y);
+			this.rainGraphics.lineTo(drop.x + 4, drop.y + drop.length);
+			this.rainGraphics.strokePath();
+		}
 	}
 
 	/* END-USER-CODE */
