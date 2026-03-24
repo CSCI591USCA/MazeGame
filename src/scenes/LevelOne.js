@@ -793,7 +793,7 @@ export default class LevelOne extends Phaser.Scene {
 		//outline to make it look bigger
 		levelCompleteText.setStroke("#0f7a2b", 6);
 
-		//--- Adaptive Difficulty for level two ---
+		//--- Adaptive Difficulty ---
 		const endTime = this.elapsedTime;
 		const levelDuration = endTime - (this.levelStartTime || 0);
 		const deaths = this.deathsThisLevel || 0;

@@ -9,7 +9,24 @@
 export default class Preload extends Phaser.Scene {
 
 	constructor() {
-		super("Preload");
+		super({
+			key: "Preload",
+			pack: {
+				files: [
+					{ type: "image", key: "walk1", url: "assets/walkingright1.png" },
+					{ type: "image", key: "walk2", url: "assets/walkingright2.png" },
+					{ type: "image", key: "walk3", url: "assets/walkingright3.png" },
+					{ type: "image", key: "walk4", url: "assets/walkingright4.png" },
+
+					{ type: "image", key: "idle1", url: "assets/idlefront1.png" },
+					{ type: "image", key: "idle2", url: "assets/idlefront2.png" },
+					{ type: "image", key: "idle3", url: "assets/idlefront3.png" },
+					{ type: "image", key: "idle4", url: "assets/idlefront4.png" },
+					
+					{ type: "image", key: "menuBg", url: "assets/castlebg2.png" }
+				]
+			}
+		});
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -25,10 +42,9 @@ export default class Preload extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
-		// guapen
-		const guapen = this.add.image(505.0120544433594, 360, "guapen");
-		guapen.scaleX = 0.32715486817515643;
-		guapen.scaleY = 0.32715486817515643;
+		// animated player
+		const player = this.add.sprite(505.0120544433594, 360, "walk1");
+		player.setScale(3);
 
 		// progressBar
 		const progressBar = this.add.rectangle(553, 361, 256, 20);
@@ -48,12 +64,16 @@ export default class Preload extends Phaser.Scene {
 		loadingText.setStyle({ "color": "#e0e0e0", "fontFamily": "arial", "fontSize": "20px" });
 
 		this.progressBar = progressBar;
+		this.player = player;
 
 		this.events.emit("scene-awake");
 	}
 
 	/** @type {Phaser.GameObjects.Rectangle} */
 	progressBar;
+
+	/** @type {Phaser.GameObjects.Sprite} */
+	player;
 
 	/* START-USER-CODE */
 
@@ -68,6 +88,22 @@ export default class Preload extends Phaser.Scene {
 		//ADD MUSIC
 		this.load.audio("bgMusic", "assets/sexyback.mp3");
 
+		if (!this.anims.exists("player-walk")) {
+			this.anims.create({
+				key: "player-walk",
+				frames: [
+					{ key: "walk1" },
+					{ key: "walk2" },
+					{ key: "walk3" },
+					{ key: "walk4" }
+				],
+				frameRate: 8,
+				repeat: -1
+			});
+		}
+
+		this.player.play("player-walk");
+
 		const width =  this.progressBar.width;
 
 		this.load.on("progress", (progress) => {
@@ -78,7 +114,7 @@ export default class Preload extends Phaser.Scene {
 
 	create() {
 
-		this.scene.start("LevelOne");
+		this.scene.start("Menu");
 	}
 
 	/* END-USER-CODE */

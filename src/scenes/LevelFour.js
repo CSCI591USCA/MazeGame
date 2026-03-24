@@ -854,7 +854,7 @@ export default class LevelFour extends Phaser.Scene {
 		this.syncMovingPlatformVisuals();
 
 		//keep the key attached to the platform so it doesnt fall off
-		this.syncKeyToMovingPlatform();
+		//this.syncKeyToMovingPlatform();
 
 		const player = this.player;
 		const speed = 200;
@@ -1607,8 +1607,7 @@ export default class LevelFour extends Phaser.Scene {
 	}
 
 	syncKeyToMovingPlatform() {
-
-
+		
 	}
 
 	onPlayerHitMovingKeyPlatform(player, platform) {
