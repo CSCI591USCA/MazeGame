@@ -883,6 +883,8 @@ export default class LevelFive extends Phaser.Scene {
 
 			enemy.patrolDir = 1;
 			enemy.patrolSpeed = PATROL_SPEED;
+						enemy.detectRange = 180;
+			enemy.chaseSpeed = 140 * speedMult;
 			// =====================================
 			// ENEMY PERSONALITY SETTINGS
 			// =====================================
@@ -1069,6 +1071,7 @@ export default class LevelFive extends Phaser.Scene {
 		if (this.gameOver || this.levelComplete) {
 			return;
 		}
+		
 
 		const player = this.player;
 		const speed = 200;

@@ -785,7 +785,7 @@ export default class LevelSix extends Phaser.Scene {
 		if (this.enemy5) this.enemies.add(this.enemy5);
 		if (this.enemy6) this.enemies.add(this.enemy6);
 
-		const BASE_PATROL_SPEED = 70; //enemy speed
+		const BASE_PATROL_SPEED = 105; //enemy speed
 		const PATROL_RANGE = 96; //enemy patrol range
 
 		const speedMult = (this.playerDifficulty && this.playerDifficulty.speedMult) || 1;
@@ -804,10 +804,62 @@ export default class LevelSix extends Phaser.Scene {
 
 			enemy.patrolDir = 1;
 			enemy.patrolSpeed = PATROL_SPEED;
+			enemy.state = "PATROL";
+			enemy.detectRange = 180;
+			enemy.chaseSpeed = 140 * speedMult;
+			// =====================================
+			// ENEMY PERSONALITY SETTINGS
+			// =====================================
+
+			// top platform enemy
+			this.enemy1.canRandomTurn = true;
+			this.enemy1.turnChance = 0.003;
+
+			this.enemy1.canRandomJump = true;
+			this.enemy1.jumpChance = 0.004;
+			this.enemy1.jumpPower = 260;
+
+
+			// bottom right
+			this.enemy2.canRandomTurn = true;
+			this.enemy2.turnChance = 0.002;
+
+			this.enemy2.canRandomJump = false;
+
+
+			// bottom middle
+			this.enemy3.canRandomTurn = true;
+			this.enemy3.turnChance = 0.002;
+
+			this.enemy3.canRandomJump = false;
+
+
+			// small mid platform
+			this.enemy4.canRandomTurn = true;
+			this.enemy4.turnChance = 0.004;
+
+			this.enemy4.canRandomJump = true;
+			this.enemy4.jumpChance = 0.006;
+			this.enemy4.jumpPower = 260;
+
+			this.enemy5.canRandomTurn = true;
+			this.enemy5.turnChance = 0.005;
+
+			this.enemy5.canRandomJump = true;
+			this.enemy5.jumpChance = 0.007;
+			this.enemy5.jumpPower = 280;
+
+			this.enemy6.canRandomTurn = true;
+			this.enemy6.turnChance = 0.006;
+
+			this.enemy6.canRandomJump = true;
+			this.enemy6.jumpChance = 0.008;
+			this.enemy6.jumpPower = 300;
 
 			//start moving to the right
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 		})
+
 
 		// --- Bullet Group ---
 		/**
@@ -948,7 +1000,7 @@ export default class LevelSix extends Phaser.Scene {
 		});
 	}
 
-	update(time, delta){
+	update(time, delta) {
 
 		this.updateRain(time, delta);
 
@@ -984,7 +1036,7 @@ export default class LevelSix extends Phaser.Scene {
 		let hDir = 0;
 		if (leftPressed) {
 			hDir = -1;
-		} else if (rightPressed){
+		} else if (rightPressed) {
 			hDir = 1;
 		}
 
@@ -1025,7 +1077,7 @@ export default class LevelSix extends Phaser.Scene {
 		 * 2) start tracking jump statistics including direction changes in air.
 		 */
 		if (upPressed && player.body.blocked.down) {
-			
+
 			// Waiting Time:
 			//how long did the player stand on the platform before this jump.
 			if (typeof this.lastLandTime === "number") {
@@ -1072,13 +1124,16 @@ export default class LevelSix extends Phaser.Scene {
 		/**
 		 * Updates enemy patrol behavior, making them move between defined limits.
 		 */
+
 		if (this.enemies) {
 			this.enemies.children.iterate(enemy => {
 				if (!enemy || !enemy.body) return;
 
-				enemy.play("enemy_walk", true);
-
-				//enemy reaches left limit and goes right
+				const player = this.player;
+				const distToPlayer = Phaser.Math.Distance.Between(
+					enemy.x, enemy.y,
+					player.x, player.y
+				);
 				if (enemy.x <= enemy.minX) {
 					enemy.patrolDir = 1;
 					if (enemy.setFlipX) enemy.setFlipX(false);	//enemy faces right
@@ -1089,9 +1144,62 @@ export default class LevelSix extends Phaser.Scene {
 					if (enemy.setFlipX) enemy.setFlipX(true); //face left
 				}
 
-				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				//--- Pick Animation based on enemy type ---
+				const onGround = enemy.body.blocked.down;
+
+				if (enemy.enemyType === "scout") {
+					if (!onGround && Math.abs(enemy.body.velocity.y) > 5) {
+						enemy.anims.play("scout_jump", true);
+					} else {
+						enemy.anims.play("scout_walk", true);
+					}
+				} else {
+					enemy.anims.play("enemy_walk", true);
+				}
+
+				// --- STATE SWITCH ---
+				if (distToPlayer < enemy.detectRange) {
+					enemy.state = "CHASE";
+				} else if (enemy.state === "CHASE") {
+					enemy.state = "PATROL";
+				}
+
+				// --- PATROL STATE ---
+				if (enemy.state === "PATROL") {
+
+					if (enemy.x <= enemy.minX) {
+						enemy.patrolDir = 1;
+						enemy.setFlipX(false);
+					}
+					else if (enemy.x >= enemy.maxX) {
+						enemy.patrolDir = -1;
+						enemy.setFlipX(true);
+					}
+					if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
+						enemy.patrolDir *= -1;
+						enemy.setFlipX(enemy.patrolDir < 0);
+					}
+					if (
+						enemy.canRandomJump &&
+						enemy.body.blocked.down &&
+						Math.random() < enemy.jumpChance
+					) {
+						enemy.body.setVelocityY(-enemy.jumpPower);
+					}
+
+					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				}
+
+				// --- CHASE STATE ---
+				else if (enemy.state === "CHASE") {
+					const dir = player.x < enemy.x ? -1 : 1;
+
+					enemy.setFlipX(dir < 0);
+					enemy.body.setVelocityX(enemy.chaseSpeed * dir);
+				}
 			});
 		}
+
 	}
 
 	//--- Enemy hits player Game Over ---
@@ -1283,7 +1391,7 @@ export default class LevelSix extends Phaser.Scene {
 	 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
-			bullet.destroy() ;
+			bullet.destroy();
 		}
 		if (enemy && enemy.destroy) {
 			enemy.destroy();
@@ -1331,8 +1439,8 @@ export default class LevelSix extends Phaser.Scene {
 				fontStyle: "bold"
 			}
 		)
-		.setOrigin(0.5)
-		.setDepth(999);
+			.setOrigin(0.5)
+			.setDepth(999);
 
 		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
@@ -1445,7 +1553,7 @@ export default class LevelSix extends Phaser.Scene {
 				? this.totalDirectionSwitches / this.totalJumps
 				: null;
 
-		const avgWaitTime = 
+		const avgWaitTime =
 			this.waitSamples > 0
 				? this.totalWaitTime / this.waitSamples
 				: null;
@@ -1518,7 +1626,7 @@ export default class LevelSix extends Phaser.Scene {
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */
-		this.input.on("pointerdown", (pointer) => {		
+		this.input.on("pointerdown", (pointer) => {
 			if (this.joystickPointerId !== null) {
 				return;
 			}
