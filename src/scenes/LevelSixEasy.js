@@ -1423,14 +1423,14 @@ export default class LevelSixEasy extends Phaser.Scene {
 			"LEVEL 6 COMPLETE",
 			{
 				fontSize: "64px",
-				color: "0f7a2b",
+				color: "#0f7a2b",
 				fontStyle: "bold"
 			}
 		).setOrigin(0.5);
 		levelCompleteText.setDepth(1000);
 
 		//outline to make it look bigger
-		levelCompleteText.setStroke("#0f7a2b", 6);
+		levelCompleteText.setStroke("#000000", 6);
 
 		//--- Adaptive Difficulty: updates difficulty for next level ---
 		const endTime = this.elapsedTime;
@@ -1494,6 +1494,21 @@ export default class LevelSixEasy extends Phaser.Scene {
 
 		//save updated difficulty so the next level can use it
 		this.registry.set("playerDifficulty", diff);
+
+		//--- Choose the next level based on difficulty ---
+		let nextSceneKey;
+		if (diff.speedMult <= 1.0) {
+			//players that were slower/struggled/more cautious = easier path.
+			nextSceneKey = "LevelSevenEasy";
+		} else {
+			//players who were quick and did not struggle = harder path
+			nextSceneKey = "LevelSeven";
+		}
+
+		//after a short delay this starts the next level 
+		this.time.delayedCall(1500, () => {
+			this.scene.start(nextSceneKey);
+		});
 	}
 
 	//--- Mobile Controls: Joystick + Shoot Button ---

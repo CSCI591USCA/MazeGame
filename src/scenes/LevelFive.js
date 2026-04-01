@@ -1542,14 +1542,14 @@ export default class LevelFive extends Phaser.Scene {
 			"LEVEL 5 COMPLETE",
 			{
 				fontSize: "64px",
-				color: "0f7a2b",
+				color: "#0f7a2b",
 				fontStyle: "bold"
 			}
 		).setOrigin(0.5);
 		levelCompleteText.setDepth(1000);
 
 		//outline to make it look bigger
-		levelCompleteText.setStroke("#0f7a2b", 6);
+		levelCompleteText.setStroke("#000000", 6);
 
 		//--- Adaptive Difficulty: updates difficulty for next level ---
 		const endTime = this.elapsedTime;

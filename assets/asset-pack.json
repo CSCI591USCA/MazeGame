@@ -165,6 +165,26 @@
                 "key": "enemywalkingright4"
             },
             {
+                "url": "assets/Flame-1.png",
+                "type": "image",
+                "key": "Flame-1"
+            },
+            {
+                "url": "assets/Flame-2.png",
+                "type": "image",
+                "key": "Flame-2"
+            },
+            {
+                "url": "assets/Flame-3.png",
+                "type": "image",
+                "key": "Flame-3"
+            },
+            {
+                "url": "assets/Flame-4.png",
+                "type": "image",
+                "key": "Flame-4"
+            },
+            {
                 "url": "assets/idlefront1.png",
                 "type": "image",
                 "key": "idlefront1"

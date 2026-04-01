@@ -9,6 +9,8 @@ import LevelFiveEasy from "./scenes/LevelFiveEasy.js";
 import LevelFive from "./scenes/LevelFive.js";
 import LevelSixEasy from "./scenes/LevelSixEasy.js";
 import LevelSix from "./scenes/LevelSix.js";
+import LevelSevenEasy from "./scenes/LevelSevenEasy.js";
+import LevelSeven from "./scenes/LevelSeven.js";
 
 window.addEventListener('load', function () {
 
@@ -43,6 +45,8 @@ window.addEventListener('load', function () {
 	game.scene.add("LevelFive", LevelFive);
 	game.scene.add("LevelSixEasy", LevelSixEasy);
 	game.scene.add("LevelSix", LevelSix);
+	game.scene.add("LevelSevenEasy", LevelSevenEasy);
+	game.scene.add("LevelSeven", LevelSeven);
 	game.scene.add("Boot", Boot, true);
 });
 
