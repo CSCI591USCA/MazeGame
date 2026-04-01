@@ -460,11 +460,48 @@ export default class LevelFour extends Phaser.Scene {
 		const player = this.player;
 
 		// --- Background Music ---
-		this.bgMusic = this.sound.add("bgMusic", {
-			loop: true,
-			volume: 0.5
-		});
-		this.bgMusic.play();
+// --- Background Music (keep playing on retry) ---
+const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
+
+// create storage once
+if (!this.game.levelSongs) {
+	this.game.levelSongs = {};
+}
+
+// use a level id; if you only have one Level scene, scene key is fine
+const levelId = this.scene.key;
+
+// assign this level a random song once
+if (!this.game.levelSongs[levelId]) {
+	this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
+}
+
+const chosenSong = this.game.levelSongs[levelId];
+
+// check if something is already playing
+let currentMusic = this.sound.get(chosenSong);
+
+// only start music if that level's song is not already playing
+if (!currentMusic || !currentMusic.isPlaying) {
+	// stop previous track only if it is a different level's song
+	if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
+		const oldMusic = this.sound.get(this.game.currentMusicKey);
+		if (oldMusic && oldMusic.isPlaying) {
+			oldMusic.stop();
+		}
+	}
+
+	this.bgMusic = this.sound.add(chosenSong, {
+		loop: true,
+		volume: 0.5
+	});
+
+	this.bgMusic.play();
+	this.game.currentMusicKey = chosenSong;
+} else {
+	// reuse the already-playing music
+	this.bgMusic = currentMusic;
+}
 
 		//--- game state ---
 		this.gameOver = false;

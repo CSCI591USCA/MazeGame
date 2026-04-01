@@ -1,4 +1,3 @@
-
 // You can write more code here
 
 /* START OF COMPILED CODE */
@@ -82,11 +81,26 @@ export default class Preload extends Phaser.Scene {
 	preload() {
 
 		this.editorCreate();
-
 		this.editorPreload();
 
-		//ADD MUSIC
-		this.load.audio("bgMusic", "assets/sexyback.mp3");
+		// ADD MUSIC
+		// song1 is your first track, but the music variable in your level scene
+		// can still be called this.bgMusic
+		this.load.audio("Track 1", "assets/Track 1.mp3");
+		this.load.audio("Track 2", "assets/Track 2.mp3");
+		this.load.audio("Track 3", "assets/Track 3.mp3");
+		this.load.audio("Track 4", "assets/Track 4.mp3");
+		this.load.audio("Track 5", "assets/Track 5.mp3");
+		this.load.audio("Track 6", "assets/Track 6.mp3");
+
+		// optional debug logs for loading
+		this.load.on("loaderror", (file) => {
+			console.error("FAILED TO LOAD:", file.src);
+		});
+
+		this.load.on("filecomplete", (key) => {
+			console.log("LOADED:", key);
+		});
 
 		if (!this.anims.exists("player-walk")) {
 			this.anims.create({
@@ -104,7 +118,7 @@ export default class Preload extends Phaser.Scene {
 
 		this.player.play("player-walk");
 
-		const width =  this.progressBar.width;
+		const width = this.progressBar.width;
 
 		this.load.on("progress", (progress) => {
 
@@ -113,7 +127,6 @@ export default class Preload extends Phaser.Scene {
 	}
 
 	create() {
-
 		this.scene.start("Menu");
 	}
 
