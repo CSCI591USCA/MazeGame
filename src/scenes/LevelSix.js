@@ -612,48 +612,48 @@ export default class LevelSix extends Phaser.Scene {
 		const player = this.player;
 
 		// --- Background Music ---
-// --- Background Music (keep playing on retry) ---
-const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
+		// --- Background Music (keep playing on retry) ---
+		const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
 
-// create storage once
-if (!this.game.levelSongs) {
-	this.game.levelSongs = {};
-}
-
-// use a level id; if you only have one Level scene, scene key is fine
-const levelId = this.scene.key;
-
-// assign this level a random song once
-if (!this.game.levelSongs[levelId]) {
-	this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
-}
-
-const chosenSong = this.game.levelSongs[levelId];
-
-// check if something is already playing
-let currentMusic = this.sound.get(chosenSong);
-
-// only start music if that level's song is not already playing
-if (!currentMusic || !currentMusic.isPlaying) {
-	// stop previous track only if it is a different level's song
-	if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
-		const oldMusic = this.sound.get(this.game.currentMusicKey);
-		if (oldMusic && oldMusic.isPlaying) {
-			oldMusic.stop();
+		// create storage once
+		if (!this.game.levelSongs) {
+			this.game.levelSongs = {};
 		}
-	}
 
-	this.bgMusic = this.sound.add(chosenSong, {
-		loop: true,
-		volume: 0.5
-	});
+		// use a level id; if you only have one Level scene, scene key is fine
+		const levelId = this.scene.key;
 
-	this.bgMusic.play();
-	this.game.currentMusicKey = chosenSong;
-} else {
-	// reuse the already-playing music
-	this.bgMusic = currentMusic;
-}
+		// assign this level a random song once
+		if (!this.game.levelSongs[levelId]) {
+			this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
+		}
+
+		const chosenSong = this.game.levelSongs[levelId];
+
+		// check if something is already playing
+		let currentMusic = this.sound.get(chosenSong);
+
+		// only start music if that level's song is not already playing
+		if (!currentMusic || !currentMusic.isPlaying) {
+			// stop previous track only if it is a different level's song
+			if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
+				const oldMusic = this.sound.get(this.game.currentMusicKey);
+				if (oldMusic && oldMusic.isPlaying) {
+					oldMusic.stop();
+				}
+			}
+
+			this.bgMusic = this.sound.add(chosenSong, {
+				loop: true,
+				volume: 0.5
+			});
+
+			this.bgMusic.play();
+			this.game.currentMusicKey = chosenSong;
+		} else {
+			// reuse the already-playing music
+			this.bgMusic = currentMusic;
+		}
 
 		//--- game state ---
 		this.gameOver = false;
@@ -822,11 +822,10 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		if (this.enemy5) this.enemies.add(this.enemy5);
 		if (this.enemy6) this.enemies.add(this.enemy6);
 
-		const BASE_PATROL_SPEED = 70; //enemy speed
-		const PATROL_RANGE = 96; //enemy patrol range
+		const BASE_PATROL_SPEED = 70;
+		const PATROL_RANGE = 96;
 
-		const speedMult = (this.playerDifficulty && this.playerDifficulty.speedMult) || 1;
-		const PATROL_SPEED = BASE_PATROL_SPEED * speedMult;
+		const speedMult = (this.playerDifficulty?.speedMult || 1);
 
 		this.enemies.children.iterate(enemy => {
 			if (!enemy || !enemy.body) return;
@@ -834,18 +833,38 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			enemy.body.setCollideWorldBounds(true);
 			enemy.body.setBounce(0, 0);
 
-			//starting point where enemies will patrol
+			// -------------------------
+			// PATROL BOUNDS (same system as reference)
+			// -------------------------
 			enemy.startX = enemy.x;
-			enemy.minX = enemy.startX - PATROL_RANGE;
-			enemy.maxX = enemy.startX + PATROL_RANGE;
+			enemy.patrolRange = enemy.patrolRange || PATROL_RANGE;
 
+			enemy.minX = enemy.startX - enemy.patrolRange;
+			enemy.maxX = enemy.startX + enemy.patrolRange;
+
+			// -------------------------
+			// MOVEMENT STATE (base system)
+			// -------------------------
 			enemy.patrolDir = 1;
-			enemy.patrolSpeed = PATROL_SPEED;
+			enemy.patrolSpeed = BASE_PATROL_SPEED * speedMult;
 
-			//start moving to the right
+			// -------------------------
+			// AI EXTENSION (safe additions)
+			// -------------------------
+			enemy.state = "PATROL";
+			enemy.detectRange = 180;
+			enemy.chaseSpeed = 110 * speedMult;
+
+			// optional behaviors (safe defaults)
+			enemy.canRandomTurn = false;
+			enemy.turnChance = .5;
+
+			enemy.canRandomJump = false;
+			enemy.jumpChance = .8;
+			enemy.jumpPower = 200;
+
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
-		})
-
+		});
 		// --- Bullet Group ---
 		/**
 		 * Creates a group for bullets with a maximum size and no gravity.
@@ -985,7 +1004,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		});
 	}
 
-	update(time, delta){
+	update(time, delta) {
 
 		this.updateRain(time, delta);
 
@@ -1021,7 +1040,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		let hDir = 0;
 		if (leftPressed) {
 			hDir = -1;
-		} else if (rightPressed){
+		} else if (rightPressed) {
 			hDir = 1;
 		}
 
@@ -1062,7 +1081,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		 * 2) start tracking jump statistics including direction changes in air.
 		 */
 		if (upPressed && player.body.blocked.down) {
-			
+
 			// Waiting Time:
 			//how long did the player stand on the platform before this jump.
 			if (typeof this.lastLandTime === "number") {
@@ -1113,20 +1132,78 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			this.enemies.children.iterate(enemy => {
 				if (!enemy || !enemy.body) return;
 
+				const player = this.player;
+
+				const distToPlayer = Phaser.Math.Distance.Between(
+					enemy.x, enemy.y,
+					player.x, player.y
+				);
+
+				const onGround = enemy.body.blocked.down;
+
+				// -------------------------
+				// ANIMATION (unchanged style)
+				// -------------------------
 				enemy.play("enemy_walk", true);
 
-				//enemy reaches left limit and goes right
-				if (enemy.x <= enemy.minX) {
-					enemy.patrolDir = 1;
-					if (enemy.setFlipX) enemy.setFlipX(false);	//enemy faces right
-				}
-				//reach right limit and go left
-				else if (enemy.x >= enemy.maxX) {
-					enemy.patrolDir = -1;
-					if (enemy.setFlipX) enemy.setFlipX(true); //face left
+				// -------------------------
+				// STATE SWITCH
+				// -------------------------
+				if (distToPlayer < enemy.detectRange) {
+					enemy.state = "CHASE";
+				} else if (enemy.state === "CHASE") {
+					enemy.state = "PATROL";
 				}
 
-				enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				// =========================
+				// PATROL STATE (your original logic preserved)
+				// =========================
+				if (enemy.state === "PATROL") {
+
+					// left bound
+					if (enemy.x <= enemy.minX) {
+						enemy.patrolDir = 1;
+						if (enemy.setFlipX) enemy.setFlipX(false);
+					}
+					// right bound
+					else if (enemy.x >= enemy.maxX) {
+						enemy.patrolDir = -1;
+						if (enemy.setFlipX) enemy.setFlipX(true);
+					}
+
+					// OPTIONAL: random turn (disabled unless you enable per enemy later)
+					if (enemy.canRandomTurn && Math.random() < enemy.turnChance) {
+						enemy.patrolDir *= -1;
+						if (enemy.setFlipX) enemy.setFlipX(enemy.patrolDir < 0);
+					}
+
+					// OPTIONAL: random jump (disabled by default)
+					if (
+						enemy.canRandomJump &&
+						onGround &&
+						Math.random() < enemy.jumpChance
+					) {
+						enemy.body.setVelocityY(-enemy.jumpPower);
+					}
+
+					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
+				}
+
+				// =========================
+				// CHASE STATE (NEW BUT CLEAN)
+				// =========================
+				else if (enemy.state === "CHASE") {
+
+					const dir = player.x < enemy.x ? -1 : 1;
+
+					enemy.patrolDir = dir;
+
+					if (enemy.setFlipX) {
+						enemy.setFlipX(dir < 0);
+					}
+
+					enemy.body.setVelocityX(enemy.chaseSpeed * dir);
+				}
 			});
 		}
 	}
@@ -1320,7 +1397,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 	 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
-			bullet.destroy() ;
+			bullet.destroy();
 		}
 		if (enemy && enemy.destroy) {
 			enemy.destroy();
@@ -1368,8 +1445,8 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				fontStyle: "bold"
 			}
 		)
-		.setOrigin(0.5)
-		.setDepth(999);
+			.setOrigin(0.5)
+			.setDepth(999);
 
 		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
@@ -1482,7 +1559,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				? this.totalDirectionSwitches / this.totalJumps
 				: null;
 
-		const avgWaitTime = 
+		const avgWaitTime =
 			this.waitSamples > 0
 				? this.totalWaitTime / this.waitSamples
 				: null;
@@ -1570,7 +1647,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		/**
 		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
 		 */
-		this.input.on("pointerdown", (pointer) => {		
+		this.input.on("pointerdown", (pointer) => {
 			if (this.joystickPointerId !== null) {
 				return;
 			}
