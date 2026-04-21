@@ -19,6 +19,16 @@ export default class LevelSix extends Phaser.Scene {
 		this.lightningFlash = null;
 		this.lightningBolt = null;
 		this.lightningTimer = null;
+
+		// help button popup UI
+		this.helpOpen = false;
+		this.helpButton = null;
+		this.helpButtonText = null;
+		this.helpOverlay = null;
+		this.helpPanel = null;
+		this.helpTitleText = null;
+		this.helpInstructionsText = null;
+		this.helpCloseText = null;
 		/* END-USER-CTR-CODE */
 	}
 
@@ -957,6 +967,8 @@ export default class LevelSix extends Phaser.Scene {
 			this.createMobileControls();
 		}
 
+		this.createHelpUI();
+
 		//--- Animations ---
 		/**
 		 * Creates animations for the player and enemies.
@@ -1010,6 +1022,10 @@ export default class LevelSix extends Phaser.Scene {
 
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
+			return;
+		}
+
+		if (this.helpOpen) {
 			return;
 		}
 
@@ -1318,9 +1334,9 @@ export default class LevelSix extends Phaser.Scene {
 
 	//--- Shooting Logic ---
 	/**
-	 * Shoots a bullet from the player's position in the direction they are facing.
-	 * The bullet is spawned slightly in front of the player and travels across the screen.
-	 */
+		 * Shoots a bullet from the player's position in the direction they are facing.
+		 * The bullet is spawned slightly in front of the player and travels across the screen.
+		 */
 	shootBullet() {
 
 		const player = this.player;
@@ -1361,12 +1377,12 @@ export default class LevelSix extends Phaser.Scene {
 
 	//--- Player lands on platform ---
 	/**
-	 * called when the player collides with a platform.
-	 * 1) Accuracy: measures how far the player.x landing position is from the center of the platform
-	 * landing close to the center means safe accurate jumps were made
-	 * landing near edges means riskier less accurate jumps.
-	 * 
-	 */
+		 * called when the player collides with a platform.
+		 * 1) Accuracy: measures how far the player.x landing position is from the center of the platform
+		 * landing close to the center means safe accurate jumps were made
+		 * landing near edges means riskier less accurate jumps.
+		 * 
+		 */
 	onPlayerLand(player, platform) {
 		//if player was not in an airborne jump it tracks and skips it
 		if (!this.isAirborne) {
@@ -1391,10 +1407,10 @@ export default class LevelSix extends Phaser.Scene {
 
 	//--- Bullet hits enemy ---
 	/**
-	 * Handles the event when a bullet hits an enemy.
-	 * If the bullet and enemy exist, it destroys both,
-	 * adds points to the score, and updates the score text.
-	 */
+		 * Handles the event when a bullet hits an enemy.
+		 * If the bullet and enemy exist, it destroys both,
+		 * adds points to the score, and updates the score text.
+		 */
 	onBulletHitEnemy(bullet, enemy) {
 		if (bullet && bullet.destroy) {
 			bullet.destroy();
@@ -1417,10 +1433,10 @@ export default class LevelSix extends Phaser.Scene {
 
 	//--- Player picks up key ---
 	/**
-	 * Handles the event when the player picks up a key.
-	 * If the player does not already have the key, it marks the key as collected,
-	 * removes it from the level, and displays a "Key + 1" message on screen.
-	 */
+		 * Handles the event when the player picks up a key.
+		 * If the player does not already have the key, it marks the key as collected,
+		 * removes it from the level, and displays a "Key + 1" message on screen.
+		 */
 	onPlayerPickupKey(player, key) {
 		if (this.hasKey) return;
 
@@ -1485,11 +1501,11 @@ export default class LevelSix extends Phaser.Scene {
 
 	//--- Player reaches door ---
 	/**
-	 * Handles the event when the player reaches the door.
-	 * If the player has the key, it marks the level as complete,
-	 * stops the background music, pauses the game physics,
-	 * and displays a "LEVEL COMPLETE" message.
-	 */
+		 * Handles the event when the player reaches the door.
+		 * If the player has the key, it marks the level as complete,
+		 * stops the background music, pauses the game physics,
+		 * and displays a "LEVEL COMPLETE" message.
+		 */
 	onPlayerReachDoor(player, door) {
 		if (!this.hasKey || this.levelComplete || this.gameOver) {
 			return;
@@ -1610,11 +1626,157 @@ export default class LevelSix extends Phaser.Scene {
 		});
 	}
 
+	//------ Help Button + Popup UI --------
+	createHelpUI() {
+		const { width, height } = this.scale;
+
+		this.helpButton = this.add.rectangle(width - 90, 78, 120, 44, 0x111111, 0.8);
+		this.helpButton.setStrokeStyle(2, 0xffffff, 1);
+		this.helpButton.setScrollFactor(0);
+		this.helpButton.setDepth(2000);
+		this.helpButton.setInteractive({ useHandCursor: true });
+
+		this.helpButtonText = this.add.text(width - 90, 78, "Help", {
+			fontFamily: "Chiller",
+			fontSize: "28px",
+			color: "#ffffff"
+		});
+		this.helpButtonText.setOrigin(0.5);
+		this.helpButtonText.setScrollFactor(0);
+		this.helpButtonText.setDepth(2001);
+		this.helpButtonText.setInteractive({ useHandCursor: true });
+
+		this.helpOverlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.6);
+		this.helpOverlay.setScrollFactor(0);
+		this.helpOverlay.setDepth(2100);
+		this.helpOverlay.setVisible(false);
+
+		this.helpPanel = this.add.rectangle(width / 2, height / 2, 920, 620, 0x1a1a1a, 0.95);
+		this.helpPanel.setStrokeStyle(4, 0xffffff, 1);
+		this.helpPanel.setScrollFactor(0);
+		this.helpPanel.setDepth(2101);
+		this.helpPanel.setVisible(false);
+
+		this.helpTitleText = this.add.text(width / 2, height / 2 - 255, "How to Play", {
+			fontFamily: "Chiller",
+			fontSize: "42px",
+			color: "#ffffff"
+		});
+		this.helpTitleText.setOrigin(0.5);
+		this.helpTitleText.setScrollFactor(0);
+		this.helpTitleText.setDepth(2102);
+		this.helpTitleText.setVisible(false);
+
+		this.helpInstructionsText = this.add.text(
+			width / 2 - 390,
+			height / 2 - 205,
+			"Controls For Desktop:\n" +
+			"• Arrow Keys or WASD: Move player around the maze\n" +
+			"• SPACE: Shoot enemies\n" +
+			"• K: Open the door after acquiring the key\n\n" +
+			"Controls For Mobile:\n" +
+			"• Joystick: Move player around the maze\n" +
+			"• Red Button: Shoot enemies\n" +
+			"• Green Button: Interact / open door after acquiring the key\n\n" +
+			"Objective:\n" +
+			"• Move through the maze\n" +
+			"• Avoid enemies and obstacles\n" +
+			"• Grab the key\n" +
+			"• Escape through the door\n\n" +
+			(this.isMobile
+				? "Tap CLOSE to resume the game."
+				: "Click CLOSE to resume the game."),
+			{
+				fontFamily: "Chiller",
+				fontSize: "18px",
+				color: "#d4b100",
+				align: "left",
+				wordWrap: { width: 780 },
+				lineSpacing: 4
+			}
+		);
+		this.helpInstructionsText.setScrollFactor(0);
+		this.helpInstructionsText.setDepth(2102);
+		this.helpInstructionsText.setVisible(false);
+
+		this.helpCloseText = this.add.text(width / 2, height / 2 + 245, "CLOSE", {
+			fontFamily: "Chiller",
+			fontSize: "30px",
+			color: "#ffff00"
+		});
+		this.helpCloseText.setOrigin(0.5);
+		this.helpCloseText.setScrollFactor(0);
+		this.helpCloseText.setDepth(2102);
+		this.helpCloseText.setVisible(false);
+		this.helpCloseText.setInteractive({ useHandCursor: true });
+
+		const openHelpHandler = () => {
+			if (!this.helpOpen && !this.gameOver && !this.levelComplete) {
+				this.openHelpPopup();
+			}
+		};
+
+		this.helpButton.on("pointerdown", openHelpHandler);
+		this.helpButtonText.on("pointerdown", openHelpHandler);
+
+		this.helpCloseText.on("pointerdown", () => {
+			if (this.helpOpen) {
+				this.closeHelpPopup();
+			}
+		});
+	}
+
+	openHelpPopup() {
+		if (this.helpOpen) return;
+
+		this.helpOpen = true;
+
+		this.physics.pause();
+
+		if (this.timerEvent) {
+			this.timerEvent.paused = true;
+		}
+
+		if (this.player && this.player.body) {
+			this.player.body.setVelocity(0, 0);
+		}
+
+		if (this.player && this.player.anims) {
+			this.player.anims.stop();
+		}
+
+		this.helpOverlay.setVisible(true);
+		this.helpPanel.setVisible(true);
+		this.helpTitleText.setVisible(true);
+		this.helpInstructionsText.setVisible(true);
+		this.helpCloseText.setVisible(true);
+	}
+
+	closeHelpPopup() {
+		if (!this.helpOpen) return;
+
+		this.helpOpen = false;
+
+		this.helpOverlay.setVisible(false);
+		this.helpPanel.setVisible(false);
+		this.helpTitleText.setVisible(false);
+		this.helpInstructionsText.setVisible(false);
+		this.helpCloseText.setVisible(false);
+
+		if (!this.gameOver && !this.levelComplete) {
+			this.physics.resume();
+
+			if (this.timerEvent) {
+				this.timerEvent.paused = false;
+			}
+		}
+	}
+
 	//--- Mobile Controls: Joystick + Shoot Button ---
 	/**
-	 * Creates on-screen joystick and shoot button for mobile devices.
-	 * The joystick allows for player movement, while the shoot button enables shooting bullets.
-	 */
+		 * Creates on-screen joystick and shoot button for mobile devices.
+		 * The joystick allows for player movement, while the shoot button enables shooting bullets.
+		 */
 	createMobileControls() {
 		const width = this.scale.width;
 		const height = this.scale.height;
@@ -1653,7 +1815,7 @@ export default class LevelSix extends Phaser.Scene {
 			}
 
 			if (pointer.x > width / 2) {
-				return
+				return;
 			}
 
 			this.joystickPointerId = pointer.id;
@@ -1692,7 +1854,7 @@ export default class LevelSix extends Phaser.Scene {
 		 * If the shoot button is pressed, calls the shootBullet method.
 		 */
 		shoot.on("pointerdown", () => {
-			if (!this.gameOver && !this.levelComplete) {
+			if (!this.gameOver && !this.levelComplete && !this.helpOpen) {
 				this.shootBullet();
 			}
 		});
@@ -1716,7 +1878,7 @@ export default class LevelSix extends Phaser.Scene {
 		 * if the interact button is pressed, player tries and opens door
 		 */
 		interact.on("pointerdown", () => {
-			if (!this.gameOver && !this.levelComplete) {
+			if (!this.gameOver && !this.levelComplete && !this.helpOpen) {
 				this.tryOpenDoor();
 			}
 		});
@@ -1775,8 +1937,8 @@ export default class LevelSix extends Phaser.Scene {
 
 	//--- Reset Joystick ---
 	/**
-	 * Resets the joystick to its neutral position and clears directional flags.
-	 */
+		 * Resets the joystick to its neutral position and clears directional flags.
+		 */
 	resetJoystick() {
 
 		/**

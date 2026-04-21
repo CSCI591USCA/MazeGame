@@ -19,6 +19,16 @@ export default class LevelOne extends Phaser.Scene {
 		this.lightningFlash = null;
 		this.lightningBolt = null;
 		this.lightningTimer = null;
+
+		// help button popup UI
+		this.helpOpen = false;
+		this.helpButton = null;
+		this.helpButtonText = null;
+		this.helpOverlay = null;
+		this.helpPanel = null;
+		this.helpTitleText = null;
+		this.helpInstructionsText = null;
+		this.helpCloseText = null;
 		/* END-USER-CTR-CODE */
 	}
 
@@ -219,48 +229,39 @@ export default class LevelOne extends Phaser.Scene {
 		this.createStormEffects();
 
 		// --- Background Music ---
-// --- Background Music (keep playing on retry) ---
-const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
+		const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
 
-// create storage once
-if (!this.game.levelSongs) {
-	this.game.levelSongs = {};
-}
-
-// use a level id; if you only have one Level scene, scene key is fine
-const levelId = this.scene.key;
-
-// assign this level a random song once
-if (!this.game.levelSongs[levelId]) {
-	this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
-}
-
-const chosenSong = this.game.levelSongs[levelId];
-
-// check if something is already playing
-let currentMusic = this.sound.get(chosenSong);
-
-// only start music if that level's song is not already playing
-if (!currentMusic || !currentMusic.isPlaying) {
-	// stop previous track only if it is a different level's song
-	if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
-		const oldMusic = this.sound.get(this.game.currentMusicKey);
-		if (oldMusic && oldMusic.isPlaying) {
-			oldMusic.stop();
+		if (!this.game.levelSongs) {
+			this.game.levelSongs = {};
 		}
-	}
 
-	this.bgMusic = this.sound.add(chosenSong, {
-		loop: true,
-		volume: 0.5
-	});
+		const levelId = this.scene.key;
 
-	this.bgMusic.play();
-	this.game.currentMusicKey = chosenSong;
-} else {
-	// reuse the already-playing music
-	this.bgMusic = currentMusic;
-}
+		if (!this.game.levelSongs[levelId]) {
+			this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
+		}
+
+		const chosenSong = this.game.levelSongs[levelId];
+		let currentMusic = this.sound.get(chosenSong);
+
+		if (!currentMusic || !currentMusic.isPlaying) {
+			if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
+				const oldMusic = this.sound.get(this.game.currentMusicKey);
+				if (oldMusic && oldMusic.isPlaying) {
+					oldMusic.stop();
+				}
+			}
+
+			this.bgMusic = this.sound.add(chosenSong, {
+				loop: true,
+				volume: 0.5
+			});
+
+			this.bgMusic.play();
+			this.game.currentMusicKey = chosenSong;
+		} else {
+			this.bgMusic = currentMusic;
+		}
 
 		//-- Game State --
 		this.gameOver = false;
@@ -278,11 +279,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		}
 
 		//--- key and door setup ---
-		/**
-		 * Configures the key and door physics.
-		 * The key is immovable and does not fall due to gravity.
-		 * The door is a static object that the player can interact with.
-		 */
 		const key = this.key;
 		const door = this.door;
 
@@ -297,13 +293,10 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		}
 
 		//--- Score HUD ---
-
-		//--- Initializes global score only once ---
 		if (this.registry.get("score") === undefined) {
 			this.registry.set("score", 0);
 		}
 
-		// read the saved score from the registry
 		this.score = this.registry.get("score") || 0;
 
 		this.scoreText = this.add.text(16, 16, "Score: " + this.score, {
@@ -316,16 +309,12 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		this.scoreText.setDepth(1000);
 
 		//--- Timer HUD ---
-
-		//initializes global timer only once
 		if (this.registry.get("elapsedTime") === undefined) {
 			this.registry.set("elapsedTime", 0);
 		}
 
-		//reads current elapsed time in seconds from registry
 		this.elapsedTime = this.registry.get("elapsedTime") || 0;
 
-		//timer text in top right corner
 		const { width } = this.scale;
 		this.timerText = this.add.text(
 			width - 16,
@@ -337,22 +326,18 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				fontStyle: "bold"
 			}
 		)
-			.setOrigin(1, 0); //anchor top right
+			.setOrigin(1, 0);
 		this.timerText.setScrollFactor(0);
 		this.timerText.setStroke("#000000", 2);
 		this.timerText.setDepth(1000);
 
-		//every 1000 ms increase timer by 1 second
 		this.timerEvent = this.time.addEvent({
 			delay: 1000,
 			loop: true,
 			callback: () => {
 				this.elapsedTime++;
-
-				//saves globally so it continues onto the next level
 				this.registry.set("elapsedTime", this.elapsedTime);
 
-				//updates text
 				if (this.timerText && this.timerText.setText) {
 					this.timerText.setText(this.formatTime(this.elapsedTime));
 				}
@@ -365,10 +350,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		}
 
 		this.playerDifficulty = this.registry.get("playerDifficulty");
-
-		//remember when this level started
 		this.levelStartTime = this.elapsedTime;
-
 		this.deathsThisLevel = 0;
 
 		//--- Jump Skill Tracking Initialization ---
@@ -379,15 +361,11 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		this.totalWaitTime = 0;
 		this.waitSamples = 0;
 
-		//per-jump state
 		this.isAirborne = false;
 		this.currentAirDir = 0;
 		this.currentAirDirectionSwitches = 0;
-
-		//first frame is treated as "already landed"
 		this.lastLandTime = this.elapsedTime;
 
-		//--- Show current difficulty multiplier on screen ---
 		this.diffDebugText = this.add.text(
 			16,
 			48,
@@ -420,7 +398,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			});
 		}
 
-		//this makes sure the door starts on the closed frame
 		if (this.door && this.door.setTexture) {
 			this.door.setTexture("Door-1");
 		}
@@ -428,17 +405,13 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		//--- Bullet Texture ---
 		if (!this.textures.exists("bulletTex")) {
 			const g = this.add.graphics();
-			g.fillStyle(0xffff00, 1); //Yellow bullets
+			g.fillStyle(0xffff00, 1);
 			g.fillRect(0, 0, 10, 4);
 			g.generateTexture("bulletTex", 10, 4);
 			g.destroy();
 		}
 
 		//--- Bullet Group ---
-		/**
-		 * Creates a group for bullets with a maximum size and no gravity.
-		 * Bullets are used for shooting mechanics in the game.
-		 */
 		this.bullets = this.physics.add.group({
 			defaultKey: "bulletTex",
 			maxSize: 50,
@@ -478,9 +451,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		);
 
 		//--- Input for player movement ---
-		/**
-		 * Creates keyboard input for player movement and shooting.
-		 */
 		this.cursor = this.input.keyboard.createCursorKeys();
 		this.wasd = this.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -489,25 +459,22 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 
-		//--- Spacebar for shooting ---
 		this.shootKey = this.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.SPACE
 		);
 
-		//--- CLick 'K' key for opening doors ---
 		this.interactKey = this.input.keyboard.addKey(
 			Phaser.Input.Keyboard.KeyCodes.K
 		);
 
 		//--- Mobile Detection & Controls ---
-		/**
-		 * Detects if the game is running on a mobile device.
-		 */
 		this.isMobile = !this.sys.game.device.os.desktop;
 
 		if (this.isMobile) {
 			this.createMobileControls();
 		}
+
+		this.createHelpUI();
 
 		//--- Player Animations ---
 		this.anims.create({
@@ -540,19 +507,18 @@ if (!currentMusic || !currentMusic.isPlaying) {
 	update(time, delta) {
 		this.updateRain(time, delta);
 
-		// if player is dead or level is completed stop.
 		if (this.gameOver || this.levelComplete) {
+			return;
+		}
+
+		if (this.helpOpen) {
 			return;
 		}
 
 		const player = this.player;
 		const speed = 200;
-		const jumpSpeed = -450
+		const jumpSpeed = -450;
 
-		//--- Combine Arrows + WASD + Joystick ---
-		/**
-		 * Combines input from keyboard arrows, WASD keys, and joystick for player movement.
-		 */
 		const leftPressed =
 			this.cursor.left.isDown ||
 			this.wasd.left.isDown ||
@@ -568,31 +534,21 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			this.wasd.up.isDown ||
 			!!this.joystickUp;
 
-		// Current horizontal input direction
 		let hDir = 0;
 		if (leftPressed) {
 			hDir = -1;
-		} else if (rightPressed){
+		} else if (rightPressed) {
 			hDir = 1;
 		}
 
-		//--- Shoot ---
-		/**
-		 * Checks if the shoot key is pressed and calls the shootBullet method.
-		 */
 		if (Phaser.Input.Keyboard.JustDown(this.shootKey)) {
 			this.shootBullet();
 		}
 
-		//--- Interact with door using 'K' key
 		if (Phaser.Input.Keyboard.JustDown(this.interactKey)) {
 			this.tryOpenDoor();
 		}
 
-		//--- Animation + Horizontal movement ---
-		/**
-		 * Handles player movement and animation based on input.
-		 */
 		if (leftPressed) {
 			player.body.setVelocityX(-speed);
 			player.setFlipX(true);
@@ -606,16 +562,8 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			player.play("player_idle_front", true);
 		}
 
-		//--- Jump Logic ---
-		/**
-		 * When the player is on the ground and presses jump:
-		 * 1) measures how long they waited since the last standing.
-		 * 2) start tracking jump statistics including direction changes in air.
-		 */
 		if (upPressed && player.body.blocked.down) {
 
-			// Waiting Time:
-			//how long did the player stand on the platform before this jump.
 			if (typeof this.lastLandTime === "number") {
 				const wait = this.elapsedTime - this.lastLandTime;
 				if (wait >= 0) {
@@ -624,23 +572,15 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				}
 			}
 
-			//marks the jump started so landing callback knows this was a legit jump.
 			this.totalJumps++;
 			this.isAirborne = true;
 			this.currentAirDirectionSwitches = 0;
-			this.currentAirDir = hDir; //initial horizontal direction of the jump.
+			this.currentAirDir = hDir;
 
 			player.body.setVelocityY(jumpSpeed);
 		}
 
-		//--- In-air horizontal direction tracking ---
-		/**
-		 * Switch direction in air:
-		 * while airborne count how many times the player
-		 * changes between left and right input.
-		 */
 		if (!player.body.blocked.down && this.isAirborne) {
-			//only counts the switches between left/right, not between moving and standing still
 			if (
 				this.currentAirDir !== 0 &&
 				hDir !== 0 &&
@@ -650,102 +590,61 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				this.totalDirectionSwitches++;
 			}
 
-			//updates current direction
 			if (hDir !== 0) {
 				this.currentAirDir = hDir;
 			}
 		}
 	}
 
-	//--- Shooting Logic ---
-	/**
-	 * Shoots a bullet from the player's position in the direction they are facing.
-	 * The bullet is spawned slightly in front of the player and travels across the screen.
-	 */
 	shootBullet() {
 		const player = this.player;
 		const BULLET_SPEED = 400;
 
 		const dir = player.flipX ? -1 : 1;
-
-		//spawn slightly in front of the player
 		const offsetX = 20 * dir;
-
-		//Put bullet around mid-body
 		const bulletY = player.y - player.displayHeight * 0.5;
 
-		//Get a bullet from the physics group
 		const bullet = this.bullets.get(player.x + offsetX, bulletY);
 		if (!bullet) return;
 
-		//activate and show it
 		bullet.setActive(true);
 		bullet.setVisible(true);
-
-		//Ensure its body is enabled and dynamic
 		bullet.body.enable = true;
 		bullet.body.allowGravity = false;
-
-		//Set velocity so bullet travels across the screen
 		bullet.body.setVelocityX(BULLET_SPEED * dir);
 	}
 
-	//--- Bullets hit ground logic ----
 	onBulletHitPlatform(platform, bullet) {
-		//destroys bullet when it hits platform, platform stays
 		if (bullet && bullet.destroy) {
 			bullet.destroy();
 		}
 	}
 
-	//--- Player lands on platform ---
-	/**
-	 * called when the player collides with a platform.
-	 * 1) Accuracy: measures how far the player.x landing position is from the center of the platform
-	 * landing close to the center means safe accurate jumps were made
-	 * landing near edges means riskier less accurate jumps.
-	 * 
-	 */
 	onPlayerLand(player, platform) {
-		//if player was not in an airborne jump it tracks and skips it
 		if (!this.isAirborne) {
-			//updates lastLandTime so that the waiting time for the next jump works.
 			this.lastLandTime = this.elapsedTime;
 			return;
 		}
 
-		//jump is now finished.
 		this.isAirborne = false;
 
-		//Accuracy: distance from platform center.
 		const platformX = platform.x;
 		const landingOffset = Math.abs(player.x - platformX);
 
 		this.totalLandings++;
 		this.totalLandingOffset += landingOffset;
-
-		//starts the on platform timer
 		this.lastLandTime = this.elapsedTime;
 	}
 
-	//--- Player Picks Up Key Logic ----
-	/**
-	 * Handles the event when the player picks up a key.
-	 * If the player does not already have the key, it marks the key as collected,
-	 * removes it from the level, and displays a "Key + 1" message on screen.
-	 */
 	onPlayerPickupKey(player, key) {
 		if (this.hasKey) return;
 
-		//mark that we have the key
 		this.hasKey = true;
 
-		// Remove the key from the level
 		if (key && key.destroy) {
 			key.destroy();
 		}
 
-		//Show "Key + 1" on screen
 		const { width, height } = this.scale;
 
 		const text = this.add.text(
@@ -761,7 +660,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		.setOrigin(0.5)
 		.setDepth(999);
 
-		//Remove the text after 1 second
 		this.time.delayedCall(1000, () => {
 			if (text && text.destroy) {
 				text.destroy();
@@ -769,9 +667,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		});
 	}
 
-	//--- Try to open the door by using 'K' key or mobile button ---
 	tryOpenDoor() {
-		//must have the key and be in a valid game state
 		if (!this.hasKey || this.gameOver || this.levelComplete) {
 			return;
 		}
@@ -780,7 +676,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			return;
 		}
 
-		// Require the player to by physically near the door
 		const OPEN_DISTANCE = 70;
 
 		const dist = Phaser.Math.Distance.Between(
@@ -791,18 +686,10 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		);
 
 		if (dist <= OPEN_DISTANCE) {
-			// Reuses completion logic
 			this.onPlayerReachDoor(this.player, this.door);
 		}
 	}
 
-	//--- Player reaches door logic ---
-	/**
-	 * Handles the event when the player reaches the door.
-	 * If the player has the key, it marks the level as complete,
-	 * stops the background music, pauses the game physics,
-	 * and displays a "LEVEL COMPLETE" message.
-	 */
 	onPlayerReachDoor(player, door) {
 		if (!this.hasKey || this.levelComplete || this.gameOver) {
 			return;
@@ -810,26 +697,21 @@ if (!currentMusic || !currentMusic.isPlaying) {
 
 		this.levelComplete = true;
 
-		//play door opening animation
 		if (this.door && this.door.anims) {
 			this.door.play("door_open");
 		}
 
-		// Stop background music
 		if (this.bgMusic && this.bgMusic.isPlaying) {
 			this.bgMusic.stop();
 		}
 
-		//freezes gameplay
 		this.physics.pause();
 		if (player.anims) {
 			player.anims.stop();
 		}
 
-		//shows Level Complete text
 		const { width, height } = this.scale;
 
-		//creates text object for level complete
 		const levelCompleteText = this.add.text(
 			width / 2,
 			height / 2,
@@ -841,28 +723,20 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			}
 		).setOrigin(0.5);
 
-		//outline to make it look bigger
 		levelCompleteText.setStroke("#000000", 6);
 
-		//--- Adaptive Difficulty ---
 		const endTime = this.elapsedTime;
 		const levelDuration = endTime - (this.levelStartTime || 0);
 		const deaths = this.deathsThisLevel || 0;
 
-		//get current difficulty
 		let diff = this.registry.get("playerDifficulty") || { speedMult: 1 };
 
-		//difficulty tuning rules:
-		//-if player had NO deaths and finished quickly = slightly harder
-		//-if player had MANY deaths or took a long time = slightly easier
 		if (deaths === 0 && levelDuration < 30) {
-			diff.speedMult = Math.min(diff.speedMult + 0.15, 2); //caps it at 1.6x
+			diff.speedMult = Math.min(diff.speedMult + 0.15, 2);
 		} else if (deaths >= 3 || levelDuration > 45) {
-			diff.speedMult = Math.max(diff.speedMult - 0.15, 0.5); //floor at 0.6x
+			diff.speedMult = Math.max(diff.speedMult - 0.15, 0.5);
 		}
-		//otherwise speedMult is left as is normal
 
-		//--- Jumping Skill Measurements ---
 		const avgLandingOffset =
 			this.totalLandings > 0
 				? this.totalLandingOffset / this.totalLandings
@@ -873,12 +747,11 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				? this.totalDirectionSwitches / this.totalJumps
 				: null;
 
-		const avgWaitTime = 
+		const avgWaitTime =
 			this.waitSamples > 0
 				? this.totalWaitTime / this.waitSamples
 				: null;
 
-		//Accuracy: closer to center = slightly harder; way off center = slightly easier.
 		if (avgLandingOffset !== null) {
 			if (avgLandingOffset < 40) {
 				diff.speedMult = Math.min(diff.speedMult + 0.05, 2);
@@ -887,7 +760,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			}
 		}
 
-		//Direction switches in air: smooth = slightly harder; lots of switches = easier. 
 		if (avgDirectionSwitches !== null) {
 			if (avgDirectionSwitches < 0.5) {
 				diff.speedMult = Math.min(diff.speedMult + 0.05, 2);
@@ -896,7 +768,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			}
 		}
 
-		//Waiting time: quick jumps = harder; hesitating long jumps = easier.
 		if (avgWaitTime !== null) {
 			if (avgWaitTime < 1.5) {
 				diff.speedMult = Math.min(diff.speedMult + 0.05, 2);
@@ -905,36 +776,180 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			}
 		}
 
-		//save updated difficulty so the next level can use it
 		this.registry.set("playerDifficulty", diff);
 
-		//after a short delay this starts the second level 
 		this.time.delayedCall(1500, () => {
 			this.scene.start("LevelTwo");
 		});
 	}
 
+	//------ Help Button + Popup UI --------
+	createHelpUI() {
+		const { width, height } = this.scale;
+
+		// Help button background
+		this.helpButton = this.add.rectangle(width - 90, 78, 120, 44, 0x111111, 0.8);
+		this.helpButton.setStrokeStyle(2, 0xffffff, 1);
+		this.helpButton.setScrollFactor(0);
+		this.helpButton.setDepth(2000);
+		this.helpButton.setInteractive({ useHandCursor: true });
+
+		// Help button label
+		this.helpButtonText = this.add.text(width - 90, 78, "Help", {
+			fontFamily: "Chiller",
+			fontSize: "28px",
+			color: "#ffffff"
+		});
+		this.helpButtonText.setOrigin(0.5);
+		this.helpButtonText.setScrollFactor(0);
+		this.helpButtonText.setDepth(2001);
+		this.helpButtonText.setInteractive({ useHandCursor: true });
+
+		// Dark overlay behind popup
+		this.helpOverlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.6);
+		this.helpOverlay.setScrollFactor(0);
+		this.helpOverlay.setDepth(2100);
+		this.helpOverlay.setVisible(false);
+
+		// Popup panel
+		this.helpPanel = this.add.rectangle(width / 2, height / 2, 920, 620, 0x1a1a1a, 0.95);
+		this.helpPanel.setStrokeStyle(4, 0xffffff, 1);
+		this.helpPanel.setScrollFactor(0);
+		this.helpPanel.setDepth(2101);
+		this.helpPanel.setVisible(false);
+
+		// Popup title
+		this.helpTitleText = this.add.text(width / 2, height / 2 - 255, "How to Play", {
+			fontFamily: "Chiller",
+			fontSize: "42px",
+			color: "#ffffff"
+		});
+		this.helpTitleText.setOrigin(0.5);
+		this.helpTitleText.setScrollFactor(0);
+		this.helpTitleText.setDepth(2102);
+		this.helpTitleText.setVisible(false);
+
+		// Popup instructions
+		this.helpInstructionsText = this.add.text(
+			width / 2 - 390,
+			height / 2 - 205,
+			"Controls For Desktop:\n" +
+			"• Arrow Keys or WASD: Move player around the maze\n" +
+			"• SPACE: Shoot enemies\n" +
+			"• K: Open the door after acquiring the key\n\n" +
+			"Controls For Mobile:\n" +
+			"• Joystick: Move player around the maze\n" +
+			"• Red Button: Shoot enemies\n" +
+			"• Green Button: Interact / open door after acquiring the key\n\n" +
+			"Objective:\n" +
+			"• Move through the maze\n" +
+			"• Avoid enemies and obstacles\n" +
+			"• Grab the key\n" +
+			"• Escape through the door\n\n" +
+			(this.isMobile
+				? "Tap CLOSE to resume the game."
+				: "Click CLOSE to resume the game."),
+			{
+				fontFamily: "Chiller",
+				fontSize: "18px",
+				color: "#d4b100",
+				align: "left",
+				wordWrap: { width: 780 },
+				lineSpacing: 4
+			}
+		);
+		this.helpInstructionsText.setScrollFactor(0);
+		this.helpInstructionsText.setDepth(2102);
+		this.helpInstructionsText.setVisible(false);
+
+		// Close button text
+		this.helpCloseText = this.add.text(width / 2, height / 2 + 245, "CLOSE", {
+			fontFamily: "Chiller",
+			fontSize: "30px",
+			color: "#ffff00"
+		});
+		this.helpCloseText.setOrigin(0.5);
+		this.helpCloseText.setScrollFactor(0);
+		this.helpCloseText.setDepth(2102);
+		this.helpCloseText.setVisible(false);
+		this.helpCloseText.setInteractive({ useHandCursor: true });
+
+		const openHelpHandler = () => {
+			if (!this.helpOpen && !this.gameOver && !this.levelComplete) {
+				this.openHelpPopup();
+			}
+		};
+
+		this.helpButton.on("pointerdown", openHelpHandler);
+		this.helpButtonText.on("pointerdown", openHelpHandler);
+
+		this.helpCloseText.on("pointerdown", () => {
+			if (this.helpOpen) {
+				this.closeHelpPopup();
+			}
+		});
+	}
+
+	openHelpPopup() {
+		if (this.helpOpen) return;
+
+		this.helpOpen = true;
+
+		this.physics.pause();
+
+		if (this.timerEvent) {
+			this.timerEvent.paused = true;
+		}
+
+		if (this.player && this.player.body) {
+			this.player.body.setVelocity(0, 0);
+		}
+
+		if (this.player && this.player.anims) {
+			this.player.anims.stop();
+		}
+
+		this.helpOverlay.setVisible(true);
+		this.helpPanel.setVisible(true);
+		this.helpTitleText.setVisible(true);
+		this.helpInstructionsText.setVisible(true);
+		this.helpCloseText.setVisible(true);
+	}
+
+	closeHelpPopup() {
+		if (!this.helpOpen) return;
+
+		this.helpOpen = false;
+
+		this.helpOverlay.setVisible(false);
+		this.helpPanel.setVisible(false);
+		this.helpTitleText.setVisible(false);
+		this.helpInstructionsText.setVisible(false);
+		this.helpCloseText.setVisible(false);
+
+		if (!this.gameOver && !this.levelComplete) {
+			this.physics.resume();
+
+			if (this.timerEvent) {
+				this.timerEvent.paused = false;
+			}
+		}
+	}
+
 	//--- Mobile Controls: Joystick + Shoot Button ---
-	/**
-	 * Creates on-screen joystick and shoot button for mobile devices.
-	 * The joystick allows for player movement, while the shoot button enables shooting bullets.
-	 */
 	createMobileControls() {
 		const width = this.scale.width;
 		const height = this.scale.height;
 
-		//--- Joystick ---
 		const baseX = 80;
 		const baseY = height - 80;
 		const baseRadius = 70;
 
-		//--- Joystick Base ---
 		const base = this.add.circle(baseX, baseY, baseRadius, 0x000000, 0.3);
 		base.setScrollFactor(0);
 		base.setDepth(1000);
 		base.setInteractive();
 
-		//--- Joystick Thumb ---
 		const thumb = this.add.circle(baseX, baseY, baseRadius * 0.5, 0xffffff, 0.6);
 		thumb.setScrollFactor(0);
 		thumb.setDepth(1001);
@@ -946,81 +961,59 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		this.joystickRight = false;
 		this.joystickUp = false;
 
-		//--- Pointer Events on Joystick ---
-
-		/**
-		 * If the joystick area is touched, starts tracking that pointer for joystick movement.
-		 */
-		this.input.on("pointerdown", (pointer) => {		
+		this.input.on("pointerdown", (pointer) => {
 			if (this.joystickPointerId !== null) {
 				return;
 			}
 
 			if (pointer.x > width / 2) {
-				return
+				return;
 			}
 
 			this.joystickPointerId = pointer.id;
 			this.updateJoystick(pointer);
 		});
 
-		/**
-		 * If the joystick touch moves, updates the joystick state.
-		 */
 		this.input.on("pointermove", (pointer) => {
 			if (pointer.id === this.joystickPointerId) {
 				this.updateJoystick(pointer);
 			}
 		});
 
-		/**
-		 * if the joystick touch is released, resets the joystick state.
-		 */
 		this.input.on("pointerup", (pointer) => {
 			if (pointer.id === this.joystickPointerId) {
 				this.resetJoystick();
 			}
 		});
 
-		//--- Shoot Button ---
-		/**
-		 * Creates a shoot button on the screen for mobile devices.
-		 */
 		const shootRadius = 30;
 		const shoot = this.add.circle(width - 80, height - 80, shootRadius, 0xff4444, 0.7);
 		shoot.setScrollFactor(0);
 		shoot.setDepth(1000);
 		shoot.setInteractive();
 
-		/**
-		 * If the shoot button is pressed, calls the shootBullet method.
-		 */
 		shoot.on("pointerdown", () => {
-			if (!this.gameOver && !this.levelComplete) {
+			if (!this.gameOver && !this.levelComplete && !this.helpOpen) {
 				this.shootBullet();
 			}
 		});
 
 		this.shootButton = shoot;
 
-		//--- Door Interact Button ---
 		const interactRadius = 30;
 		const interact = this.add.circle(
-			width - 150,	// a bit to the left of the mobile shoot button
+			width - 150,
 			height - 80,
 			interactRadius,
-			0x44ff44,	//green button
+			0x44ff44,
 			0.7
 		);
 		interact.setScrollFactor(0);
 		interact.setDepth(1000);
 		interact.setInteractive();
 
-		/**
-		 * if the interact button is pressed, player tries and opens door
-		 */
 		interact.on("pointerdown", () => {
-			if (!this.gameOver && !this.levelComplete) {
+			if (!this.gameOver && !this.levelComplete && !this.helpOpen) {
 				this.tryOpenDoor();
 			}
 		});
@@ -1028,18 +1021,9 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		this.interactButton = interact;
 	}
 
-	//--- Update Joystick State ---
 	updateJoystick(pointer) {
-
-		/**
-		 * if there is no joystick, return.
-		 */
 		if (!this.joystickBase || !this.joystickThumb) return;
 
-		/**
-		 * Calculates the joystick thumb position based on pointer location,
-		 * clamping it within a maximum distance from the joystick base.
-		 */
 		const baseX = this.joystickBase.x;
 		const baseY = this.joystickBase.y;
 		const maxDist = 40;
@@ -1047,62 +1031,34 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		const dx = pointer.x - baseX;
 		const dy = pointer.y - baseY;
 
-		/**
-		 * Calculates the distance from the joystick base to the pointer.
-		 * If the distance exceeds the maximum allowed, it clamps the thumb position.
-		 */
 		let dist = Math.sqrt(dx * dx + dy * dy);
 		let clampedDx = dx;
 		let clampedDy = dy;
 
-		/**
-		 * Clamps the joystick thumb position within the maximum distance.
-		 */
 		if (dist > maxDist) {
 			const ratio = maxDist / dist;
 			clampedDx *= ratio;
 			clampedDy *= ratio;
 		}
 
-		/**
-		 * Sets the joystick thumb position based on the clamped values.
-		 */
 		this.joystickThumb.setPosition(baseX + clampedDx, baseY + clampedDy);
 
-		/**
-		 * Determines the joystick direction based on the clamped thumb position.
-		 */
 		this.joystickLeft = clampedDx < -10;
 		this.joystickRight = clampedDx > 10;
 		this.joystickUp = clampedDy < -15;
 	}
 
-	//--- Reset Joystick ---
-	/**
-	 * Resets the joystick to its neutral position and clears directional flags.
-	 */
 	resetJoystick() {
-
-		/**
-		 * if there is no joystick, return.
-		 */
 		if (!this.joystickBase || !this.joystickThumb) return;
 
-		/**
-		 * Resets the joystick pointer ID and thumb position.
-		 */
 		this.joystickPointerId = null;
 		this.joystickThumb.setPosition(this.joystickBase.x, this.joystickBase.y);
 
-		/**
-		 * Clears the joystick directional flags.
-		 */
 		this.joystickLeft = false;
 		this.joystickRight = false;
 		this.joystickUp = false;
 	}
 
-	//--- Timer Logic ---
 	formatTime(totalSeconds) {
 		const minutes = Math.floor(totalSeconds / 60);
 		const seconds = totalSeconds % 60;

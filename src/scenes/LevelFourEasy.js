@@ -1,4 +1,3 @@
-
 // You can write more code here
 
 /* START OF COMPILED CODE */
@@ -13,6 +12,16 @@ export default class LevelFourEasy extends Phaser.Scene {
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
+
+		// help button popup UI
+		this.helpOpen = false;
+		this.helpButton = null;
+		this.helpButtonText = null;
+		this.helpOverlay = null;
+		this.helpPanel = null;
+		this.helpTitleText = null;
+		this.helpInstructionsText = null;
+		this.helpCloseText = null;
 		/* END-USER-CTR-CODE */
 	}
 
@@ -415,48 +424,48 @@ export default class LevelFourEasy extends Phaser.Scene {
 		const player = this.player;
 
 		// --- Background Music ---
-// --- Background Music (keep playing on retry) ---
-const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
+		// --- Background Music (keep playing on retry) ---
+		const songs = ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6"];
 
-// create storage once
-if (!this.game.levelSongs) {
-	this.game.levelSongs = {};
-}
-
-// use a level id; if you only have one Level scene, scene key is fine
-const levelId = this.scene.key;
-
-// assign this level a random song once
-if (!this.game.levelSongs[levelId]) {
-	this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
-}
-
-const chosenSong = this.game.levelSongs[levelId];
-
-// check if something is already playing
-let currentMusic = this.sound.get(chosenSong);
-
-// only start music if that level's song is not already playing
-if (!currentMusic || !currentMusic.isPlaying) {
-	// stop previous track only if it is a different level's song
-	if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
-		const oldMusic = this.sound.get(this.game.currentMusicKey);
-		if (oldMusic && oldMusic.isPlaying) {
-			oldMusic.stop();
+		// create storage once
+		if (!this.game.levelSongs) {
+			this.game.levelSongs = {};
 		}
-	}
 
-	this.bgMusic = this.sound.add(chosenSong, {
-		loop: true,
-		volume: 0.5
-	});
+		// use a level id; if you only have one Level scene, scene key is fine
+		const levelId = this.scene.key;
 
-	this.bgMusic.play();
-	this.game.currentMusicKey = chosenSong;
-} else {
-	// reuse the already-playing music
-	this.bgMusic = currentMusic;
-}
+		// assign this level a random song once
+		if (!this.game.levelSongs[levelId]) {
+			this.game.levelSongs[levelId] = Phaser.Utils.Array.GetRandom(songs);
+		}
+
+		const chosenSong = this.game.levelSongs[levelId];
+
+		// check if something is already playing
+		let currentMusic = this.sound.get(chosenSong);
+
+		// only start music if that level's song is not already playing
+		if (!currentMusic || !currentMusic.isPlaying) {
+			// stop previous track only if it is a different level's song
+			if (this.game.currentMusicKey && this.game.currentMusicKey !== chosenSong) {
+				const oldMusic = this.sound.get(this.game.currentMusicKey);
+				if (oldMusic && oldMusic.isPlaying) {
+					oldMusic.stop();
+				}
+			}
+
+			this.bgMusic = this.sound.add(chosenSong, {
+				loop: true,
+				volume: 0.5
+			});
+
+			this.bgMusic.play();
+			this.game.currentMusicKey = chosenSong;
+		} else {
+			// reuse the already-playing music
+			this.bgMusic = currentMusic;
+		}
 
 		//--- game state ---
 		this.gameOver = false;
@@ -616,16 +625,14 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		this.enemies = this.physics.add.group();
 		if (this.scoutEnemy) this.enemies.add(this.scoutEnemy);
 		if (this.outlawEnemy) this.enemies.add(this.outlawEnemy);
-		//if (this.enemy3) this.enemies.add(this.enemy3);
+
 		// --- Per-enemy patrol distances ---
 		this.scoutEnemy.patrolRange = 90;   // small platform
 		this.outlawEnemy.patrolRange = 90;  // medium platform
-		//this.enemy3.patrolRange = 360;  // long platform
 
 		//----- Tag enemy types ----
 		if (this.scoutEnemy) this.scoutEnemy.enemyType = "scout";
 		if (this.outlawEnemy) this.outlawEnemy.enemyType = "outlaw";
-
 
 		const BASE_PATROL_SPEED = 93; //enemy speed
 		const DEFAULT_PATROL_RANGE = 80; //fallback
@@ -657,35 +664,21 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			enemy.state = "PATROL";
 			enemy.chaseSpeed = 110 * speedMult;     // faster than patrol
 			enemy.detectRange = 180;    // how close player must be
+
 			// ================================
 			// Enemy personality tuning
 			// ================================
-
-			// enemy1 → small platform
 			this.scoutEnemy.canRandomTurn = true;
 			this.scoutEnemy.turnChance = 0.005;
-
 			this.scoutEnemy.canRandomJump = true;
 			this.scoutEnemy.jumpChance = 0.010;
 			this.scoutEnemy.jumpPower = 260;
 
-
-			// enemy2 → medium
 			this.outlawEnemy.canRandomTurn = true;
 			this.outlawEnemy.turnChance = 0.006;
-
 			this.outlawEnemy.canRandomJump = true;
 			this.outlawEnemy.jumpChance = 0.002;
 			this.outlawEnemy.jumpPower = 260;
-
-
-			// enemy3 → long floor
-			//this.enemy3.canRandomTurn = true;
-			//this.enemy3.turnChance = 0.009;
-
-			//this.enemy3.canRandomJump = true;
-			//this.enemy3.jumpChance = 0.004;
-			//this.enemy3.jumpPower = 200;
 
 			enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 		});
@@ -782,6 +775,8 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			this.createMobileControls();
 		}
 
+		this.createHelpUI();
+
 		//--- Animations ---
 		/**
 		 * Creates animations for the player and enemies.
@@ -813,11 +808,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		player.play("player_idle_front");
 
 		//--- Enemy Walk Animation ---
-		/**
-		 * Creates an animation for enemy walking.
-		 */
-		//--- Enemy Scout Walk Animation ---
-		if (!this.anims.exists("scout_walk")){
+		if (!this.anims.exists("scout_walk")) {
 			this.anims.create({
 				key: "scout_walk",
 				frames: [
@@ -831,10 +822,9 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				repeat: -1
 			});
 		}
-			
 
 		//--- Enemy Scout Jump Animation ---
-		if (!this.anims.exists("scout_jump")){
+		if (!this.anims.exists("scout_jump")) {
 			this.anims.create({
 				key: "scout_jump",
 				frames: [
@@ -849,10 +839,10 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		}
 
 		//--- Outlaw Enemy run animation ----
-		if (!this.anims.exists("outlaw_run")){
+		if (!this.anims.exists("outlaw_run")) {
 			this.anims.create({
 				key: "outlaw_run",
-				frames:[
+				frames: [
 					{ key: "enemyrun1" },
 					{ key: "enemyrun2" },
 					{ key: "enemyrun3" },
@@ -869,6 +859,10 @@ if (!currentMusic || !currentMusic.isPlaying) {
 
 		//if game is over or level is complete skip all game logic
 		if (this.gameOver || this.levelComplete) {
+			return;
+		}
+
+		if (this.helpOpen) {
 			return;
 		}
 
@@ -899,7 +893,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		let hDir = 0;
 		if (leftPressed) {
 			hDir = -1;
-		} else if (rightPressed){
+		} else if (rightPressed) {
 			hDir = 1;
 		}
 
@@ -1042,7 +1036,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 						enemy.body.setVelocityY(-enemy.jumpPower);
 					}
 
-
 					enemy.body.setVelocityX(enemy.patrolSpeed * enemy.patrolDir);
 				}
 
@@ -1055,7 +1048,6 @@ if (!currentMusic || !currentMusic.isPlaying) {
 				}
 			});
 		}
-
 	}
 
 	//--- Enemy hits player Game Over ---
@@ -1458,6 +1450,159 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		});
 	}
 
+	//------ Help Button + Popup UI --------
+	createHelpUI() {
+		const { width, height } = this.scale;
+
+		// Help button background
+		this.helpButton = this.add.rectangle(width - 90, 78, 120, 44, 0x111111, 0.8);
+		this.helpButton.setStrokeStyle(2, 0xffffff, 1);
+		this.helpButton.setScrollFactor(0);
+		this.helpButton.setDepth(2000);
+		this.helpButton.setInteractive({ useHandCursor: true });
+
+		// Help button label
+		this.helpButtonText = this.add.text(width - 90, 78, "Help", {
+			fontFamily: "Chiller",
+			fontSize: "28px",
+			color: "#ffffff"
+		});
+		this.helpButtonText.setOrigin(0.5);
+		this.helpButtonText.setScrollFactor(0);
+		this.helpButtonText.setDepth(2001);
+		this.helpButtonText.setInteractive({ useHandCursor: true });
+
+		// Dark overlay behind popup
+		this.helpOverlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.6);
+		this.helpOverlay.setScrollFactor(0);
+		this.helpOverlay.setDepth(2100);
+		this.helpOverlay.setVisible(false);
+
+		// Popup panel
+		this.helpPanel = this.add.rectangle(width / 2, height / 2, 920, 620, 0x1a1a1a, 0.95);
+		this.helpPanel.setStrokeStyle(4, 0xffffff, 1);
+		this.helpPanel.setScrollFactor(0);
+		this.helpPanel.setDepth(2101);
+		this.helpPanel.setVisible(false);
+
+		// Popup title
+		this.helpTitleText = this.add.text(width / 2, height / 2 - 255, "How to Play", {
+			fontFamily: "Chiller",
+			fontSize: "42px",
+			color: "#ffffff"
+		});
+		this.helpTitleText.setOrigin(0.5);
+		this.helpTitleText.setScrollFactor(0);
+		this.helpTitleText.setDepth(2102);
+		this.helpTitleText.setVisible(false);
+
+		// Popup instructions
+		this.helpInstructionsText = this.add.text(
+			width / 2 - 390,
+			height / 2 - 205,
+			"Controls For Desktop:\n" +
+			"• Arrow Keys or WASD: Move player around the maze\n" +
+			"• SPACE: Shoot enemies\n" +
+			"• K: Open the door after acquiring the key\n\n" +
+			"Controls For Mobile:\n" +
+			"• Joystick: Move player around the maze\n" +
+			"• Red Button: Shoot enemies\n" +
+			"• Green Button: Interact / open door after acquiring the key\n\n" +
+			"Objective:\n" +
+			"• Move through the maze\n" +
+			"• Avoid enemies and obstacles\n" +
+			"• Grab the key\n" +
+			"• Escape through the door\n\n" +
+			(this.isMobile
+				? "Tap CLOSE to resume the game."
+				: "Click CLOSE to resume the game."),
+			{
+				fontFamily: "Chiller",
+				fontSize: "18px",
+				color: "#d4b100",
+				align: "left",
+				wordWrap: { width: 780 },
+				lineSpacing: 4
+			}
+		);
+		this.helpInstructionsText.setScrollFactor(0);
+		this.helpInstructionsText.setDepth(2102);
+		this.helpInstructionsText.setVisible(false);
+
+		// Close button text
+		this.helpCloseText = this.add.text(width / 2, height / 2 + 245, "CLOSE", {
+			fontFamily: "Chiller",
+			fontSize: "30px",
+			color: "#ffff00"
+		});
+		this.helpCloseText.setOrigin(0.5);
+		this.helpCloseText.setScrollFactor(0);
+		this.helpCloseText.setDepth(2102);
+		this.helpCloseText.setVisible(false);
+		this.helpCloseText.setInteractive({ useHandCursor: true });
+
+		const openHelpHandler = () => {
+			if (!this.helpOpen && !this.gameOver && !this.levelComplete) {
+				this.openHelpPopup();
+			}
+		};
+
+		this.helpButton.on("pointerdown", openHelpHandler);
+		this.helpButtonText.on("pointerdown", openHelpHandler);
+
+		this.helpCloseText.on("pointerdown", () => {
+			if (this.helpOpen) {
+				this.closeHelpPopup();
+			}
+		});
+	}
+
+	openHelpPopup() {
+		if (this.helpOpen) return;
+
+		this.helpOpen = true;
+
+		this.physics.pause();
+
+		if (this.timerEvent) {
+			this.timerEvent.paused = true;
+		}
+
+		if (this.player && this.player.body) {
+			this.player.body.setVelocity(0, 0);
+		}
+
+		if (this.player && this.player.anims) {
+			this.player.anims.stop();
+		}
+
+		this.helpOverlay.setVisible(true);
+		this.helpPanel.setVisible(true);
+		this.helpTitleText.setVisible(true);
+		this.helpInstructionsText.setVisible(true);
+		this.helpCloseText.setVisible(true);
+	}
+
+	closeHelpPopup() {
+		if (!this.helpOpen) return;
+
+		this.helpOpen = false;
+
+		this.helpOverlay.setVisible(false);
+		this.helpPanel.setVisible(false);
+		this.helpTitleText.setVisible(false);
+		this.helpInstructionsText.setVisible(false);
+		this.helpCloseText.setVisible(false);
+
+		if (!this.gameOver && !this.levelComplete) {
+			this.physics.resume();
+
+			if (this.timerEvent) {
+				this.timerEvent.paused = false;
+			}
+		}
+	}
+
 	//--- Mobile Controls: Joystick + Shoot Button ---
 	/**
 	 * Creates on-screen joystick and shoot button for mobile devices.
@@ -1501,7 +1646,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 			}
 
 			if (pointer.x > width / 2) {
-				return
+				return;
 			}
 
 			this.joystickPointerId = pointer.id;
@@ -1540,7 +1685,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		 * If the shoot button is pressed, calls the shootBullet method.
 		 */
 		shoot.on("pointerdown", () => {
-			if (!this.gameOver && !this.levelComplete) {
+			if (!this.gameOver && !this.levelComplete && !this.helpOpen) {
 				this.shootBullet();
 			}
 		});
@@ -1564,7 +1709,7 @@ if (!currentMusic || !currentMusic.isPlaying) {
 		 * if the interact button is pressed, player tries and opens door
 		 */
 		interact.on("pointerdown", () => {
-			if (!this.gameOver && !this.levelComplete) {
+			if (!this.gameOver && !this.levelComplete && !this.helpOpen) {
 				this.tryOpenDoor();
 			}
 		});
